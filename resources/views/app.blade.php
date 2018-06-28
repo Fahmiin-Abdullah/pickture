@@ -8,13 +8,16 @@
         <script>window.Laravel = {csrftoken: '{{csrf_token()}}'}</script>
         <title>Pickture</title>
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{{asset('./css/app.css')}}">
     </head>
     <body>
         <div id="app">
             <navbar></navbar>
-            <div class="container">
-                <mainpage></mainpage>
+            <transition name="slider" enter-active-class="animated slideInRight" leave-active-class="animated slideOutLeft" mode="out-in">
+                <router-view></router-view>
+            </transition>
             </div>
         </div>
     </body>

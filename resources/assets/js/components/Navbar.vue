@@ -9,7 +9,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active pr-3 pl-3">
-							<a class="nav-link text-white" href="/">Home <span class="sr-only">(current)</span></a>
+							<router-link class="nav-link text-white" to="/">Home</router-link>
 						</li>
 						<li class="nav-item  pr-3 pl-3">
 							<a class="nav-link text-white" href="#">Discover</a>
@@ -17,7 +17,7 @@
 						<li class="nav-item dropdown pr-3 pl-3">
 							<a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Foodtography</a>
+								<router-link class="dropdown-item" to="/foodtography">Foodtography</router-link>
 								<a class="dropdown-item" href="#">Travel and leisure</a>
 								<a class="dropdown-item" href="#">Our Heritage</a>
 								<a class="dropdown-item" href="#">#OOTD</a>
@@ -31,13 +31,12 @@
 								<a class="dropdown-item" href="#">Looking to buy pictures</a>
 								<a class="dropdown-item" href="#">Looking to sell pictures</a>
 								<a class="dropdown-item" href="#">Looking to hire creative people</a>
-								<a class="dropdown-item" href="#">I am a creative person</a>
 							</div>
 						</li>
 					</ul>
 				<form class="form-inline my-2 my-lg-0">
 					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 				</form>
 			</div>
 		</div>
