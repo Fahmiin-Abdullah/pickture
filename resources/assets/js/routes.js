@@ -5,6 +5,7 @@ import MainPage from './components/MainPage'
 import Foodtography from './components/Foodtography'
 import Discover from './components/Discover'
 import Categories from './components/Categories'
+import Travel from './components/Travel'
 
 Vue.use(VueRouter)
 
@@ -15,16 +16,22 @@ export default new VueRouter ({
 			component: MainPage
 		},
 		{
-			path: '/foodtography',
-			component: Foodtography
-		},
-		{
 			path: '/discover',
 			component: Discover
 		},
 		{
 			path: '/categories',
-			component: Categories
+			component: Categories,
+			children: [
+				{
+					path: '/foodtography',
+					component: Foodtography
+				},
+				{
+					path: '/travel',
+					component: Travel
+				}
+			]
 		}
 	]
 });

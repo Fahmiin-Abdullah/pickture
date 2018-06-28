@@ -15,9 +15,10 @@
     <body>
         <div id="app">
             <navbar></navbar>
-            <transition name="slider" enter-active-class="animated slideInRight" leave-active-class="animated slideOutLeft" mode="out-in">
-                <router-view></router-view>
-            </transition>
+            <div class="container90 mt-4">
+                <transition name="slider" enter-active-class="animated slideInRight" leave-active-class="animated slideOutLeft" mode="out-in">
+                    <router-view></router-view>
+                </transition>
             </div>
         </div>
     </body>
