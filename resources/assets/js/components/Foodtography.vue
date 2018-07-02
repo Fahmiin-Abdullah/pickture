@@ -63,8 +63,8 @@
 									<h6><strong>Description</strong></h6>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem voluptate numquam laborum, id sint nobis. Laborum nisi labore sapiente corporis quos eligendi minima a, officiis eveniet inventore expedita similique necessitatibus harum enim explicabo dolor natus tenetur, veritatis, aliquid fugit facilis.</p>
 									<br>
-									<h6><strong>Review</strong></h6>
-									<p><em>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, minus.</em></p>
+									<h6><strong>Captured by:</strong></h6>
+									<p><em>Lorem ipsum dolor sit amet</em></p>
 								</div>
 								<button class="btn btn-success text-white btn-block mb-2">Buy</button>
 								<button class="btn btn-dark text-white btn-block mb-2">Connect</button>

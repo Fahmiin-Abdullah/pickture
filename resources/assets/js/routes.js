@@ -6,6 +6,7 @@ import Foodtography from './components/Foodtography'
 import Discover from './components/Discover'
 import Categories from './components/Categories'
 import Travel from './components/Travel'
+import Register from './components/Register'
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,10 @@ export default new VueRouter ({
 					component: Travel
 				}
 			]
+		},
+		{
+			path: '/register',
+			component: Register
 		}
 	]
 });

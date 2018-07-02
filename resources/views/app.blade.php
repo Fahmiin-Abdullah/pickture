@@ -15,7 +15,7 @@
     </head>
     <body>
         <div id="app">
-            <navbar></navbar>
+            <navbar :user="{{(Auth::user() ? Auth::user() : 'null')}}"></navbar>
             <div class="container90 mt-4">
                 <transition name="slider" enter-active-class="animated slideInRight" leave-active-class="animated slideOutLeft" mode="out-in">
                     <router-view id="slider"></router-view>
