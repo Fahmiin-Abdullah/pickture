@@ -65,6 +65,10 @@
         border-radius: 10px;
     }
 
+    .hidden {
+        display: none;
+    }
+
     .carousel-item, img {
         height: 500px;
     }

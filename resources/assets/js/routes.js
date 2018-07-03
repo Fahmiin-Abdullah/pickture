@@ -7,6 +7,7 @@ import Discover from './components/Discover'
 import Categories from './components/Categories'
 import Travel from './components/Travel'
 import Register from './components/Register'
+import Profile from './components/Profile'
 
 Vue.use(VueRouter)
 
@@ -37,6 +38,10 @@ export default new VueRouter ({
 		{
 			path: '/register',
 			component: Register
+		},
+		{
+			path: '/profile',
+			component: Profile
 		}
 	]
 });
