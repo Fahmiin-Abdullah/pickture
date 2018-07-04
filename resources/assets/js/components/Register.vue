@@ -28,7 +28,7 @@
                                 </span>
 							</div>
 							<div class="form-group text-center">
-								<button class="btn btn-block btn-success text-white" @click.prevent="register()">Signup</button>
+								<button class="btn btn-block btn-success text-white" @click.prevent="register('/register')">Signup</button>
 							</div>
 						</form>
 					</div>
@@ -59,11 +59,12 @@
 								<a href="#" class="float-right">I forgot my password</a>
 							</div>
 							<div class="form-group text-center">
-								<button class="btn btn-block btn-success text-white" @click.prevent="login()">Login</button>
+								<button class="btn btn-block btn-success text-white" @click.prevent="register('/login')">Login</button>
 							</div>
 						</form>
 					</div>
-				</div>	
+				</div>
+				<div :class="{loader: loader}"></div>
 			</div>
 		</div>
 	</div>
@@ -72,7 +73,6 @@
 <script>
 	export default {
 		name: 'register',
-		props: ['auth'],
 		data() {
 			return {
 				registerData: {
@@ -102,14 +102,18 @@
                 errorLoginMessage: {
                 	name: null,
                 	password: null
-                }
+                },
+                loader: false
 			}
 		},
 		methods: {
-			register() {
+			register(url) {
 				const _this = this;
+				this.loader = true;
 				let _hasErrors = this.hasErrors;
 				let _errMessage = this.errorMessage;
+				let _hasLoginErrors = this.hasLoginErrors;
+				let _errLoginMessage = this.errorLoginMessage;
 
 				for (const key of Object.keys(this.hasErrors)) {
 				    this.hasErrors[key] = false;
@@ -119,34 +123,6 @@
 				    this.errorMessage[key] = null;
 				}
 
-				axios.post('/register', _this.registerData)
-				.then(() => {_this.$router.push('/');})
-				.then(() => {location.reload();})
-				.catch(err => {
-					const errors = err.response.data.errors;
-					if (err.response.statusText === 'Unprocessable Entity') {
-                        if (errors) {
-                            if (errors.name) {
-                               _hasErrors.name = true;
-                               _errMessage.name = _.isArray(errors.name) ? errors.name[0] : errors.name;  
-                            }
-                            if (errors.email) {
-                            	_hasErrors.email = true;
-                            	_errMessage.email = _.isArray(errors.email) ? errors.email[0] : errors.email;
-                            }
-                            if (errors.password) {
-                            	_hasErrors.password = true;
-                            	_errMessage.password = _.isArray(errors.password) ? errors.password[0] : errors.password;
-                            }
-                        }
-                    }
-				});
-			},
-			login() {
-				const _this = this;
-				let _hasErrors = this.hasLoginErrors;
-				let _errMessage = this.errorLoginMessage;
-
 				for (const key of Object.keys(this.hasLoginErrors)) {
 				    this.hasLoginErrors[key] = false;
 				}
@@ -155,23 +131,44 @@
 				    this.errorLoginMessage[key] = null;
 				}
 
-				axios.post('/login', _this.loginData)
-				.then(() => {_this.$router.push('/');})
+				const data = url === '/register' ? _this.registerData : _this.loginData;
+
+				axios.post(url, data)
 				.then(() => {location.reload();})
 				.catch(err => {
 					const errors = err.response.data.errors;
-					if (err.response.statusText ===  'Unprocessable Entity') {
-						if (errors) {
-							if (errors.name) {
-								_hasErrors.name = true;
-								_errMessage.name = _.isArray(errors.name) ? errors.name[0] : errors.name;
-							}
-							if (errors.password) {
-								_hasErrors.password = true;
-								_errMessage.password = _.isArray(errors.password) ? errors.password[0] : errors.password;
-							}
-						}
-					}
+					if (err.response.statusText === 'Unprocessable Entity') {
+                        if (errors) {
+                        	if (url === '/register') {
+                        		if (errors.name) {
+	                            	_this.loader = false;
+	                               _hasErrors.name = true;
+	                               _errMessage.name = _.isArray(errors.name) ? errors.name[0] : errors.name;  
+	                            }
+	                            if (errors.email) {
+	                            	_this.loader = false;
+	                            	_hasErrors.email = true;
+	                            	_errMessage.email = _.isArray(errors.email) ? errors.email[0] : errors.email;
+	                            }
+	                            if (errors.password) {
+	                            	_this.loader = false;
+	                            	_hasErrors.password = true;
+	                            	_errMessage.password = _.isArray(errors.password) ? errors.password[0] : errors.password;
+	                            }
+                        	} else if (url === '/login') {
+                        		if (errors.name) {
+	                            	_this.loader = false;
+	                               _hasLoginErrors.name = true;
+	                               _errLoginMessage.name = _.isArray(errors.name) ? errors.name[0] : errors.name;  
+	                            }
+	                            if (errors.password) {
+	                            	_this.loader = false;
+	                            	_hasLoginErrors.password = true;
+	                            	_errLoginMessage.password = _.isArray(errors.password) ? errors.password[0] : errors.password;
+	                            }
+                        	}
+                        }
+                    }
 				});
 			}
 		}
@@ -185,5 +182,33 @@
 
 	.help-block {
 		color: red;
+	}
+
+	.loader {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		z-index: 1;
+		width: 150px;
+		height: 150px;
+		margin: 90px 0 0 -75px;
+		border: 16px solid #f9f9f9;
+		border-radius: 50%;
+		border-top: 16px solid #28a745;
+		border-bottom: 16px solid #28a745;
+		width: 120px;
+		height: 120px;
+		-webkit-animation: spin 2s linear infinite;
+		animation: spin 2s linear infinite;
+	}
+
+	@-webkit-keyframes spin {
+		0% { -webkit-transform: rotate(0deg); }
+		100% { -webkit-transform: rotate(360deg); }
+	}
+
+	@keyframes spin {
+		0% { transform: rotate(0deg); }
+		100% { transform: rotate(360deg); }
 	}
 </style>

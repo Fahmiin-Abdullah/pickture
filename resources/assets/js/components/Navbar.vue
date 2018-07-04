@@ -27,8 +27,6 @@
 					<li class="nav-item dropdown pr-3 pl-3">
 						<a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Join us</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">Looking to buy pictures</a>
-							<a class="dropdown-item" href="#">Looking to sell pictures</a>
 							<a class="dropdown-item" href="#">Looking to hire creative people</a>
 							<div class="dropdown-divider"></div>
 							<router-link to="/register" class="dropdown-item" v-if="!user">Login/Signup</router-link>

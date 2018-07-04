@@ -5,7 +5,10 @@
 				<div class="card">
 					<a href="#modal" data-toggle="modal" @click="modal(1)">
 						<img class="card-img-top" :src="require('../../img/food/food_1.jpg')" alt="Card image cap">
-						<div class="text">Hello World</div>
+						<div class="text">
+							<h1><strong><i class="fas fa-heart pr-3"></i>63</strong></h1>
+							<h1><strong><i class="fas fa-star pr-3"></i>24</strong></h1>
+						</div>
 					</a>
 				</div>
 			</div>
@@ -135,6 +138,6 @@
 
 	.modal img {
 		width: 54vw;
-		object-fit: cover;
+		object-fit: contain;
 	}
 </style>

@@ -25,12 +25,21 @@
 				</li>
 			</ul>
 		</div>
+		<div class="col-md-9">
+			<div class="mb-5">
+				<h2 class="float-left">My work (257)</h2>
+				<a class="btn btn-success float-right text-white" data-toggle="modal" data-target="#addModal">Add new photo</a>
+			</div>
+			<hr>
+		</div>
+
+
 
 		<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Edit profile</h5>
+						<h5 class="modal-title">Edit profile</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -53,7 +62,7 @@
 								<div class="col text-center">
 									<img :src="require(`../../img/profile/${update.profilepic}`)" class="profilePic mb-3" id="profilepic" v-model="update.profilepic">
 									<div class="custom-file">
-										<input type="file" name="profilepic" @change="openFile()" class="hidden" id="fileUpload">
+										<input type="file" name="profilepic" @change="openFile" class="hidden" id="fileUpload">
 										<label for="fileUpload">
 											<a class="btn btn-outline-success">Upload image</a>
 										</label>
@@ -72,6 +81,54 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
 						<button type="button" class="btn btn-success">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="row">
+						<div class="col-md-8">
+							<img id="postphoto" v-model="postData.postphoto">
+						</div>
+						<div class="col-md-4">
+							<div class="modal-header">
+								<h5 class="modal-title">Create a new post</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="custom-file text-center mb-3">
+									<input type="file" name="postphoto" @change="openFile" class="hidden" id="fileUpload2">
+									<label for="fileUpload2">
+										<a class="btn btn-outline-success">Upload image</a>
+									</label>
+								</div>
+								<form class="mb-4">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Title" v-model="postData.title">
+									</div>
+									<div class="form-group">
+										<textarea class="form-control" placeholder="Tell the world what's on your mind" v-model="postData.description"></textarea>
+									</div>
+									<div class="input-group mb-4">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="inputGroupSelect">Select a category</label>
+										</div>
+										<select class="custom-select" id="inputGroupSelect" v-model="postData.category">
+											<option v-for="category in categories" :key="category.id">{{category}}</option>
+										</select>
+									</div>
+									<p><em>Please ensure that all your works have been properly watermarked before submitting it online.</em></p>
+								</form>
+								<div class="text-center">
+									<button class="btn btn-block btn-success white-text" @click.prevent="createPost()">Create</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -96,17 +153,31 @@
 						{social: 'fab fa-twitter', link: 'lorem posum'},
 						{social: 'fas fa-globe-americas', link: 'lorem vidius'}
 					]
+				},
+				categories: [
+					'Foodtography',
+					'Travel and leisure',
+					'Our heritage',
+					'#OOTD',
+					'Wedding',
+					'Graphics and illustration'
+				],
+				postData: {
+					postphoto: '',
+					title: '',
+					description: '',
+					category: ''
 				}
 			}
 		},
 		methods: {
 			openFile(e) {
 				const input = e.target;
-				console.log(input);
 				const reader = new FileReader();
 				reader.onload = () => {
 					const dataURL = reader.result;
-					$('#profilepic').attr('src', dataURL);
+					const id = input.id == 'fileUpload' ? '#profilepic' : '#postphoto';
+					$(id).attr('src', dataURL);
 				}
 				reader.readAsDataURL(input.files[0]);
 			},
@@ -117,7 +188,7 @@
 	}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 	.profilePic {
 		width: 10vw;
 		height: 20vh;
@@ -126,5 +197,19 @@
 
 	.fa-pen {
 		cursor: pointer;
+	}
+
+	#addModal {
+		width: 80vw !important;
+		margin: auto;
+
+		.modal-lg, .modal-dialog {
+			max-width: none !important;
+		}
+
+		img {
+			width: 54vw;
+		object-fit: contain;
+		}
 	}
 </style>
