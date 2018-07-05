@@ -27878,29 +27878,7 @@ module.exports = Vue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(42).setImmediate))
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./default.jpg": 88
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 16;
-
-/***/ }),
+/* 16 */,
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -52400,7 +52378,7 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(98)
+  __webpack_require__(84)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -52445,13 +52423,53 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 84 */,
-/* 85 */,
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(85);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("6d5e6bed", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-22ef5402\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-22ef5402\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  height: 20vh;\n  border-radius: 50%;\n}\n.fa-pen[data-v-22ef5402] {\n  cursor: pointer;\n}\n.loader[data-v-22ef5402] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-22ef5402 2s linear infinite;\n          animation: spin-data-v-22ef5402 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#addModal[data-v-22ef5402] {\n  width: 80vw !important;\n  margin: auto;\n}\n#addModal .modal-lg[data-v-22ef5402], #addModal .modal-dialog[data-v-22ef5402] {\n    max-width: none !important;\n}\n#addModal img[data-v-22ef5402] {\n    width: 54vw;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
 /* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -52598,6 +52616,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			update: {
 				profilepic: this.user.profilepic,
+				profilepicURL: '',
 				name: this.user.name,
 				tagline: this.user.tagline,
 				email: this.user.email,
@@ -52615,16 +52634,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods: {
 		openFile: function openFile(e) {
+			var _this2 = this;
+
 			var input = e.target;
 			var reader = new FileReader();
-			reader.onload = function () {
+			reader.onload = function (e) {
 				var dataURL = reader.result;
-				var id = input.id == 'fileUpload' ? '#profilepic' : '#postphoto';
-				$(id).attr('src', dataURL);
+				var upload = input.id == 'fileUpload' ? '.profilepic' : '#postphoto';
+				$(upload).attr('src', dataURL);
+				_this2.update.profilepicURL = dataURL;
 			};
 			reader.readAsDataURL(input.files[0]);
 		},
-		addSocial: function addSocial() {}
+		addSocial: function addSocial() {},
+		updateProfile: function updateProfile(id) {
+			$('#update').removeClass('hidden');
+			var _this = this;
+			axios.post('/profile/update/' + id, _this.update).then(function (res) {
+
+				$('#update').removeClass('loader').text('Saved!');
+				setTimeout(function () {
+					$('#update').addClass('loader hidden').text('');
+				}, 2000);
+			}).catch(function (err) {
+				console.log(err);
+			});
+		},
+		cancelUpdate: function cancelUpdate(upload) {
+			$(upload).attr('src', 'http://pickture.me/images/uploads/profilepic/' + this.update.profilepic);
+		}
 	}
 });
 
@@ -52641,15 +52679,24 @@ var render = function() {
       _c("div", { staticClass: "card mb-3" }, [
         _c("div", { staticClass: "card-body" }, [
           _c("h4", { staticClass: "text-center mb-3" }, [
-            _c("strong", [_vm._v("Hi, " + _vm._s(_vm.user.name))]),
+            _c("strong", [_vm._v("Hi, " + _vm._s(_vm.update.name))]),
             _vm._m(0)
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-image text-center" }, [
             _c("img", {
-              staticClass: "profilePic",
+              staticClass: "profilepic",
               attrs: {
-                src: __webpack_require__(16)("./" + _vm.user.profilepic)
+                src:
+                  "http://pickture.me/images/uploads/profilepic/" +
+                  _vm.update.profilepic
+              },
+              model: {
+                value: _vm.update.profilepic,
+                callback: function($$v) {
+                  _vm.$set(_vm.update, "profilepic", $$v)
+                },
+                expression: "update.profilepic"
               }
             })
           ]),
@@ -52657,7 +52704,7 @@ var render = function() {
           _c("hr"),
           _vm._v(" "),
           _c("h6", { staticClass: "text-center py-2" }, [
-            _c("em", [_vm._v('"' + _vm._s(_vm.user.tagline) + '"')])
+            _c("em", [_vm._v('"' + _vm._s(_vm.update.tagline) + '"')])
           ])
         ])
       ]),
@@ -52770,34 +52817,30 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "textarea",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.update.tagline,
-                                  expression: "update.tagline"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              domProps: { value: _vm.update.tagline },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.update,
-                                    "tagline",
-                                    $event.target.value
-                                  )
-                                }
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.update.tagline,
+                                expression: "update.tagline"
                               }
-                            },
-                            [_vm._v(_vm._s(_vm.update.tagline))]
-                          )
+                            ],
+                            staticClass: "form-control",
+                            domProps: { value: _vm.update.tagline },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.update,
+                                  "tagline",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
                         ]),
                         _vm._v(" "),
                         _c(
@@ -52816,11 +52859,11 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "col text-center" }, [
                         _c("img", {
-                          staticClass: "profilePic mb-3",
+                          staticClass: "profilepic mb-3",
                           attrs: {
-                            src: __webpack_require__(16)("./" +
-                              _vm.update.profilepic),
-                            id: "profilepic"
+                            src:
+                              "http://pickture.me/images/uploads/profilepic/" +
+                              _vm.update.profilepic
                           },
                           model: {
                             value: _vm.update.profilepic,
@@ -52869,7 +52912,41 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(4)
+              _c("div", { staticClass: "modal-footer" }, [
+                _c("div", {
+                  staticClass: "loader mr-3 hidden",
+                  attrs: { id: "update" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-dark",
+                    attrs: { "data-dismiss": "modal" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.cancelUpdate(".profilepic")
+                      }
+                    }
+                  },
+                  [_vm._v("Cancel")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.updateProfile(_vm.user.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Save changes")]
+                )
+              ])
             ])
           ]
         )
@@ -52912,7 +52989,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-4" }, [
-                  _vm._m(5),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
                     _c("div", { staticClass: "custom-file text-center mb-3" }, [
@@ -52926,7 +53003,7 @@ var render = function() {
                         on: { change: _vm.openFile }
                       }),
                       _vm._v(" "),
-                      _vm._m(6)
+                      _vm._m(5)
                     ]),
                     _vm._v(" "),
                     _c("form", { staticClass: "mb-4" }, [
@@ -52989,7 +53066,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "input-group mb-4" }, [
-                        _vm._m(7),
+                        _vm._m(6),
                         _vm._v(" "),
                         _c(
                           "select",
@@ -53032,10 +53109,15 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _vm._m(8)
+                      _vm._m(7)
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "text-center" }, [
+                      _c("div", {
+                        staticClass: "loader hidden",
+                        attrs: { id: "post" }
+                      }),
+                      _vm._v(" "),
                       _c(
                         "button",
                         {
@@ -53129,27 +53211,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-dark",
-          attrs: { type: "button", "data-dismiss": "modal" }
-        },
-        [_vm._v("Cancel")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-success", attrs: { type: "button" } },
-        [_vm._v("Save changes")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c("h5", { staticClass: "modal-title" }, [_vm._v("Create a new post")]),
       _vm._v(" "),
@@ -53212,12 +53273,7 @@ if (false) {
 }
 
 /***/ }),
-/* 88 */
-/***/ (function(module, exports) {
-
-module.exports = "/images/default.jpg?55b27fb1aff7bf710476cdbc4fe63a7e";
-
-/***/ }),
+/* 88 */,
 /* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -53649,49 +53705,6 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(99);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("6d5e6bed", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-22ef5402\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-22ef5402\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Profile.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 99 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.profilePic[data-v-22ef5402] {\n  width: 10vw;\n  height: 20vh;\n  border-radius: 50%;\n}\n.fa-pen[data-v-22ef5402] {\n  cursor: pointer;\n}\n#addModal[data-v-22ef5402] {\n  width: 80vw !important;\n  margin: auto;\n}\n#addModal .modal-lg[data-v-22ef5402], #addModal .modal-dialog[data-v-22ef5402] {\n    max-width: none !important;\n}\n#addModal img[data-v-22ef5402] {\n    width: 54vw;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n", ""]);
-
-// exports
-
 
 /***/ })
 /******/ ]);

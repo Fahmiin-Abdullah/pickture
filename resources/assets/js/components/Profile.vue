@@ -3,12 +3,12 @@
 		<div class="col-md-3">
 			<div class="card mb-3">
 				<div class="card-body">
-					<h4 class="text-center mb-3"><strong>Hi, {{user.name}}</strong><span class="float-right"><a data-toggle="modal" data-target="#editModal"><i class="fas fa-pen"></i></a></span></h4>
+					<h4 class="text-center mb-3"><strong>Hi, {{update.name}}</strong><span class="float-right"><a data-toggle="modal" data-target="#editModal"><i class="fas fa-pen"></i></a></span></h4>
 					<div class="card-image text-center">
-						<img :src="require(`../../img/profile/${user.profilepic}`)" class="profilePic">
+						<img :src="`http://pickture.me/images/uploads/profilepic/${update.profilepic}`" v-model="update.profilepic" class="profilepic">
 					</div>
 					<hr>
-					<h6 class="text-center py-2"><em>"{{user.tagline}}"</em></h6>
+					<h6 class="text-center py-2"><em>"{{update.tagline}}"</em></h6>
 				</div>
 			</div>
 			<h6 class="text-center">Catch me on social media</h6>
@@ -55,12 +55,12 @@
 										<input type="email" class="form-control" v-model="update.email">
 									</div>
 									<div class="form-group">
-										<textarea class="form-control" v-model="update.tagline">{{update.tagline}}</textarea>
+										<textarea class="form-control" v-model="update.tagline"></textarea>
 									</div>
 									<a href="#" @click="addSocial()">Add social media links</a>
 								</div>
 								<div class="col text-center">
-									<img :src="require(`../../img/profile/${update.profilepic}`)" class="profilePic mb-3" id="profilepic" v-model="update.profilepic">
+									<img :src="`http://pickture.me/images/uploads/profilepic/${update.profilepic}`" class="profilepic mb-3" v-model="update.profilepic">
 									<div class="custom-file">
 										<input type="file" name="profilepic" @change="openFile" class="hidden" id="fileUpload">
 										<label for="fileUpload">
@@ -79,8 +79,9 @@
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
-						<button type="button" class="btn btn-success">Save changes</button>
+						<div id="update" class="loader mr-3 hidden"></div>
+						<button class="btn btn-dark" data-dismiss="modal" @click.prevent="cancelUpdate('.profilepic')">Cancel</button>
+						<button class="btn btn-success" @click.prevent="updateProfile(user.id)">Save changes</button>
 					</div>
 				</div>
 			</div>
@@ -125,6 +126,7 @@
 									<p><em>Please ensure that all your works have been properly watermarked before submitting it online.</em></p>
 								</form>
 								<div class="text-center">
+									<div id="post" class="loader hidden"></div>
 									<button class="btn btn-block btn-success white-text" @click.prevent="createPost()">Create</button>
 								</div>
 							</div>
@@ -144,6 +146,7 @@
 			return {
 				update: {
 					profilepic: this.user.profilepic,
+					profilepicURL: '',
 					name: this.user.name,
 					tagline: this.user.tagline,
 					email: this.user.email,
@@ -174,22 +177,41 @@
 			openFile(e) {
 				const input = e.target;
 				const reader = new FileReader();
-				reader.onload = () => {
+				reader.onload = (e) => {
 					const dataURL = reader.result;
-					const id = input.id == 'fileUpload' ? '#profilepic' : '#postphoto';
-					$(id).attr('src', dataURL);
+					const upload = input.id == 'fileUpload' ? '.profilepic' : '#postphoto';
+					$(upload).attr('src', dataURL);
+					this.update.profilepicURL = dataURL;
 				}
 				reader.readAsDataURL(input.files[0]);
 			},
 			addSocial() {
 
+			},
+			updateProfile(id) {
+				$('#update').removeClass('hidden');
+				const _this = this;
+				axios.post(`/profile/update/${id}`, _this.update)
+				.then(res => {
+					
+					$('#update').removeClass('loader').text('Saved!');
+					setTimeout(() => {
+						$('#update').addClass('loader hidden').text('');
+					}, 2000);
+				})
+				.catch(err => {
+					console.log(err);
+				});
+			},
+			cancelUpdate(upload) {
+				$(upload).attr('src', `http://pickture.me/images/uploads/profilepic/${this.update.profilepic}`);
 			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-	.profilePic {
+	.profilepic {
 		width: 10vw;
 		height: 20vh;
 		border-radius: 50%;
@@ -197,6 +219,26 @@
 
 	.fa-pen {
 		cursor: pointer;
+	}
+
+	.loader {
+	    border: 3px solid #fff; 
+	    border-top: 3px solid #28a745;
+	    border-bottom: 3px solid #28a745;
+	    border-radius: 50%;
+	    width: 30px;
+	    height: 30px;
+	    animation: spin 2s linear infinite;
+	}
+
+	@-webkit-keyframes spin {
+		0% { -webkit-transform: rotate(0deg); }
+		100% { -webkit-transform: rotate(360deg); }
+	}
+
+	@keyframes spin {
+		0% { transform: rotate(0deg); }
+		100% { transform: rotate(360deg); }
 	}
 
 	#addModal {
@@ -209,7 +251,7 @@
 
 		img {
 			width: 54vw;
-		object-fit: contain;
+			object-fit: contain;
 		}
 	}
 </style>

@@ -16,3 +16,8 @@ Route::view('/', 'app');
 Route::post('/register', 'Auth\RegisterController@register');
 Route::post('/login', 'Auth\LoginController@login');
 Route::get('/logout', 'Auth\LoginController@logout');
+
+Route::get('/profile/{id}', 'UserController@getUser');
+Route::post('/profile/update/{id}', 'UserController@update');
+
+Route::post('/post', 'PostController@create');
