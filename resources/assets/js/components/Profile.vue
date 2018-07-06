@@ -26,11 +26,37 @@
 			</ul>
 		</div>
 		<div class="col-md-9">
-			<div class="mb-5">
-				<h2 class="float-left">My work (257)</h2>
-				<a class="btn btn-success float-right text-white" data-toggle="modal" data-target="#addModal">Add new photo</a>
+			<div>
+				<div class="row">
+					<div class="col-md-3">
+						<h2>My work ({{posts.total}})</h2>
+					</div>
+					<div class="col-md-4">
+						<ul class="pagination justify-content-center">
+							<li class="page-item" :class="{disabled: !posts.prev_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts(posts.prev_page_url)">Previous</a></li>
+							<li class="page-item disabled"><a href="#" class="page-link">Page {{posts.current_page}} of {{posts.last_page}}</a></li>
+							<li class="page-item" :class="{disabled: !posts.next_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts(posts.next_page_url)">Next</a></li>
+						</ul>
+					</div>
+					<div class="col-md-5 text-lg-right">
+						<a class="btn btn-success text-white" data-toggle="modal" data-target="#postModal">Add new photo</a>
+					</div>
+				</div>
 			</div>
-			<hr>
+			<hr class="my-2">
+			<div class="row ">
+				<div class="col-md-4" v-for="post in posts.data">
+					<div class="card card-post mb-3">
+						<a href="#modal" data-toggle="modal">
+							<img class="card-img-top" :src="`http://pickture.me/images/uploads/postphoto/${post.postphoto}`">
+							<div class="text">
+								<h1><strong><i class="fas fa-heart pr-3"></i></strong></h1>
+								<h1><strong><i class="fas fa-star pr-3"></i></strong></h1>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
 		</div>
 
 
@@ -87,7 +113,7 @@
 			</div>
 		</div>
 
-		<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 				<div class="modal-content">
 					<div class="row">
@@ -158,6 +184,7 @@
 			return {
 				csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 				posts: [],
+				total: 0,
 				update: {
 					profilepic: this.user.profilepic,
 					profilepicURL: '',
@@ -198,13 +225,13 @@
 			this.fetchPosts();
 		},
 		methods: {
-			fetchPosts() {
+			fetchPosts(page) {
 				const _this = this;
 				const id = this.user.id;
-				axios.get(`/posts/${id}`)
+				page = page || `/posts/${id}`;
+				axios.get(page)
 				.then(res => {
 					_this.posts = res.data;
-					console.log(_this.posts);
 				})
 				.catch(err => console.log(err));
 			},
@@ -253,10 +280,15 @@
 						_this.text = false;
 						$(action).text('');
 						if (action !== '#update') {
+							_this.posts.data.unshift(res.data);
+							_this.posts.data.pop();
+							$('#postModal').modal('hide');
 							for (const key of Object.keys(_this.postData)) {
 								_this.postData[key] = '';
 							}
 							$('#postphoto').removeAttr('src');
+						} else {
+							$('#editModal').modal('hide');
 						}
 					}, 2000);
 				})
@@ -291,6 +323,9 @@
 			cancelUpdate(upload) {
 				$(upload).attr('src', `http://pickture.me/images/uploads/profilepic/${this.update.profilepic}`);
 			}
+		},
+		computed: {
+			
 		}
 	}
 </script>
@@ -336,7 +371,7 @@
 		100% { transform: rotate(360deg); }
 	}
 
-	#addModal {
+	#postModal {
 		width: 80vw !important;
 		margin: auto;
 
@@ -348,5 +383,42 @@
 			width: 54vw;
 			object-fit: contain;
 		}
+	}
+
+	.card-post {
+		background-color: #fff;
+		height: 33vh !important;
+		border-radius: 5px;
+
+		img {
+			background-color: #fff;
+			height: 33vh !important;
+			border-radius: 5px;
+			transition: 0.5s;
+			object-fit: cover;
+		}
+	}
+
+	.card-post:hover{
+		img {
+			opacity: 0.5;
+		}
+
+		.text {
+			opacity: 1;
+		}
+	}
+
+	.text {
+		transition: 0.5s;
+		color: #000;
+		opacity: 0;
+		font-size: 20px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		text-align: center;
 	}
 </style>

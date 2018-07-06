@@ -91,23 +91,29 @@
 	}
 </script>
 
-<style scoped>
-	.card, .card img {
+<style lang="scss" scoped>
+	.card {
 		background-color: #fff;
 		height: 38vh !important;
 		border-radius: 5px;
+
+		img {
+			background-color: #fff;
+			height: 38vh !important;
+			border-radius: 5px;
+			transition: 0.5s;
+			object-fit: cover;
+		}
 	}
 
-	.card img {
-		transition: 0.5s;
-	}
+	.card:hover{
+		img {
+			opacity: 0.5;
+		}
 
-	.card:hover img{
-		opacity: 0.5;
-	}
-
-	.card:hover .text {
-		opacity: 1;
+		.text {
+			opacity: 1;
+		}
 	}
 
 	.text {
@@ -123,21 +129,17 @@
 		text-align: center;
 	}
 
-	.card img {
-		object-fit: cover;
-	}
-
 	.modal {
 		width: 80vw !important;
 		margin: auto;
+
+		img {
+			width: 54vw;
+			object-fit: contain;
+		}
 	}
 
 	.modal-lg, .modal-dialog {
 		max-width: none !important;
-	}
-
-	.modal img {
-		width: 54vw;
-		object-fit: contain;
 	}
 </style>

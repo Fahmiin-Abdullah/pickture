@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function getPosts($id)
     {
-        $posts = Post::where('user_id', $id)->orderBy('id', 'desc')->get();
+        $posts = Post::where('user_id', $id)->orderBy('id', 'desc')->paginate(6);
 
         return response(json_encode($posts));
     }

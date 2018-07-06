@@ -50679,7 +50679,7 @@ module.exports = "/images/showcase_3.jpg?e51ed0e6244ffc412ba6d5e8d01fe496";
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(54)
+  __webpack_require__(96)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -50724,46 +50724,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(55);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("73aeaf16", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-52ca0b0a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Foodtography.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-52ca0b0a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Foodtography.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.card[data-v-52ca0b0a], .card img[data-v-52ca0b0a] {\n\tbackground-color: #fff;\n\theight: 38vh !important;\n\tborder-radius: 5px;\n}\n.card img[data-v-52ca0b0a] {\n\t-webkit-transition: 0.5s;\n\ttransition: 0.5s;\n}\n.card:hover img[data-v-52ca0b0a]{\n\topacity: 0.5;\n}\n.card:hover .text[data-v-52ca0b0a] {\n\topacity: 1;\n}\n.text[data-v-52ca0b0a] {\n\t-webkit-transition: 0.5s;\n\ttransition: 0.5s;\n\tcolor: #000;\n\topacity: 0;\n\tfont-size: 20px;\n\tposition: absolute;\n\ttop: 50%;\n\tleft: 50%;\n\t-webkit-transform: translate(-50%, -50%);\n\t        transform: translate(-50%, -50%);\n\t-ms-transform: translate(-50%, -50%);\n\ttext-align: center;\n}\n.card img[data-v-52ca0b0a] {\n\t-o-object-fit: cover;\n\t   object-fit: cover;\n}\n.modal[data-v-52ca0b0a] {\n\twidth: 80vw !important;\n\tmargin: auto;\n}\n.modal-lg[data-v-52ca0b0a], .modal-dialog[data-v-52ca0b0a] {\n\tmax-width: none !important;\n}\n.modal img[data-v-52ca0b0a] {\n\twidth: 54vw;\n\t-o-object-fit: contain;\n\t   object-fit: contain;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 54 */,
+/* 55 */,
 /* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -52453,7 +52415,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  height: 20vh;\n  border-radius: 50%;\n}\n.fa-pen[data-v-22ef5402] {\n  cursor: pointer;\n}\n.has-error input[data-v-22ef5402], .has-error textarea[data-v-22ef5402], .has-error select[data-v-22ef5402] {\n  border: 1px solid red;\n}\n.help-block[data-v-22ef5402] {\n  color: red;\n}\n.loader[data-v-22ef5402] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-22ef5402 2s linear infinite;\n          animation: spin-data-v-22ef5402 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#addModal[data-v-22ef5402] {\n  width: 80vw !important;\n  margin: auto;\n}\n#addModal .modal-lg[data-v-22ef5402], #addModal .modal-dialog[data-v-22ef5402] {\n    max-width: none !important;\n}\n#addModal img[data-v-22ef5402] {\n    width: 54vw;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n", ""]);
+exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  height: 20vh;\n  border-radius: 50%;\n}\n.fa-pen[data-v-22ef5402] {\n  cursor: pointer;\n}\n.has-error input[data-v-22ef5402], .has-error textarea[data-v-22ef5402], .has-error select[data-v-22ef5402] {\n  border: 1px solid red;\n}\n.help-block[data-v-22ef5402] {\n  color: red;\n}\n.loader[data-v-22ef5402] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-22ef5402 2s linear infinite;\n          animation: spin-data-v-22ef5402 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#postModal[data-v-22ef5402] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-22ef5402], #postModal .modal-dialog[data-v-22ef5402] {\n    max-width: none !important;\n}\n#postModal img[data-v-22ef5402] {\n    width: 54vw;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.card-post[data-v-22ef5402] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-post img[data-v-22ef5402] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-post:hover img[data-v-22ef5402] {\n  opacity: 0.5;\n}\n.card-post:hover .text[data-v-22ef5402] {\n  opacity: 1;\n}\n.text[data-v-22ef5402] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -52616,6 +52578,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'profile',
@@ -52624,6 +52612,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 			posts: [],
+			total: 0,
 			update: {
 				profilepic: this.user.profilepic,
 				profilepicURL: '',
@@ -52660,12 +52649,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 
 	methods: {
-		fetchPosts: function fetchPosts() {
+		fetchPosts: function fetchPosts(page) {
 			var _this = this;
 			var id = this.user.id;
-			axios.get('/posts/' + id).then(function (res) {
+			page = page || '/posts/' + id;
+			axios.get(page).then(function (res) {
 				_this.posts = res.data;
-				console.log(_this.posts);
 			}).catch(function (err) {
 				return console.log(err);
 			});
@@ -52755,6 +52744,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					_this.text = false;
 					$(action).text('');
 					if (action !== '#update') {
+						_this.posts.data.unshift(res.data);
+						_this.posts.data.pop();
+						$('#postModal').modal('hide');
 						var _iteratorNormalCompletion3 = true;
 						var _didIteratorError3 = false;
 						var _iteratorError3 = undefined;
@@ -52781,6 +52773,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 						}
 
 						$('#postphoto').removeAttr('src');
+					} else {
+						$('#editModal').modal('hide');
 					}
 				}, 2000);
 			}).catch(function (err) {
@@ -52814,7 +52808,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		cancelUpdate: function cancelUpdate(upload) {
 			$(upload).attr('src', 'http://pickture.me/images/uploads/profilepic/' + this.update.profilepic);
 		}
-	}
+	},
+	computed: {}
 });
 
 /***/ }),
@@ -52883,7 +52878,103 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _vm._m(1),
+    _c("div", { staticClass: "col-md-9" }, [
+      _c("div", [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-3" }, [
+            _c("h2", [_vm._v("My work (" + _vm._s(_vm.posts.total) + ")")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4" }, [
+            _c("ul", { staticClass: "pagination justify-content-center" }, [
+              _c(
+                "li",
+                {
+                  staticClass: "page-item",
+                  class: { disabled: !_vm.posts.prev_page_url }
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link bg-dark text-white",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          _vm.fetchPosts(_vm.posts.prev_page_url)
+                        }
+                      }
+                    },
+                    [_vm._v("Previous")]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("li", { staticClass: "page-item disabled" }, [
+                _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                  _vm._v(
+                    "Page " +
+                      _vm._s(_vm.posts.current_page) +
+                      " of " +
+                      _vm._s(_vm.posts.last_page)
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "page-item",
+                  class: { disabled: !_vm.posts.next_page_url }
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link bg-dark text-white",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          _vm.fetchPosts(_vm.posts.next_page_url)
+                        }
+                      }
+                    },
+                    [_vm._v("Next")]
+                  )
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(1)
+        ])
+      ]),
+      _vm._v(" "),
+      _c("hr", { staticClass: "my-2" }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row " },
+        _vm._l(_vm.posts.data, function(post) {
+          return _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "card card-post mb-3" }, [
+              _c("a", { attrs: { href: "#modal", "data-toggle": "modal" } }, [
+                _c("img", {
+                  staticClass: "card-img-top",
+                  attrs: {
+                    src:
+                      "http://pickture.me/images/uploads/postphoto/" +
+                      post.postphoto
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(2, true)
+              ])
+            ])
+          ])
+        })
+      )
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -52903,7 +52994,7 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(2),
+              _vm._m(3),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c(
@@ -53036,7 +53127,7 @@ var render = function() {
                             on: { change: _vm.openFile }
                           }),
                           _vm._v(" "),
-                          _vm._m(3)
+                          _vm._m(4)
                         ])
                       ])
                     ]),
@@ -53112,7 +53203,7 @@ var render = function() {
       {
         staticClass: "modal fade",
         attrs: {
-          id: "addModal",
+          id: "postModal",
           tabindex: "-1",
           role: "dialog",
           "aria-labelledby": "exampleModalLabel",
@@ -53143,7 +53234,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-4" }, [
-                  _vm._m(4),
+                  _vm._m(5),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
                     _c("div", { staticClass: "custom-file text-center mb-3" }, [
@@ -53157,7 +53248,7 @@ var render = function() {
                         on: { change: _vm.openFile }
                       }),
                       _vm._v(" "),
-                      _vm._m(5)
+                      _vm._m(6)
                     ]),
                     _vm._v(" "),
                     _c("form", { staticClass: "mb-4" }, [
@@ -53261,7 +53352,7 @@ var render = function() {
                           class: { "has-error": _vm.hasErrors.category }
                         },
                         [
-                          _vm._m(6),
+                          _vm._m(7),
                           _vm._v(" "),
                           _c(
                             "select",
@@ -53373,21 +53464,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-9" }, [
-      _c("div", { staticClass: "mb-5" }, [
-        _c("h2", { staticClass: "float-left" }, [_vm._v("My work (257)")]),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-success float-right text-white",
-            attrs: { "data-toggle": "modal", "data-target": "#addModal" }
-          },
-          [_vm._v("Add new photo")]
-        )
-      ]),
+    return _c("div", { staticClass: "col-md-5 text-lg-right" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-success text-white",
+          attrs: { "data-toggle": "modal", "data-target": "#postModal" }
+        },
+        [_vm._v("Add new photo")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text" }, [
+      _c("h1", [_c("strong", [_c("i", { staticClass: "fas fa-heart pr-3" })])]),
       _vm._v(" "),
-      _c("hr")
+      _c("h1", [_c("strong", [_c("i", { staticClass: "fas fa-star pr-3" })])])
     ])
   },
   function() {
@@ -53906,6 +54001,49 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(97);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("3423cb27", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-52ca0b0a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Foodtography.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-52ca0b0a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Foodtography.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.card[data-v-52ca0b0a] {\n  background-color: #fff;\n  height: 38vh !important;\n  border-radius: 5px;\n}\n.card img[data-v-52ca0b0a] {\n    background-color: #fff;\n    height: 38vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card:hover img[data-v-52ca0b0a] {\n  opacity: 0.5;\n}\n.card:hover .text[data-v-52ca0b0a] {\n  opacity: 1;\n}\n.text[data-v-52ca0b0a] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n.modal[data-v-52ca0b0a] {\n  width: 80vw !important;\n  margin: auto;\n}\n.modal img[data-v-52ca0b0a] {\n    width: 54vw;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.modal-lg[data-v-52ca0b0a], .modal-dialog[data-v-52ca0b0a] {\n  max-width: none !important;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);
