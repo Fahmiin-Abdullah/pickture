@@ -1,5 +1,7 @@
 <?php
 
+use App\Category;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,13 +13,18 @@
 |
 */
 
-Route::view('/', 'app');
+Route::get('/', function() {
+	$categories = Category::all();
+
+	return view('app')->with('categories', $categories);
+});
 
 Route::post('/register', 'Auth\RegisterController@register');
 Route::post('/login', 'Auth\LoginController@login');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/profile/{id}', 'UserController@getUser');
-Route::post('/profile/update/{id}', 'UserController@update');
+Route::post('/profile/update', 'UserController@update');
 
-Route::post('/post', 'PostController@create');
+Route::get('/posts/{id}', 'PostController@getPosts');
+Route::post('/post/create', 'PostController@create');

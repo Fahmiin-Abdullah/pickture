@@ -76,13 +76,13 @@
 		data() {
 			return {
 				registerData: {
-					name: '',
-					email: '',
-					password: ''
+					name: null,
+					email: null,
+					password: null
 				},
 				loginData: {
-					name: '',
-					password: '',
+					name: null,
+					password: null,
 					remember: true
 				},
 				hasErrors:{
@@ -144,13 +144,11 @@
 	                            	_this.loader = false;
 	                               _hasErrors.name = true;
 	                               _errMessage.name = _.isArray(errors.name) ? errors.name[0] : errors.name;  
-	                            }
-	                            if (errors.email) {
+	                            } else if (errors.email) {
 	                            	_this.loader = false;
 	                            	_hasErrors.email = true;
 	                            	_errMessage.email = _.isArray(errors.email) ? errors.email[0] : errors.email;
-	                            }
-	                            if (errors.password) {
+	                            } else if (errors.password) {
 	                            	_this.loader = false;
 	                            	_hasErrors.password = true;
 	                            	_errMessage.password = _.isArray(errors.password) ? errors.password[0] : errors.password;
@@ -160,8 +158,7 @@
 	                            	_this.loader = false;
 	                               _hasLoginErrors.name = true;
 	                               _errLoginMessage.name = _.isArray(errors.name) ? errors.name[0] : errors.name;  
-	                            }
-	                            if (errors.password) {
+	                            } else if (errors.password) {
 	                            	_this.loader = false;
 	                            	_hasLoginErrors.password = true;
 	                            	_errLoginMessage.password = _.isArray(errors.password) ? errors.password[0] : errors.password;

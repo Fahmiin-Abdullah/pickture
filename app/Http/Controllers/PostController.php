@@ -5,32 +5,41 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Post;
-use Image;
+use App\Category;
+use Auth;
 
 class PostController extends Controller
 {
+    public function getPosts($id)
+    {
+        $posts = Post::where('user_id', $id)->orderBy('id', 'desc')->get();
+
+        return response(json_encode($posts));
+    }
+
     public function create(Request $request)
     {
     	$request->validate([
     		'title' => 'required|max:20',
     		'description' => 'required|max:100',
-    		'category' => 'required',
-    		'postphoto' => 'required|file'
+    		'category' => 'required'
     	]);
 
+        $user = Auth::user();
     	$post = new Post;
     	$post->title = $request->get('title');
     	$post->description = $request->get('description');
-    	$post->category = $request->get('category');
+        $post->category = $request->get('category');
 
-    	if ($request->hasFile('postphoto')) {
-    		$postphoto = $request->file('postphoto');
-    		$filename = time().'.'.$postphoto->getClientOriginalExtension();
-    		Image::make($postphoto)->save(public_path('/uploads/postphoto/'.$filename));
-    	}
+        $exploded = explode(',', $request->get('postphotoURL'));
+        $decoded = base64_decode($exploded[1]);
+        $extension = str_contains($exploded[0], 'jpeg') ? 'jpg' : 'png';
+        $filename = str_random().'.'.$extension;
+        $path = public_path().'/images/uploads/postphoto/'.$filename;
+        file_put_contents($path, $decoded);
+        $post->postphoto = $filename;
 
-    	$post->postphoto = $filename;
-    	$post->save();
+        $user->posts()->save($post);
 
     	return response(json_encode($post));
     }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use Image;
+use Auth;
 
 class UserController extends Controller
 {
@@ -15,7 +15,7 @@ class UserController extends Controller
 		return $user;
 	}
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
     	$request->validate([
     		'name' => 'max: 20',
@@ -23,19 +23,21 @@ class UserController extends Controller
     		'tagline' => 'max: 50'
     	]);
 
-    	$user = User::find($id);
+    	$user = Auth::user();
     	$user->name = $request->get('name');
     	$user->email = $request->get('email');
     	$user->tagline = $request->get('tagline');
 
-    	$exploded = explode(',', $request->get('profilepicURL'));
-    	$decoded = base64_decode($exploded[1]);
-    	$extension = str_contains($exploded[0], 'jpeg') ? 'jpg' : 'png';
-    	$filename = str_random().'.'.$extension;
-    	$path = public_path().'/images/uploads/profilepic/'.$filename;
-    	file_put_contents($path, $decoded);
-    	$user->profilepic = $filename;
-    	
+    	if ($request->get('profilepicURL')) {
+    		$exploded = explode(',', $request->get('profilepicURL'));
+	    	$decoded = base64_decode($exploded[1]);
+	    	$extension = str_contains($exploded[0], 'jpeg') ? 'jpg' : 'png';
+	    	$filename = str_random().'.'.$extension;
+	    	$path = public_path().'/images/uploads/profilepic/'.$filename;
+	    	file_put_contents($path, $decoded);
+	    	$user->profilepic = $filename;
+    	}
+	    
     	$user->save();
 
     	return response(json_encode($user));
