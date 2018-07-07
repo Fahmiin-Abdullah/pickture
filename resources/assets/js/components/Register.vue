@@ -134,7 +134,10 @@
 				const data = url === '/register' ? _this.registerData : _this.loginData;
 
 				axios.post(url, data)
-				.then(() => {location.reload();})
+				.then(() => {
+					_this.$router.push('/');
+					location.reload();
+				})
 				.catch(err => {
 					const errors = err.response.data.errors;
 					if (err.response.statusText === 'Unprocessable Entity') {

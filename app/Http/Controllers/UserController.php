@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use Auth;
+use App\Social;
 
 class UserController extends Controller
 {
@@ -15,7 +15,14 @@ class UserController extends Controller
 		return $user;
 	}
 
-    public function update(Request $request)
+    public function getSocial($id)
+    {
+        $socials = Social::where('user_id', $id)->get();
+
+        return response(json_encode($socials));
+    }
+
+    public function update(Request $request, $id)
     {
     	$request->validate([
     		'name' => 'max: 20',
@@ -23,7 +30,7 @@ class UserController extends Controller
     		'tagline' => 'max: 50'
     	]);
 
-    	$user = Auth::user();
+    	$user = User::find($id);
     	$user->name = $request->get('name');
     	$user->email = $request->get('email');
     	$user->tagline = $request->get('tagline');
@@ -37,9 +44,29 @@ class UserController extends Controller
 	    	file_put_contents($path, $decoded);
 	    	$user->profilepic = $filename;
     	}
-	    
+
+        foreach($request->get('socials') as $fab) {
+            $has_social = Social::where('user_id', $id)->where('social', $fab['social'])->first();
+            if ($fab['link']) {
+                if ($has_social) {
+                    $has_social->link = $fab['link'];
+                    $has_social->save();
+                } else {
+                    $social = new Social;
+                    $social->user_id = $id;
+                    $social->social = $fab['social'];
+                    $social->link = $fab['link'];
+                    $social->save();
+                }
+            } else {
+                if ($has_social != null) {
+                    $has_social->delete();
+                }
+            }
+        }
+
     	$user->save();
 
-    	return response(json_encode($user));
+    	return response($user);
     }
 }

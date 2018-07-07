@@ -50679,7 +50679,7 @@ module.exports = "/images/showcase_3.jpg?e51ed0e6244ffc412ba6d5e8d01fe496";
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(96)
+  __webpack_require__(54)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -50724,8 +50724,46 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 54 */,
-/* 55 */,
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(55);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("3423cb27", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-52ca0b0a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Foodtography.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-52ca0b0a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Foodtography.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.card[data-v-52ca0b0a] {\n  background-color: #fff;\n  height: 38vh !important;\n  border-radius: 5px;\n}\n.card img[data-v-52ca0b0a] {\n    background-color: #fff;\n    height: 38vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card:hover img[data-v-52ca0b0a] {\n  opacity: 0.5;\n}\n.card:hover .text[data-v-52ca0b0a] {\n  opacity: 1;\n}\n.text[data-v-52ca0b0a] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n.modal[data-v-52ca0b0a] {\n  width: 80vw !important;\n  margin: auto;\n}\n.modal img[data-v-52ca0b0a] {\n    width: 54vw;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.modal-lg[data-v-52ca0b0a], .modal-dialog[data-v-52ca0b0a] {\n  max-width: none !important;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
 /* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -51934,6 +51972,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var data = url === '/register' ? _this.registerData : _this.loginData;
 
 			axios.post(url, data).then(function () {
+				_this.$router.push('/');
 				location.reload();
 			}).catch(function (err) {
 				var errors = err.response.data.errors;
@@ -52415,7 +52454,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  height: 20vh;\n  border-radius: 50%;\n}\n.fa-pen[data-v-22ef5402] {\n  cursor: pointer;\n}\n.has-error input[data-v-22ef5402], .has-error textarea[data-v-22ef5402], .has-error select[data-v-22ef5402] {\n  border: 1px solid red;\n}\n.help-block[data-v-22ef5402] {\n  color: red;\n}\n.loader[data-v-22ef5402] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-22ef5402 2s linear infinite;\n          animation: spin-data-v-22ef5402 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#postModal[data-v-22ef5402] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-22ef5402], #postModal .modal-dialog[data-v-22ef5402] {\n    max-width: none !important;\n}\n#postModal img[data-v-22ef5402] {\n    width: 54vw;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.card-post[data-v-22ef5402] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-post img[data-v-22ef5402] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-post:hover img[data-v-22ef5402] {\n  opacity: 0.5;\n}\n.card-post:hover .text[data-v-22ef5402] {\n  opacity: 1;\n}\n.text[data-v-22ef5402] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  height: 20vh;\n  border-radius: 50%;\n}\n.fa-pen[data-v-22ef5402] {\n  cursor: pointer;\n}\n.has-error input[data-v-22ef5402], .has-error textarea[data-v-22ef5402], .has-error select[data-v-22ef5402] {\n  border: 1px solid red;\n}\n.help-block[data-v-22ef5402] {\n  color: red;\n}\n.loader[data-v-22ef5402] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-22ef5402 2s linear infinite;\n          animation: spin-data-v-22ef5402 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#postModal[data-v-22ef5402], #photoModal[data-v-22ef5402] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-22ef5402], #postModal .modal-dialog[data-v-22ef5402], #photoModal .modal-lg[data-v-22ef5402], #photoModal .modal-dialog[data-v-22ef5402] {\n    max-width: none !important;\n}\n#postModal img[data-v-22ef5402], #photoModal img[data-v-22ef5402] {\n    width: 54vw;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.card-post[data-v-22ef5402] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-post img[data-v-22ef5402] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-post:hover img[data-v-22ef5402] {\n  opacity: 0.5;\n}\n.card-post:hover .text[data-v-22ef5402] {\n  opacity: 1;\n}\n.text[data-v-22ef5402] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -52426,6 +52465,59 @@ exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  hei
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52615,11 +52707,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			total: 0,
 			update: {
 				profilepic: this.user.profilepic,
-				profilepicURL: '',
+				profilepicURL: null,
 				name: this.user.name,
 				tagline: this.user.tagline,
 				email: this.user.email,
-				social: [{ social: 'fab fa-facebook-square', link: 'lorem ipsum' }, { social: 'fab fa-instagram', link: 'lorem tab' }, { social: 'fab fa-twitter', link: 'lorem posum' }, { social: 'fas fa-globe-americas', link: 'lorem vidius' }]
+				socials: [{ social: 'fab fa-facebook', link: null }, { social: 'fab fa-instagram', link: null }, { social: 'fab fa-twitter', link: null }, { social: 'fas fa-globe-americas', link: null }]
 			},
 			postData: {
 				title: null,
@@ -52641,20 +52733,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				postphoto: null
 			},
 			loader: false,
-			text: false
+			text: false,
+			modalInfo: {
+				title: null,
+				description: null,
+				postphoto: null
+			}
 		};
 	},
 	created: function created() {
 		this.fetchPosts();
+		this.fetchSocial();
 	},
 
 	methods: {
 		fetchPosts: function fetchPosts(page) {
 			var _this = this;
 			var id = this.user.id;
+			this.loader = true;
 			page = page || '/posts/' + id;
 			axios.get(page).then(function (res) {
 				_this.posts = res.data;
+				_this.loader = false;
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		},
+		fetchSocial: function fetchSocial() {
+			var _this = this;
+			var id = this.user.id;
+			axios.get('/profile/social/' + id).then(function (res) {
+				res.data.forEach(function (social) {
+					if (social.social == 'fab fa-facebook') {
+						_this.update.socials[0].link = social.link;
+					} else if (social.social == 'fab fa-instagram') {
+						_this.update.socials[1].link = social.link;
+					} else if (social.social == 'fab fa-twitter') {
+						_this.update.socials[2].link = social.link;
+					} else if (social.social == 'fas fa-globe-americas') {
+						_this.update.socials[3].link = social.link;
+					}
+				});
 			}).catch(function (err) {
 				return console.log(err);
 			});
@@ -52676,10 +52795,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			};
 			reader.readAsDataURL(input.files[0]);
 		},
-		addSocial: function addSocial() {},
 		profileAction: function profileAction(action) {
 			this.text = true;
 			this.loader = true;
+			var id = this.user.id;
 			var _this = this;
 			var _hasErrors = this.hasErrors;
 			var _errMessage = this.errorMessage;
@@ -52734,9 +52853,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}
 			}
 
-			var url = action === '#update' ? '/profile/update' : '/post/create';
+			var url = action === '#update' ? '/profile/update/' + id : '/post/create';
 			var data = action === '#update' ? _this.update : _this.postData;
 			axios.post(url, data).then(function (res) {
+				console.log(res);
 				var message = action === '#update' ? 'Saved!' : 'Created!';
 				_this.loader = false;
 				$(action).text(message);
@@ -52807,9 +52927,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		cancelUpdate: function cancelUpdate(upload) {
 			$(upload).attr('src', 'http://pickture.me/images/uploads/profilepic/' + this.update.profilepic);
+		},
+		modalOpen: function modalOpen(id) {
+			var _this = this;
+			axios.get('/post/' + id).then(function (res) {
+				_this.modalInfo.title = res.data.title;
+				_this.modalInfo.description = res.data.description;
+				_this.modalInfo.postphoto = res.data.postphoto;
+			}).catch(function (err) {
+				return console.log(err);
+			});
 		}
-	},
-	computed: {}
+	}
 });
 
 /***/ }),
@@ -52862,7 +52991,7 @@ var render = function() {
       _c(
         "ul",
         { staticClass: "list-group" },
-        _vm._l(_vm.update.social, function(social) {
+        _vm._l(_vm.update.socials, function(social) {
           return _c("li", { staticClass: "list-group-item" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-2" }, [
@@ -52870,7 +52999,20 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-10" }, [
-                _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(social.link))])
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#" },
+                    model: {
+                      value: social.link,
+                      callback: function($$v) {
+                        _vm.$set(social, "link", $$v)
+                      },
+                      expression: "social.link"
+                    }
+                  },
+                  [_vm._v(_vm._s(social.link))]
+                )
               ])
             ])
           ])
@@ -52942,7 +53084,13 @@ var render = function() {
                     [_vm._v("Next")]
                   )
                 ]
-              )
+              ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "ml-3",
+                class: { loader: _vm.loader },
+                attrs: { id: "pagination" }
+              })
             ])
           ]),
           _vm._v(" "),
@@ -52958,18 +53106,29 @@ var render = function() {
         _vm._l(_vm.posts.data, function(post) {
           return _c("div", { staticClass: "col-md-4" }, [
             _c("div", { staticClass: "card card-post mb-3" }, [
-              _c("a", { attrs: { href: "#modal", "data-toggle": "modal" } }, [
-                _c("img", {
-                  staticClass: "card-img-top",
-                  attrs: {
-                    src:
-                      "http://pickture.me/images/uploads/postphoto/" +
-                      post.postphoto
+              _c(
+                "a",
+                {
+                  attrs: { href: "#photoModal", "data-toggle": "modal" },
+                  on: {
+                    click: function($event) {
+                      _vm.modalOpen(post.id)
+                    }
                   }
-                }),
-                _vm._v(" "),
-                _vm._m(2, true)
-              ])
+                },
+                [
+                  _c("img", {
+                    staticClass: "card-img-top",
+                    attrs: {
+                      src:
+                        "http://pickture.me/images/uploads/postphoto/" +
+                        post.postphoto
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(2, true)
+                ]
+              )
             ])
           ])
         })
@@ -52997,161 +53156,250 @@ var render = function() {
               _vm._m(3),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
-                _c(
-                  "form",
-                  [
-                    _c("div", { staticClass: "form-row" }, [
-                      _c("div", { staticClass: "col mt-3 mb-2" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.update.name,
-                                expression: "update.name"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text" },
-                            domProps: { value: _vm.update.name },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.update,
-                                  "name",
-                                  $event.target.value
-                                )
-                              }
+                _c("form", [
+                  _c("div", { staticClass: "form-row" }, [
+                    _c("div", { staticClass: "col mt-3 mb-2" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.update.name,
+                              expression: "update.name"
                             }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.update.email,
-                                expression: "update.email"
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.update.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
                               }
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "email" },
-                            domProps: { value: _vm.update.email },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.update,
-                                  "email",
-                                  $event.target.value
-                                )
-                              }
+                              _vm.$set(_vm.update, "name", $event.target.value)
                             }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("textarea", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.update.tagline,
-                                expression: "update.tagline"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            domProps: { value: _vm.update.tagline },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.update,
-                                  "tagline",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                _vm.addSocial()
-                              }
-                            }
-                          },
-                          [_vm._v("Add social media links")]
-                        )
+                          }
+                        })
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col text-center" }, [
-                        _c("img", {
-                          staticClass: "profilepic mb-3",
-                          attrs: {
-                            src:
-                              "http://pickture.me/images/uploads/profilepic/" +
-                              _vm.update.profilepic
-                          },
-                          model: {
-                            value: _vm.update.profilepic,
-                            callback: function($$v) {
-                              _vm.$set(_vm.update, "profilepic", $$v)
-                            },
-                            expression: "update.profilepic"
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.update.email,
+                              expression: "update.email"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "email" },
+                          domProps: { value: _vm.update.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.update, "email", $event.target.value)
+                            }
                           }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "custom-file" }, [
-                          _c("input", {
-                            staticClass: "hidden",
-                            attrs: {
-                              type: "file",
-                              name: "profilepic",
-                              id: "fileUpload"
-                            },
-                            on: { change: _vm.openFile }
-                          }),
-                          _vm._v(" "),
-                          _vm._m(4)
-                        ])
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.update.tagline,
+                              expression: "update.tagline"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          domProps: { value: _vm.update.tagline },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.update,
+                                "tagline",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._l(_vm.update.social, function(social) {
-                      return _c("div", { staticClass: "input-group mb-2" }, [
-                        _c("div", { staticClass: "input-group-prepend" }, [
-                          _c("div", { staticClass: "input-group-text" }, [
-                            _c("i", { class: social.social })
-                          ])
-                        ]),
-                        _vm._v(" "),
+                    _c("div", { staticClass: "col text-center" }, [
+                      _c("img", {
+                        staticClass: "profilepic mb-3",
+                        attrs: {
+                          src:
+                            "http://pickture.me/images/uploads/profilepic/" +
+                            _vm.update.profilepic
+                        },
+                        model: {
+                          value: _vm.update.profilepic,
+                          callback: function($$v) {
+                            _vm.$set(_vm.update, "profilepic", $$v)
+                          },
+                          expression: "update.profilepic"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "custom-file" }, [
                         _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: social.link }
-                        })
+                          staticClass: "hidden",
+                          attrs: {
+                            type: "file",
+                            name: "profilepic",
+                            id: "fileUpload"
+                          },
+                          on: { change: _vm.openFile }
+                        }),
+                        _vm._v(" "),
+                        _vm._m(4)
                       ])
-                    }),
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group mb-2" }, [
+                    _vm._m(5),
                     _vm._v(" "),
-                    _c("div", { attrs: { id: "social" } })
-                  ],
-                  2
-                )
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.update.socials[0].link,
+                          expression: "update.socials[0].link"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Add your facebook link here"
+                      },
+                      domProps: { value: _vm.update.socials[0].link },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.update.socials[0],
+                            "link",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group mb-2" }, [
+                    _vm._m(6),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.update.socials[1].link,
+                          expression: "update.socials[1].link"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Add your instagram link here"
+                      },
+                      domProps: { value: _vm.update.socials[1].link },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.update.socials[1],
+                            "link",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group mb-2" }, [
+                    _vm._m(7),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.update.socials[2].link,
+                          expression: "update.socials[2].link"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Add your twitter link here"
+                      },
+                      domProps: { value: _vm.update.socials[2].link },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.update.socials[2],
+                            "link",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group mb-2" }, [
+                    _vm._m(8),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.update.socials[3].link,
+                          expression: "update.socials[3].link"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Add your website link here"
+                      },
+                      domProps: { value: _vm.update.socials[3].link },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.update.socials[3],
+                            "link",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
@@ -53234,7 +53482,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-4" }, [
-                  _vm._m(5),
+                  _vm._m(9),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
                     _c("div", { staticClass: "custom-file text-center mb-3" }, [
@@ -53248,7 +53496,7 @@ var render = function() {
                         on: { change: _vm.openFile }
                       }),
                       _vm._v(" "),
-                      _vm._m(6)
+                      _vm._m(10)
                     ]),
                     _vm._v(" "),
                     _c("form", { staticClass: "mb-4" }, [
@@ -53352,7 +53600,7 @@ var render = function() {
                           class: { "has-error": _vm.hasErrors.category }
                         },
                         [
-                          _vm._m(7),
+                          _vm._m(11),
                           _vm._v(" "),
                           _c(
                             "select",
@@ -53444,6 +53692,73 @@ var render = function() {
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: { id: "photoModal", tabindex: "-1" }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog modal-dialog-centered modal-lg" },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-8" }, [
+                  _c("img", {
+                    staticClass: "rounded-left",
+                    attrs: {
+                      alt: "Card image cap",
+                      src:
+                        "http://pickture.me/images/uploads/postphoto/" +
+                        _vm.modalInfo.postphoto
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4 pr-4" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c("h5", { staticClass: "modal-title" }, [
+                      _vm._v(_vm._s(_vm.modalInfo.title))
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(12)
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _vm._m(13),
+                    _vm._v(" "),
+                    _c("p", [_vm._v(_vm._s(_vm.modalInfo.description))]),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _vm._m(14),
+                    _vm._v(" "),
+                    _c("p", [_c("em", [_vm._v(_vm._s(_vm.user.name))])])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success text-white btn-block mb-2"
+                    },
+                    [_vm._v("Buy")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    { staticClass: "btn btn-dark text-white btn-block mb-2" },
+                    [_vm._v("Connect")]
+                  )
+                ])
+              ])
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
@@ -53520,6 +53835,46 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fab fa-facebook" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fab fa-instagram" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fab fa-twitter" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("div", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fas fa-globe-americas" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c("h5", { staticClass: "modal-title" }, [_vm._v("Create a new post")]),
       _vm._v(" "),
@@ -53558,6 +53913,31 @@ var staticRenderFns = [
         [_vm._v("Select a category")]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: { type: "button", "data-dismiss": "modal" }
+      },
+      [_c("span", [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_c("strong", [_vm._v("Description")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_c("strong", [_vm._v("Captured by:")])])
   }
 ]
 render._withStripped = true
@@ -54001,49 +54381,6 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(97);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("3423cb27", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-52ca0b0a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Foodtography.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-52ca0b0a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Foodtography.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 97 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.card[data-v-52ca0b0a] {\n  background-color: #fff;\n  height: 38vh !important;\n  border-radius: 5px;\n}\n.card img[data-v-52ca0b0a] {\n    background-color: #fff;\n    height: 38vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card:hover img[data-v-52ca0b0a] {\n  opacity: 0.5;\n}\n.card:hover .text[data-v-52ca0b0a] {\n  opacity: 1;\n}\n.text[data-v-52ca0b0a] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n.modal[data-v-52ca0b0a] {\n  width: 80vw !important;\n  margin: auto;\n}\n.modal img[data-v-52ca0b0a] {\n    width: 54vw;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.modal-lg[data-v-52ca0b0a], .modal-dialog[data-v-52ca0b0a] {\n  max-width: none !important;\n}\n", ""]);
-
-// exports
-
 
 /***/ })
 /******/ ]);

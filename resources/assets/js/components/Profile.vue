@@ -13,13 +13,13 @@
 			</div>
 			<h6 class="text-center">Catch me on social media</h6>
 			<ul class="list-group">
-				<li class="list-group-item" v-for="social in update.social">
+				<li class="list-group-item" v-for="social in update.socials">
 					<div class="row">
 						<div class="col-md-2">
 							<i :class="social.social"></i>
 						</div>
 						<div class="col-md-10">
-							<a href="#">{{social.link}}</a>
+							<a href="#" v-model="social.link">{{social.link}}</a>
 						</div>
 					</div>
 				</li>
@@ -36,6 +36,7 @@
 							<li class="page-item" :class="{disabled: !posts.prev_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts(posts.prev_page_url)">Previous</a></li>
 							<li class="page-item disabled"><a href="#" class="page-link">Page {{posts.current_page}} of {{posts.last_page}}</a></li>
 							<li class="page-item" :class="{disabled: !posts.next_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts(posts.next_page_url)">Next</a></li>
+							<div id="pagination" class="ml-3" :class="{loader: loader}"></div>
 						</ul>
 					</div>
 					<div class="col-md-5 text-lg-right">
@@ -47,7 +48,7 @@
 			<div class="row ">
 				<div class="col-md-4" v-for="post in posts.data">
 					<div class="card card-post mb-3">
-						<a href="#modal" data-toggle="modal">
+						<a href="#photoModal" data-toggle="modal" @click="modalOpen(post.id)">
 							<img class="card-img-top" :src="`http://pickture.me/images/uploads/postphoto/${post.postphoto}`">
 							<div class="text">
 								<h1><strong><i class="fas fa-heart pr-3"></i></strong></h1>
@@ -58,6 +59,7 @@
 				</div>
 			</div>
 		</div>
+
 
 
 
@@ -83,7 +85,6 @@
 									<div class="form-group">
 										<textarea class="form-control" v-model="update.tagline"></textarea>
 									</div>
-									<a href="#" @click="addSocial()">Add social media links</a>
 								</div>
 								<div class="col text-center">
 									<img :src="`http://pickture.me/images/uploads/profilepic/${update.profilepic}`" class="profilepic mb-3" v-model="update.profilepic">
@@ -95,13 +96,30 @@
 									</div>
 								</div>
 							</div>
-							<div class="input-group mb-2" v-for="social in update.social">
+							<div class="input-group mb-2">
 								<div class="input-group-prepend">
-									<div class="input-group-text"><i :class="social.social"></i></div>
+									<div class="input-group-text"><i class="fab fa-facebook"></i></div>
 								</div>
-								<input type="text" class="form-control" :value="social.link">
+								<input type="text" class="form-control" placeholder="Add your facebook link here" v-model="update.socials[0].link">
 							</div>
-							<div id="social"></div>
+							<div class="input-group mb-2">
+								<div class="input-group-prepend">
+									<div class="input-group-text"><i class="fab fa-instagram"></i></div>
+								</div>
+								<input type="text" class="form-control" placeholder="Add your instagram link here" v-model="update.socials[1].link">
+							</div>
+							<div class="input-group mb-2">
+								<div class="input-group-prepend">
+									<div class="input-group-text"><i class="fab fa-twitter"></i></div>
+								</div>
+								<input type="text" class="form-control" placeholder="Add your twitter link here" v-model="update.socials[2].link">
+							</div>
+							<div class="input-group mb-2">
+								<div class="input-group-prepend">
+									<div class="input-group-text"><i class="fas fa-globe-americas"></i></div>
+								</div>
+								<input type="text" class="form-control" placeholder="Add your website link here" v-model="update.socials[3].link">
+							</div>
 						</form>
 					</div>
 					<div class="modal-footer">
@@ -112,6 +130,10 @@
 				</div>
 			</div>
 		</div>
+
+
+
+
 
 		<div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -173,6 +195,37 @@
 				</div>
 			</div>
 		</div>
+
+
+
+		<div class="modal fade" id="photoModal" tabindex="-1">
+			<div class="modal-dialog modal-dialog-centered modal-lg">
+				<div class="modal-content">
+					<div class="row">
+						<div class="col-md-8">
+							<img alt="Card image cap" :src="`http://pickture.me/images/uploads/postphoto/${modalInfo.postphoto}`" class="rounded-left">
+						</div>
+						<div class="col-md-4 pr-4">
+							<div class="modal-header">
+								 <h5 class="modal-title">{{modalInfo.title}}</h5>
+								<button type="button" class="close" data-dismiss="modal">
+									<span>&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<h6><strong>Description</strong></h6>
+								<p>{{modalInfo.description}}</p>
+								<br>
+								<h6><strong>Captured by:</strong></h6>
+								<p><em>{{user.name}}</em></p>
+							</div>
+							<button class="btn btn-success text-white btn-block mb-2">Buy</button>
+							<button class="btn btn-dark text-white btn-block mb-2">Connect</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -187,15 +240,15 @@
 				total: 0,
 				update: {
 					profilepic: this.user.profilepic,
-					profilepicURL: '',
+					profilepicURL: null,
 					name: this.user.name,
 					tagline: this.user.tagline,
 					email: this.user.email,
-					social: [
-						{social: 'fab fa-facebook-square', link: 'lorem ipsum'},
-						{social: 'fab fa-instagram', link: 'lorem tab'},
-						{social: 'fab fa-twitter', link: 'lorem posum'},
-						{social: 'fas fa-globe-americas', link: 'lorem vidius'}
+					socials: [
+						{social: 'fab fa-facebook', link: null},
+						{social: 'fab fa-instagram', link: null},
+						{social: 'fab fa-twitter', link: null},
+						{social: 'fas fa-globe-americas', link: null}
 					]
 				},
 				postData: {
@@ -218,20 +271,47 @@
 					postphoto: null
 				},
 				loader: false,
-				text: false
+				text: false,
+				modalInfo: {
+					title: null,
+					description: null,
+					postphoto: null
+				}
 			}
 		},
 		created() {
 			this.fetchPosts();
+			this.fetchSocial();
 		},
 		methods: {
 			fetchPosts(page) {
 				const _this = this;
 				const id = this.user.id;
+				this.loader = true;
 				page = page || `/posts/${id}`;
 				axios.get(page)
 				.then(res => {
 					_this.posts = res.data;
+					_this.loader = false;
+				})
+				.catch(err => console.log(err));
+			},
+			fetchSocial() {
+				const _this = this;
+				const id = this.user.id;
+				axios.get(`/profile/social/${id}`)
+				.then(res => {
+					res.data.forEach(social => {
+						if (social.social == 'fab fa-facebook') {
+							_this.update.socials[0].link = social.link;
+						} else if (social.social == 'fab fa-instagram') {
+							_this.update.socials[1].link = social.link;
+						} else if (social.social == 'fab fa-twitter') {
+							_this.update.socials[2].link = social.link;
+						} else if (social.social == 'fas fa-globe-americas') {
+							_this.update.socials[3].link = social.link;
+						}
+					});
 				})
 				.catch(err => console.log(err));
 			},
@@ -247,16 +327,13 @@
 					} else {
 						this.postData.postphotoURL = dataURL;
 					}
-					
 				}
 				reader.readAsDataURL(input.files[0]);
-			},
-			addSocial() {
-
 			},
 			profileAction(action) {
 				this.text = true;
 				this.loader = true;
+				const id = this.user.id;
 				const _this = this;
 				const _hasErrors = this.hasErrors;
 				const _errMessage = this.errorMessage;
@@ -269,10 +346,11 @@
 				    this.errorMessage[key] = null;
 				}
 
-				const url = action === '#update' ? '/profile/update' : '/post/create';
+				const url = action === '#update' ? `/profile/update/${id}` : '/post/create';
 				const data = action === '#update' ? _this.update : _this.postData;
 				axios.post(url, data)
 				.then(res => {
+					console.log(res);
 					const message = action === '#update' ? 'Saved!' : 'Created!';
 					_this.loader = false;
 					$(action).text(message);
@@ -322,10 +400,17 @@
 			},
 			cancelUpdate(upload) {
 				$(upload).attr('src', `http://pickture.me/images/uploads/profilepic/${this.update.profilepic}`);
+			},
+			modalOpen(id) {
+				const _this = this;
+				axios.get(`/post/${id}`)
+				.then(res => {
+					_this.modalInfo.title = res.data.title;
+					_this.modalInfo.description = res.data.description;
+					_this.modalInfo.postphoto = res.data.postphoto;
+				})
+				.catch(err => console.log(err));
 			}
-		},
-		computed: {
-			
 		}
 	}
 </script>
@@ -371,7 +456,7 @@
 		100% { transform: rotate(360deg); }
 	}
 
-	#postModal {
+	#postModal, #photoModal {
 		width: 80vw !important;
 		margin: auto;
 

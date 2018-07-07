@@ -17,6 +17,13 @@ class PostController extends Controller
         return response(json_encode($posts));
     }
 
+    public function getPost($id)
+    {
+        $post = Post::find($id);
+
+        return response(json_encode($post));
+    }
+
     public function create(Request $request)
     {
     	$request->validate([
