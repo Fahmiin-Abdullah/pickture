@@ -16,7 +16,7 @@
     <body>
         <div id="app">
             <navbar :user="{{(Auth::user() ? Auth::user() : 'null')}}"></navbar>
-            <div class="container90 mt-4">
+            <div class="container90 mt-10">
                 <transition name="slider" enter-active-class="animated slideInRight" leave-active-class="animated slideOutLeft" mode="out-in">
                     <router-view id="slider" :user="{{(Auth::user() ? Auth::user() : 'null')}}" :categories="{{$categories}}"></router-view>
                 </transition>

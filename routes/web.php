@@ -32,4 +32,5 @@ Route::get('/posts/{id}', 'PostController@getPosts');
 Route::post('/post/create', 'PostController@create');
 Route::get('/post/{id}', 'PostController@getPost');
 
+Route::get('/discover', 'PostController@discover');
 Route::get('/posts/category/{page}', 'PostController@getCategory');

@@ -1,5 +1,5 @@
 <template>
-	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-dark">
 		<div class="container">
 			<a class="navbar-brand text-white" href="/">Pickture</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSmall" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,7 +11,7 @@
 						<router-link class="nav-link text-white" to="/">Home</router-link>
 					</li>
 					<li class="nav-item pr-3 pl-3">
-						<a class="nav-link text-white" href="#">Discover</a>
+						<router-link class="nav-link text-white" to="/discover">Discover</router-link>
 					</li>
 					<li class="nav-item pr-3 pl-3 dropdown" :class="{hidden: validRoute}">
 						<a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>

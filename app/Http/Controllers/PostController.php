@@ -24,6 +24,13 @@ class PostController extends Controller
         return response(json_encode($post));
     }
 
+    public function discover()
+    {
+        $posts = Post::with('User')->inRandomOrder()->take(12)->get();
+
+        return response(json_encode($posts));
+    }
+
     public function create(Request $request)
     {
     	$request->validate([

@@ -50216,20 +50216,14 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_MainPage__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_MainPage___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_MainPage__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Foodtography__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Foodtography___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Foodtography__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Discover__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Discover___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_Discover__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Categories__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Categories___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_Categories__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Travel__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Travel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_Travel__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Register__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Register___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_Register__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Profile__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Profile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_Profile__);
-
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Discover__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Discover___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Discover__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Categories__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Categories___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_Categories__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Register__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Register___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_Register__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Profile__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Profile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_Profile__);
 
 
 
@@ -50247,17 +50241,17 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 		component: __WEBPACK_IMPORTED_MODULE_2__components_MainPage___default.a
 	}, {
 		path: '/discover',
-		component: __WEBPACK_IMPORTED_MODULE_4__components_Discover___default.a
+		component: __WEBPACK_IMPORTED_MODULE_3__components_Discover___default.a
 	}, {
 		path: '/categories/:category',
-		component: __WEBPACK_IMPORTED_MODULE_5__components_Categories___default.a,
+		component: __WEBPACK_IMPORTED_MODULE_4__components_Categories___default.a,
 		props: true
 	}, {
 		path: '/register',
-		component: __WEBPACK_IMPORTED_MODULE_7__components_Register___default.a
+		component: __WEBPACK_IMPORTED_MODULE_5__components_Register___default.a
 	}, {
 		path: '/profile',
-		component: __WEBPACK_IMPORTED_MODULE_8__components_Profile___default.a
+		component: __WEBPACK_IMPORTED_MODULE_6__components_Profile___default.a
 	}]
 }));
 
@@ -50629,453 +50623,11 @@ module.exports = "/images/showcase_2.jpg?5e7d0b89cae90b6f4181d0df111036b7";
 module.exports = "/images/showcase_3.jpg?e51ed0e6244ffc412ba6d5e8d01fe496";
 
 /***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(54)
-}
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(56)
-/* template */
-var __vue_template__ = __webpack_require__(57)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-52ca0b0a"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\Foodtography.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-52ca0b0a", Component.options)
-  } else {
-    hotAPI.reload("data-v-52ca0b0a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(55);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("3423cb27", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-52ca0b0a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Foodtography.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-52ca0b0a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Foodtography.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.card[data-v-52ca0b0a] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card img[data-v-52ca0b0a] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card:hover img[data-v-52ca0b0a] {\n  opacity: 0.5;\n}\n.card:hover .text[data-v-52ca0b0a] {\n  opacity: 1;\n}\n.text[data-v-52ca0b0a] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n#postModal[data-v-52ca0b0a] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-52ca0b0a], #postModal .modal-dialog[data-v-52ca0b0a] {\n    max-width: none !important;\n}\n#postModal img[data-v-52ca0b0a] {\n    width: 54vw;\n    height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.loader[data-v-52ca0b0a] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-52ca0b0a 2s linear infinite;\n          animation: spin-data-v-52ca0b0a 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-52ca0b0a {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-52ca0b0a {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 56 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'foodtography',
-	data: function data() {
-		return {
-			posts: [],
-			modalInfo: {
-				name: null,
-				title: null,
-				description: null,
-				postphoto: null
-			},
-			loader: false
-		};
-	},
-	created: function created() {
-		this.fetchPosts();
-	},
-
-	methods: {
-		fetchPosts: function fetchPosts(page) {
-			var _this = this;
-			this.loader = true;
-			page = page || '/posts/category/foodtography';
-			axios.get(page).then(function (res) {
-				_this.posts = res.data;
-				_this.loader = false;
-			}).catch(function (err) {
-				return console.log(err);
-			});
-		},
-		modalOpen: function modalOpen(id) {
-			var _this = this;
-			axios.get('/post/' + id).then(function (res) {
-				console.log(res);
-				_this.modalInfo.name = res.data.user.name;
-				_this.modalInfo.title = res.data.title;
-				_this.modalInfo.description = res.data.description;
-				_this.modalInfo.postphoto = res.data.postphoto;
-			}).catch(function (err) {
-				return console.log(err);
-			});
-		}
-	}
-});
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-3" }, [
-        _c("h2", [_vm._v("Total posts (" + _vm._s(_vm.posts.total) + ")")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("ul", { staticClass: "pagination justify-content-center" }, [
-          _c(
-            "li",
-            {
-              staticClass: "page-item",
-              class: { disabled: !_vm.posts.prev_page_url }
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "page-link bg-dark text-white",
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      _vm.fetchPosts(_vm.posts.prev_page_url)
-                    }
-                  }
-                },
-                [_vm._v("Previous")]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("li", { staticClass: "page-item disabled" }, [
-            _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-              _vm._v(
-                "Page " +
-                  _vm._s(_vm.posts.current_page) +
-                  " of " +
-                  _vm._s(_vm.posts.last_page)
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "page-item",
-              class: { disabled: !_vm.posts.next_page_url }
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "page-link bg-dark text-white",
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      _vm.fetchPosts(_vm.posts.next_page_url)
-                    }
-                  }
-                },
-                [_vm._v("Next")]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", {
-            staticClass: "ml-3",
-            class: { loader: _vm.loader },
-            attrs: { id: "pagination" }
-          })
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("hr", { staticClass: "my-2" }),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row" },
-      [
-        _vm._l(_vm.posts.data, function(post) {
-          return _c("div", { staticClass: "col-md-4 mb-4" }, [
-            _c("div", { staticClass: "card" }, [
-              _c(
-                "a",
-                {
-                  attrs: { href: "#postModal", "data-toggle": "modal" },
-                  on: {
-                    click: function($event) {
-                      _vm.modalOpen(post.id)
-                    }
-                  }
-                },
-                [
-                  _c("img", {
-                    staticClass: "card-img-top",
-                    attrs: {
-                      src:
-                        "http://pickture.me/images/uploads/postphoto/" +
-                        post.postphoto
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm._m(0, true)
-                ]
-              )
-            ])
-          ])
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "modal fade",
-            attrs: { id: "postModal", tabindex: "-1" }
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "modal-dialog modal-dialog-centered modal-lg" },
-              [
-                _c("div", { staticClass: "modal-content" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-8" }, [
-                      _c("img", {
-                        staticClass: "rounded-left",
-                        attrs: {
-                          alt: "Card image cap",
-                          src:
-                            "http://pickture.me/images/uploads/postphoto/" +
-                            _vm.modalInfo.postphoto
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4 pr-4" }, [
-                      _c("div", { staticClass: "modal-header" }, [
-                        _c("h5", { staticClass: "modal-title" }, [
-                          _vm._v(_vm._s(_vm.modalInfo.title))
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(1)
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "modal-body" }, [
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _c("p", [_vm._v(_vm._s(_vm.modalInfo.description))]),
-                        _vm._v(" "),
-                        _c("br"),
-                        _vm._v(" "),
-                        _vm._m(3),
-                        _vm._v(" "),
-                        _c("p", [
-                          _c("em", [_vm._v(_vm._s(_vm.modalInfo.name))])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass:
-                            "btn btn-success text-white btn-block mb-2"
-                        },
-                        [_vm._v("Buy")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-dark text-white btn-block mb-2"
-                        },
-                        [_vm._v("Connect")]
-                      )
-                    ])
-                  ])
-                ])
-              ]
-            )
-          ]
-        )
-      ],
-      2
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text" }, [
-      _c("h1", [_c("strong", [_c("i", { staticClass: "fas fa-heart pr-3" })])]),
-      _vm._v(" "),
-      _c("h1", [_c("strong", [_c("i", { staticClass: "fas fa-star pr-3" })])])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: { type: "button", "data-dismiss": "modal" }
-      },
-      [_c("span", [_vm._v("×")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h6", [_c("strong", [_vm._v("Description")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h6", [_c("strong", [_vm._v("Captured by:")])])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-52ca0b0a", module.exports)
-  }
-}
-
-/***/ }),
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
 /* 58 */,
 /* 59 */,
 /* 60 */,
@@ -51086,6 +50638,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(102)
+}
 var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(65)
@@ -51094,7 +50650,7 @@ var __vue_template__ = __webpack_require__(66)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -51140,9 +50696,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'discover'
+	name: 'discover',
+	created: function created() {
+		this.fetchPosts();
+	},
+
+	methods: {
+		fetchPosts: function fetchPosts() {
+			var _this = this;
+			axios.get('/discover').then(function (res) {
+				var result = '';
+				res.data.forEach(function (post) {
+					result += '\n\t\t\t\t\t\t<div class="col-md-4 mb-4">\n\t\t\t\t\t\t\t<div class="card-discover">\n\t\t\t\t\t\t\t\t<a href="#postModal' + post.id + '" data-toggle="modal">\n\t\t\t\t\t\t\t\t\t<img class="card-img-top" src="http://pickture.me/images/uploads/postphoto/' + post.postphoto + '">\n\t\t\t\t\t\t\t\t\t<div class="text">\n\t\t\t\t\t\t\t\t\t\t<h1><strong><i class="fas fa-heart pr-3"></i></strong></h1>\n\t\t\t\t\t\t\t\t\t\t<h1><strong><i class="fas fa-star pr-3"></i></strong></h1>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div class="modal fade discoverModal" id="postModal' + post.id + '" tabindex="-1">\n\t\t\t\t\t\t\t<div class="modal-dialog modal-dialog-centered modal-lg">\n\t\t\t\t\t\t\t\t<div class="modal-content">\n\t\t\t\t\t\t\t\t\t<div class="row">\n\t\t\t\t\t\t\t\t\t\t<div class="col-md-8">\n\t\t\t\t\t\t\t\t\t\t\t<img alt="Card image cap" src="http://pickture.me/images/uploads/postphoto/' + post.postphoto + '" class="rounded-left">\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t<div class="col-md-4 pr-4">\n\t\t\t\t\t\t\t\t\t\t\t<div class="modal-header">\n\t\t\t\t\t\t\t\t\t\t\t\t <h5 class="modal-title">' + post.title + '</h5>\n\t\t\t\t\t\t\t\t\t\t\t\t<button type="button" class="close" data-dismiss="modal">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<span>&times;</span>\n\t\t\t\t\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class="modal-body">\n\t\t\t\t\t\t\t\t\t\t\t\t<h6><strong>Description</strong></h6>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>' + post.description + '</p>\n\t\t\t\t\t\t\t\t\t\t\t\t<br>\n\t\t\t\t\t\t\t\t\t\t\t\t<h6><strong>Captured by:</strong></h6>\n\t\t\t\t\t\t\t\t\t\t\t\t<p><em>' + post.user.name + '</em></p>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<button class="btn btn-success text-white btn-block mb-2">Buy</button>\n\t\t\t\t\t\t\t\t\t\t\t<button class="btn btn-dark text-white btn-block mb-2">Connect</button>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t';
+				});
+				$('.result').append(result);
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		}
+	}
 });
 
 /***/ }),
@@ -51153,18 +50728,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "mb-3" }, [
+    _c("div", { staticClass: "row result" }),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-block btn-success text-white",
+        on: {
+          click: function($event) {
+            _vm.fetchPosts()
+          }
+        }
+      },
+      [_vm._v("Get more!")]
+    )
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container90" }, [
-      _c("h4", { staticClass: "mt-5" }, [_vm._v("Hello from discover")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -51700,145 +51281,11 @@ if (false) {
 }
 
 /***/ }),
-/* 72 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(73)
-}
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(75)
-/* template */
-var __vue_template__ = __webpack_require__(76)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\Travel.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-62f2175e", Component.options)
-  } else {
-    hotAPI.reload("data-v-62f2175e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 73 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(74);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("1535ad5f", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-62f2175e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Travel.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-62f2175e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Travel.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 75 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'travel'
-});
-
-/***/ }),
-/* 76 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("h4", { staticClass: "mt-4" }, [
-        _vm._v("Hello from travel and leisure section")
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-62f2175e", module.exports)
-  }
-}
-
-/***/ }),
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
 /* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -54307,7 +53754,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "nav",
-    { staticClass: "navbar navbar-expand-lg navbar-light bg-dark" },
+    { staticClass: "navbar fixed-top navbar-expand-lg navbar-light bg-dark" },
     [
       _c("div", { staticClass: "container" }, [
         _c(
@@ -54345,7 +53792,21 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _vm._m(1),
+                _c(
+                  "li",
+                  { staticClass: "nav-item pr-3 pl-3" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link text-white",
+                        attrs: { to: "/discover" }
+                      },
+                      [_vm._v("Discover")]
+                    )
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c(
                   "li",
@@ -54543,7 +54004,7 @@ var render = function() {
               2
             ),
             _vm._v(" "),
-            _vm._m(2)
+            _vm._m(1)
           ]
         )
       ])
@@ -54570,16 +54031,6 @@ var staticRenderFns = [
       },
       [_c("span", { staticClass: "navbar-toggler-icon text-white" })]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item pr-3 pl-3" }, [
-      _c("a", { staticClass: "nav-link text-white", attrs: { href: "#" } }, [
-        _vm._v("Discover")
-      ])
-    ])
   },
   function() {
     var _vm = this
@@ -54698,6 +54149,46 @@ exports = module.exports = __webpack_require__(2)(false);
 
 // module
 exports.push([module.i, "\n.list-group-item[data-v-4bfcfa5a]:hover {\n  background-color: #28a745;\n  color: #fff;\n}\n.card[data-v-4bfcfa5a] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card img[data-v-4bfcfa5a] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card:hover img[data-v-4bfcfa5a] {\n  opacity: 0.5;\n}\n.card:hover .text[data-v-4bfcfa5a] {\n  opacity: 1;\n}\n.text[data-v-4bfcfa5a] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n#postModal[data-v-4bfcfa5a] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-4bfcfa5a], #postModal .modal-dialog[data-v-4bfcfa5a] {\n    max-width: none !important;\n}\n#postModal img[data-v-4bfcfa5a] {\n    width: 54vw;\n    height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.loader[data-v-4bfcfa5a] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-4bfcfa5a 2s linear infinite;\n          animation: spin-data-v-4bfcfa5a 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-4bfcfa5a {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-4bfcfa5a {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(103);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("a7a1b328", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3ad881e0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Discover.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3ad881e0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Discover.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.card-discover {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-discover img {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-discover:hover img {\n  opacity: 0.5;\n}\n.card-discover:hover .text {\n  opacity: 1;\n}\n.text {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n.discoverModal {\n  width: 80vw !important;\n  margin: auto;\n}\n.discoverModal .modal-lg, .discoverModal .modal-dialog {\n    max-width: none !important;\n}\n.discoverModal img {\n    width: 54vw;\n    height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n", ""]);
 
 // exports
 

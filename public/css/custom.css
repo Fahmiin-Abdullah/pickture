@@ -6,3 +6,7 @@
 #fade {
 	-webkit-animation-duration: 0.5s;
 }
+
+.mt-10 {
+	margin-top: 6rem !important;
+}
