@@ -19,7 +19,7 @@ class PostController extends Controller
 
     public function getPost($id)
     {
-        $post = Post::find($id);
+        $post = Post::with('User')->find($id);
 
         return response(json_encode($post));
     }
@@ -49,5 +49,12 @@ class PostController extends Controller
         $user->posts()->save($post);
 
     	return response(json_encode($post));
+    }
+
+    public function getCategory($page)
+    {
+        $posts = Post::where('category', $page)->orderby('id', 'desc')->paginate(6);
+
+        return response($posts);
     }
 }

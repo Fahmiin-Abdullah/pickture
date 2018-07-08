@@ -50249,15 +50249,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 		path: '/discover',
 		component: __WEBPACK_IMPORTED_MODULE_4__components_Discover___default.a
 	}, {
-		path: '/categories',
+		path: '/categories/:category',
 		component: __WEBPACK_IMPORTED_MODULE_5__components_Categories___default.a,
-		children: [{
-			path: '/foodtography',
-			component: __WEBPACK_IMPORTED_MODULE_3__components_Foodtography___default.a
-		}, {
-			path: '/travel',
-			component: __WEBPACK_IMPORTED_MODULE_6__components_Travel___default.a
-		}]
+		props: true
 	}, {
 		path: '/register',
 		component: __WEBPACK_IMPORTED_MODULE_7__components_Register___default.a
@@ -50274,7 +50268,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(45)
+  __webpack_require__(96)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -50319,46 +50313,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(46);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("69e8cc9c", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-76e16b42\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MainPage.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-76e16b42\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MainPage.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*General*/\n.container90 {\n    width: 90%;\n    margin: auto;\n}\n.br-10 {\n    border-radius: 10px;\n}\n.hidden {\n    display: none;\n}\n.carousel-item, img {\n    height: 500px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 45 */,
+/* 46 */,
 /* 47 */
 /***/ (function(module, exports) {
 
@@ -50539,7 +50495,7 @@ var render = function() {
               "router-link",
               {
                 staticClass: "btn btn-dark text-white btn-block",
-                attrs: { to: "/categories" }
+                attrs: { to: "/categories/any" }
               },
               [
                 _c("i", { staticClass: "fa fa-globe-americas mr-3" }),
@@ -50758,7 +50714,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.card[data-v-52ca0b0a] {\n  background-color: #fff;\n  height: 38vh !important;\n  border-radius: 5px;\n}\n.card img[data-v-52ca0b0a] {\n    background-color: #fff;\n    height: 38vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card:hover img[data-v-52ca0b0a] {\n  opacity: 0.5;\n}\n.card:hover .text[data-v-52ca0b0a] {\n  opacity: 1;\n}\n.text[data-v-52ca0b0a] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n.modal[data-v-52ca0b0a] {\n  width: 80vw !important;\n  margin: auto;\n}\n.modal img[data-v-52ca0b0a] {\n    width: 54vw;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.modal-lg[data-v-52ca0b0a], .modal-dialog[data-v-52ca0b0a] {\n  max-width: none !important;\n}\n", ""]);
+exports.push([module.i, "\n.card[data-v-52ca0b0a] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card img[data-v-52ca0b0a] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card:hover img[data-v-52ca0b0a] {\n  opacity: 0.5;\n}\n.card:hover .text[data-v-52ca0b0a] {\n  opacity: 1;\n}\n.text[data-v-52ca0b0a] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n#postModal[data-v-52ca0b0a] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-52ca0b0a], #postModal .modal-dialog[data-v-52ca0b0a] {\n    max-width: none !important;\n}\n#postModal img[data-v-52ca0b0a] {\n    width: 54vw;\n    height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.loader[data-v-52ca0b0a] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-52ca0b0a 2s linear infinite;\n          animation: spin-data-v-52ca0b0a 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-52ca0b0a {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-52ca0b0a {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n", ""]);
 
 // exports
 
@@ -50833,30 +50789,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'foodtography',
+	data: function data() {
+		return {
+			posts: [],
+			modalInfo: {
+				name: null,
+				title: null,
+				description: null,
+				postphoto: null
+			},
+			loader: false
+		};
+	},
+	created: function created() {
+		this.fetchPosts();
+	},
+
 	methods: {
-		modal: function modal(id) {
-			$('#modalImg').attr('src', '/images/food_' + id + '.jpg');
+		fetchPosts: function fetchPosts(page) {
+			var _this = this;
+			this.loader = true;
+			page = page || '/posts/category/foodtography';
+			axios.get(page).then(function (res) {
+				_this.posts = res.data;
+				_this.loader = false;
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		},
+		modalOpen: function modalOpen(id) {
+			var _this = this;
+			axios.get('/post/' + id).then(function (res) {
+				console.log(res);
+				_this.modalInfo.name = res.data.user.name;
+				_this.modalInfo.title = res.data.title;
+				_this.modalInfo.description = res.data.description;
+				_this.modalInfo.postphoto = res.data.postphoto;
+			}).catch(function (err) {
+				return console.log(err);
+			});
 		}
 	}
 });
@@ -50871,160 +50845,188 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-4 mb-4" }, [
-        _c("div", { staticClass: "card" }, [
-          _c(
-            "a",
-            {
-              attrs: { href: "#modal", "data-toggle": "modal" },
-              on: {
-                click: function($event) {
-                  _vm.modal(1)
-                }
-              }
-            },
-            [
-              _c("img", {
-                staticClass: "card-img-top",
-                attrs: {
-                  src: __webpack_require__(58),
-                  alt: "Card image cap"
-                }
-              }),
-              _vm._v(" "),
-              _vm._m(0)
-            ]
-          )
-        ])
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("h2", [_vm._v("Total posts (" + _vm._s(_vm.posts.total) + ")")])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-4 mb-4" }, [
-        _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "col-md-4" }, [
+        _c("ul", { staticClass: "pagination justify-content-center" }, [
           _c(
-            "a",
+            "li",
             {
-              attrs: { href: "#modal", "data-toggle": "modal" },
-              on: {
-                click: function($event) {
-                  _vm.modal(2)
-                }
-              }
+              staticClass: "page-item",
+              class: { disabled: !_vm.posts.prev_page_url }
             },
             [
-              _c("img", {
-                staticClass: "card-img-top",
-                attrs: {
-                  src: __webpack_require__(59),
-                  alt: "Card image cap"
-                }
-              })
+              _c(
+                "a",
+                {
+                  staticClass: "page-link bg-dark text-white",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      _vm.fetchPosts(_vm.posts.prev_page_url)
+                    }
+                  }
+                },
+                [_vm._v("Previous")]
+              )
             ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-4 mb-4" }, [
-        _c("div", { staticClass: "card" }, [
+          ),
+          _vm._v(" "),
+          _c("li", { staticClass: "page-item disabled" }, [
+            _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+              _vm._v(
+                "Page " +
+                  _vm._s(_vm.posts.current_page) +
+                  " of " +
+                  _vm._s(_vm.posts.last_page)
+              )
+            ])
+          ]),
+          _vm._v(" "),
           _c(
-            "a",
+            "li",
             {
-              attrs: { href: "#modal", "data-toggle": "modal" },
-              on: {
-                click: function($event) {
-                  _vm.modal(3)
-                }
-              }
+              staticClass: "page-item",
+              class: { disabled: !_vm.posts.next_page_url }
             },
             [
-              _c("img", {
-                staticClass: "card-img-top",
-                attrs: {
-                  src: __webpack_require__(60),
-                  alt: "Card image cap"
-                }
-              })
+              _c(
+                "a",
+                {
+                  staticClass: "page-link bg-dark text-white",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      _vm.fetchPosts(_vm.posts.next_page_url)
+                    }
+                  }
+                },
+                [_vm._v("Next")]
+              )
             ]
-          )
+          ),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "ml-3",
+            class: { loader: _vm.loader },
+            attrs: { id: "pagination" }
+          })
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-4 mb-4" }, [
-        _c("div", { staticClass: "card" }, [
-          _c(
-            "a",
-            {
-              attrs: { href: "#modal", "data-toggle": "modal" },
-              on: {
-                click: function($event) {
-                  _vm.modal(4)
-                }
-              }
-            },
-            [
-              _c("img", {
-                staticClass: "card-img-top",
-                attrs: {
-                  src: __webpack_require__(61),
-                  alt: "Card image cap"
-                }
-              })
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-4 mb-4" }, [
-        _c("div", { staticClass: "card" }, [
-          _c(
-            "a",
-            {
-              attrs: { href: "#modal", "data-toggle": "modal" },
-              on: {
-                click: function($event) {
-                  _vm.modal(5)
-                }
-              }
-            },
-            [
-              _c("img", {
-                staticClass: "card-img-top",
-                attrs: {
-                  src: __webpack_require__(62),
-                  alt: "Card image cap"
-                }
-              })
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-4 mb-4" }, [
-        _c("div", { staticClass: "card" }, [
-          _c(
-            "a",
-            {
-              attrs: { href: "#modal", "data-toggle": "modal" },
-              on: {
-                click: function($event) {
-                  _vm.modal(6)
-                }
-              }
-            },
-            [
-              _c("img", {
-                staticClass: "card-img-top",
-                attrs: {
-                  src: __webpack_require__(63),
-                  alt: "Card image cap"
-                }
-              })
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _vm._m(1)
-    ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("hr", { staticClass: "my-2" }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row" },
+      [
+        _vm._l(_vm.posts.data, function(post) {
+          return _c("div", { staticClass: "col-md-4 mb-4" }, [
+            _c("div", { staticClass: "card" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#postModal", "data-toggle": "modal" },
+                  on: {
+                    click: function($event) {
+                      _vm.modalOpen(post.id)
+                    }
+                  }
+                },
+                [
+                  _c("img", {
+                    staticClass: "card-img-top",
+                    attrs: {
+                      src:
+                        "http://pickture.me/images/uploads/postphoto/" +
+                        post.postphoto
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(0, true)
+                ]
+              )
+            ])
+          ])
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: { id: "postModal", tabindex: "-1" }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "modal-dialog modal-dialog-centered modal-lg" },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-8" }, [
+                      _c("img", {
+                        staticClass: "rounded-left",
+                        attrs: {
+                          alt: "Card image cap",
+                          src:
+                            "http://pickture.me/images/uploads/postphoto/" +
+                            _vm.modalInfo.postphoto
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-4 pr-4" }, [
+                      _c("div", { staticClass: "modal-header" }, [
+                        _c("h5", { staticClass: "modal-title" }, [
+                          _vm._v(_vm._s(_vm.modalInfo.title))
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(1)
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "modal-body" }, [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(_vm.modalInfo.description))]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("p", [
+                          _c("em", [_vm._v(_vm._s(_vm.modalInfo.name))])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "btn btn-success text-white btn-block mb-2"
+                        },
+                        [_vm._v("Buy")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-dark text-white btn-block mb-2"
+                        },
+                        [_vm._v("Connect")]
+                      )
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ]
+        )
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = [
@@ -51033,19 +51035,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text" }, [
-      _c("h1", [
-        _c("strong", [
-          _c("i", { staticClass: "fas fa-heart pr-3" }),
-          _vm._v("63")
-        ])
-      ]),
+      _c("h1", [_c("strong", [_c("i", { staticClass: "fas fa-heart pr-3" })])]),
       _vm._v(" "),
-      _c("h1", [
-        _c("strong", [
-          _c("i", { staticClass: "fas fa-star pr-3" }),
-          _vm._v("24")
-        ])
-      ])
+      _c("h1", [_c("strong", [_c("i", { staticClass: "fas fa-star pr-3" })])])
     ])
   },
   function() {
@@ -51053,72 +51045,25 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "div",
-      { staticClass: "modal fade", attrs: { id: "modal", tabindex: "-1" } },
-      [
-        _c(
-          "div",
-          { staticClass: "modal-dialog modal-dialog-centered modal-lg" },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-8" }, [
-                  _c("img", {
-                    staticClass: "rounded-left",
-                    attrs: { alt: "Card image cap", id: "modalImg" }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4 pr-4" }, [
-                  _c("div", { staticClass: "modal-header" }, [
-                    _c("h5", { staticClass: "modal-title" }, [_vm._v("Salad")]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "close",
-                        attrs: { type: "button", "data-dismiss": "modal" }
-                      },
-                      [_c("span", [_vm._v("×")])]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-body" }, [
-                    _c("h6", [_c("strong", [_vm._v("Description")])]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem voluptate numquam laborum, id sint nobis. Laborum nisi labore sapiente corporis quos eligendi minima a, officiis eveniet inventore expedita similique necessitatibus harum enim explicabo dolor natus tenetur, veritatis, aliquid fugit facilis."
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("h6", [_c("strong", [_vm._v("Captured by:")])]),
-                    _vm._v(" "),
-                    _c("p", [_c("em", [_vm._v("Lorem ipsum dolor sit amet")])])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-success text-white btn-block mb-2"
-                    },
-                    [_vm._v("Buy")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    { staticClass: "btn btn-dark text-white btn-block mb-2" },
-                    [_vm._v("Connect")]
-                  )
-                ])
-              ])
-            ])
-          ]
-        )
-      ]
+      "button",
+      {
+        staticClass: "close",
+        attrs: { type: "button", "data-dismiss": "modal" }
+      },
+      [_c("span", [_vm._v("×")])]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_c("strong", [_vm._v("Description")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_c("strong", [_vm._v("Captured by:")])])
   }
 ]
 render._withStripped = true
@@ -51131,42 +51076,12 @@ if (false) {
 }
 
 /***/ }),
-/* 58 */
-/***/ (function(module, exports) {
-
-module.exports = "/images/food_1.jpg?185d6fb36a246b2c68dd8227509ba963";
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports) {
-
-module.exports = "/images/food_2.jpg?86366014e567ecde64d349a524fc9501";
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports) {
-
-module.exports = "/images/food_3.jpg?520ec07f9f50a3acb80d46567751bb8d";
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports) {
-
-module.exports = "/images/food_4.jpg?054213261e8862e12d2b9b95b046f0ac";
-
-/***/ }),
-/* 62 */
-/***/ (function(module, exports) {
-
-module.exports = "/images/food_5.jpg?29ac9735df74ef40552a586314ea8633";
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports) {
-
-module.exports = "/images/food_6.jpg?5c58ae8f3ca5bd72a52bb7dd92b62fb4";
-
-/***/ }),
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
 /* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -51266,7 +51181,7 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(68)
+  __webpack_require__(100)
 }
 var normalizeComponent = __webpack_require__(1)
 /* script */
@@ -51311,46 +51226,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 68 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(69);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("243b3ef2", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4bfcfa5a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Categories.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4bfcfa5a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Categories.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.list-group-item[data-v-4bfcfa5a]:hover {\n\tbackground-color: #28a745;\n\tcolor: #fff;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 68 */,
+/* 69 */,
 /* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -51381,9 +51258,104 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'categories'
+	name: 'categories',
+	props: ['category'],
+	data: function data() {
+		return {
+			posts: [],
+			modalInfo: {
+				name: null,
+				title: null,
+				description: null,
+				postphoto: null
+			},
+			loader: false
+		};
+	},
+	created: function created() {
+		this.category = this.category === 'OOTD' ? '#OOTD' : this.category;
+		this.fetchPosts('category', this.category);
+	},
+
+	methods: {
+		fetchPosts: function fetchPosts(action, page) {
+			var _this = this;
+			this.loader = true;
+			page = action === 'category' ? '/posts/category/' + page : page;
+			axios.get(page).then(function (res) {
+				_this.posts = res.data;
+				_this.loader = false;
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		},
+		modalOpen: function modalOpen(id) {
+			var _this = this;
+			axios.get('/post/' + id).then(function (res) {
+				console.log(res);
+				_this.modalInfo.name = res.data.user.name;
+				_this.modalInfo.title = res.data.title;
+				_this.modalInfo.description = res.data.description;
+				_this.modalInfo.postphoto = res.data.postphoto;
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		}
+	}
 });
 
 /***/ }),
@@ -51400,90 +51372,285 @@ var render = function() {
         _vm._v("Pick one to begin")
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "list-group mb-5" },
-        [
-          _c(
-            "router-link",
-            {
-              staticClass: "list-group-item list-group-item-action",
-              attrs: { to: "/foodtography" }
-            },
-            [_vm._v("Foodtography")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "list-group-item list-group-item-action",
-              attrs: { to: "/travel" }
-            },
-            [_vm._v("Travel and leisure")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "list-group-item list-group-item-action",
-              attrs: { to: "/" }
-            },
-            [_vm._v("Our heritage")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "list-group-item list-group-item-action",
-              attrs: { to: "/" }
-            },
-            [_vm._v("#OOTD")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "list-group-item list-group-item-action",
-              attrs: { to: "/" }
-            },
-            [_vm._v("Wedding")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "list-group-item list-group-item-action",
-              attrs: { to: "/" }
-            },
-            [_vm._v("Graphics and illustrations")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _vm._m(0)
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col md-9" },
-      [
+      _c("div", { staticClass: "list-group mb-5" }, [
         _c(
-          "transition",
+          "a",
           {
-            attrs: {
-              name: "fade",
-              "enter-active-class": "animated fadeIn",
-              "leave-active-class": "animated fadeOut",
-              mode: "out-in"
+            staticClass: "list-group-item list-group-item-action",
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                _vm.fetchPosts("category", "Foodtography")
+              }
             }
           },
-          [_c("router-view", { attrs: { id: "fade" } })],
-          1
+          [_vm._v("Foodtography")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "list-group-item list-group-item-action",
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                _vm.fetchPosts("category", "Travel and leisure")
+              }
+            }
+          },
+          [_vm._v("Travel and leisure")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "list-group-item list-group-item-action",
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                _vm.fetchPosts("category", "Our heritage")
+              }
+            }
+          },
+          [_vm._v("Our heritage")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "list-group-item list-group-item-action",
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                _vm.fetchPosts("category", "#OOTD")
+              }
+            }
+          },
+          [_vm._v("#OOTD")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "list-group-item list-group-item-action",
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                _vm.fetchPosts("category", "Wedding")
+              }
+            }
+          },
+          [_vm._v("Wedding")]
+        ),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "list-group-item list-group-item-action",
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                _vm.fetchPosts("category", "Graphics and illustrations")
+              }
+            }
+          },
+          [_vm._v("Graphics and illustrations")]
         )
-      ],
-      1
-    )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col md-9" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-3" }, [
+            _c("h2", [_vm._v("Total posts (" + _vm._s(_vm.posts.total) + ")")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-9" }, [
+            _c("ul", { staticClass: "pagination" }, [
+              _c(
+                "li",
+                {
+                  staticClass: "page-item",
+                  class: { disabled: !_vm.posts.prev_page_url }
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link bg-dark text-white",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          _vm.fetchPosts("pagination", _vm.posts.prev_page_url)
+                        }
+                      }
+                    },
+                    [_vm._v("Previous")]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("li", { staticClass: "page-item disabled" }, [
+                _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                  _vm._v(
+                    "Page " +
+                      _vm._s(_vm.posts.current_page) +
+                      " of " +
+                      _vm._s(_vm.posts.last_page)
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  staticClass: "page-item",
+                  class: { disabled: !_vm.posts.next_page_url }
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "page-link bg-dark text-white",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          _vm.fetchPosts("pagination", _vm.posts.next_page_url)
+                        }
+                      }
+                    },
+                    [_vm._v("Next")]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "ml-3",
+                class: { loader: _vm.loader },
+                attrs: { id: "pagination" }
+              })
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr", { staticClass: "my-2" }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _vm._l(_vm.posts.data, function(post) {
+              return _c("div", { staticClass: "col-md-4 mb-4" }, [
+                _c("div", { staticClass: "card" }, [
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "#postModal", "data-toggle": "modal" },
+                      on: {
+                        click: function($event) {
+                          _vm.modalOpen(post.id)
+                        }
+                      }
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "card-img-top",
+                        attrs: {
+                          src:
+                            "http://pickture.me/images/uploads/postphoto/" +
+                            post.postphoto
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm._m(0, true)
+                    ]
+                  )
+                ])
+              ])
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "modal fade",
+                attrs: { id: "postModal", tabindex: "-1" }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "modal-dialog modal-dialog-centered modal-lg"
+                  },
+                  [
+                    _c("div", { staticClass: "modal-content" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-8" }, [
+                          _c("img", {
+                            staticClass: "rounded-left",
+                            attrs: {
+                              alt: "Card image cap",
+                              src:
+                                "http://pickture.me/images/uploads/postphoto/" +
+                                _vm.modalInfo.postphoto
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-4 pr-4" }, [
+                          _c("div", { staticClass: "modal-header" }, [
+                            _c("h5", { staticClass: "modal-title" }, [
+                              _vm._v(_vm._s(_vm.modalInfo.title))
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(1)
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "modal-body" }, [
+                            _vm._m(2),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(_vm._s(_vm.modalInfo.description))
+                            ]),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(" "),
+                            _vm._m(3),
+                            _vm._v(" "),
+                            _c("p", [
+                              _c("em", [_vm._v(_vm._s(_vm.modalInfo.name))])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-success text-white btn-block mb-2"
+                            },
+                            [_vm._v("Buy")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-dark text-white btn-block mb-2"
+                            },
+                            [_vm._v("Connect")]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]
+                )
+              ]
+            )
+          ],
+          2
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -51491,19 +51658,36 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-success text-white left-align mr-5" },
-        [_vm._v("Prev")]
-      ),
+    return _c("div", { staticClass: "text" }, [
+      _c("h1", [_c("strong", [_c("i", { staticClass: "fas fa-heart pr-3" })])]),
       _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-success text-white right-align ml-5" },
-        [_vm._v("Next")]
-      )
+      _c("h1", [_c("strong", [_c("i", { staticClass: "fas fa-star pr-3" })])])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: { type: "button", "data-dismiss": "modal" }
+      },
+      [_c("span", [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_c("strong", [_vm._v("Description")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_c("strong", [_vm._v("Captured by:")])])
   }
 ]
 render._withStripped = true
@@ -52454,7 +52638,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  height: 20vh;\n  border-radius: 50%;\n}\n.fa-pen[data-v-22ef5402] {\n  cursor: pointer;\n}\n.has-error input[data-v-22ef5402], .has-error textarea[data-v-22ef5402], .has-error select[data-v-22ef5402] {\n  border: 1px solid red;\n}\n.help-block[data-v-22ef5402] {\n  color: red;\n}\n.loader[data-v-22ef5402] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-22ef5402 2s linear infinite;\n          animation: spin-data-v-22ef5402 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#postModal[data-v-22ef5402], #photoModal[data-v-22ef5402] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-22ef5402], #postModal .modal-dialog[data-v-22ef5402], #photoModal .modal-lg[data-v-22ef5402], #photoModal .modal-dialog[data-v-22ef5402] {\n    max-width: none !important;\n}\n#postModal img[data-v-22ef5402], #photoModal img[data-v-22ef5402] {\n    width: 54vw;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.card-post[data-v-22ef5402] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-post img[data-v-22ef5402] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-post:hover img[data-v-22ef5402] {\n  opacity: 0.5;\n}\n.card-post:hover .text[data-v-22ef5402] {\n  opacity: 1;\n}\n.text[data-v-22ef5402] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  height: 20vh;\n  border-radius: 50%;\n}\n.fa-pen[data-v-22ef5402] {\n  cursor: pointer;\n}\n.has-error input[data-v-22ef5402], .has-error textarea[data-v-22ef5402], .has-error select[data-v-22ef5402] {\n  border: 1px solid red;\n}\n.help-block[data-v-22ef5402] {\n  color: red;\n}\n.loader[data-v-22ef5402] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-22ef5402 2s linear infinite;\n          animation: spin-data-v-22ef5402 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#postModal[data-v-22ef5402], #photoModal[data-v-22ef5402] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-22ef5402], #postModal .modal-dialog[data-v-22ef5402], #photoModal .modal-lg[data-v-22ef5402], #photoModal .modal-dialog[data-v-22ef5402] {\n    max-width: none !important;\n}\n#postModal img[data-v-22ef5402], #photoModal img[data-v-22ef5402] {\n    width: 54vw;\n    max-height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.card-post[data-v-22ef5402] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-post img[data-v-22ef5402] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-post:hover img[data-v-22ef5402] {\n  opacity: 0.5;\n}\n.card-post:hover .text[data-v-22ef5402] {\n  opacity: 1;\n}\n.text[data-v-22ef5402] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -52465,8 +52649,6 @@ exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  hei
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
 //
 //
 //
@@ -53021,81 +53203,79 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-9" }, [
-      _c("div", [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3" }, [
-            _c("h2", [_vm._v("My work (" + _vm._s(_vm.posts.total) + ")")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-4" }, [
-            _c("ul", { staticClass: "pagination justify-content-center" }, [
-              _c(
-                "li",
-                {
-                  staticClass: "page-item",
-                  class: { disabled: !_vm.posts.prev_page_url }
-                },
-                [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "page-link bg-dark text-white",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          _vm.fetchPosts(_vm.posts.prev_page_url)
-                        }
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-3" }, [
+          _c("h2", [_vm._v("My work (" + _vm._s(_vm.posts.total) + ")")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-4" }, [
+          _c("ul", { staticClass: "pagination" }, [
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: { disabled: !_vm.posts.prev_page_url }
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link bg-dark text-white",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.fetchPosts(_vm.posts.prev_page_url)
                       }
-                    },
-                    [_vm._v("Previous")]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("li", { staticClass: "page-item disabled" }, [
-                _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-                  _vm._v(
-                    "Page " +
-                      _vm._s(_vm.posts.current_page) +
-                      " of " +
-                      _vm._s(_vm.posts.last_page)
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "page-item",
-                  class: { disabled: !_vm.posts.next_page_url }
-                },
-                [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "page-link bg-dark text-white",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          _vm.fetchPosts(_vm.posts.next_page_url)
-                        }
+                    }
+                  },
+                  [_vm._v("Previous")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("li", { staticClass: "page-item disabled" }, [
+              _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                _vm._v(
+                  "Page " +
+                    _vm._s(_vm.posts.current_page) +
+                    " of " +
+                    _vm._s(_vm.posts.last_page)
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: { disabled: !_vm.posts.next_page_url }
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link bg-dark text-white",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.fetchPosts(_vm.posts.next_page_url)
                       }
-                    },
-                    [_vm._v("Next")]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", {
-                staticClass: "ml-3",
-                class: { loader: _vm.loader },
-                attrs: { id: "pagination" }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(1)
-        ])
+                    }
+                  },
+                  [_vm._v("Next")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "ml-3",
+              class: { loader: _vm.loader },
+              attrs: { id: "pagination" }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(1)
       ]),
       _vm._v(" "),
       _c("hr", { staticClass: "my-2" }),
@@ -54097,10 +54277,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'navbar',
-	props: ['user']
+	props: ['user'],
+	data: function data() {
+		return {
+			validRoute: false
+		};
+	},
+
+	watch: {
+		'$route': function $route(from, to) {
+			this.validRoute = this.$route.params.category ? true : false;
+		}
+	}
 });
 
 /***/ }),
@@ -54137,7 +54331,7 @@ var render = function() {
               [
                 _c(
                   "li",
-                  { staticClass: "nav-item active pr-3 pl-3" },
+                  { staticClass: "nav-item pr-3 pl-3" },
                   [
                     _c(
                       "router-link",
@@ -54153,72 +54347,113 @@ var render = function() {
                 _vm._v(" "),
                 _vm._m(1),
                 _vm._v(" "),
-                _c("li", { staticClass: "nav-item dropdown pr-3 pl-3" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link text-white dropdown-toggle",
-                      attrs: {
-                        href: "#",
-                        id: "navbarDropdown",
-                        role: "button",
-                        "data-toggle": "dropdown",
-                        "aria-haspopup": "true",
-                        "aria-expanded": "false"
-                      }
-                    },
-                    [_vm._v("Categories")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dropdown-menu",
-                      attrs: { "aria-labelledby": "navbarDropdown" }
-                    },
-                    [
+                _c(
+                  "li",
+                  {
+                    staticClass: "nav-item pr-3 pl-3 dropdown",
+                    class: { hidden: _vm.validRoute }
+                  },
+                  [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link text-white dropdown-toggle",
+                        attrs: {
+                          href: "#",
+                          id: "navbarDropdown",
+                          role: "button",
+                          "data-toggle": "dropdown",
+                          "aria-haspopup": "true",
+                          "aria-expanded": "false"
+                        }
+                      },
+                      [_vm._v("Categories")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "dropdown-menu",
+                        attrs: { "aria-labelledby": "navbarDropdown" }
+                      },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "dropdown-item",
+                            attrs: { to: "/categories/Foodtography", href: "#" }
+                          },
+                          [_vm._v("Foodtography")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "dropdown-item",
+                            attrs: {
+                              to: "/categories/Travel and leisure",
+                              href: "#"
+                            }
+                          },
+                          [_vm._v("Travel and leisure")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "dropdown-item",
+                            attrs: { to: "/categories/Our heritage", href: "#" }
+                          },
+                          [_vm._v("Our heritage")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "dropdown-item",
+                            attrs: { to: "/categories/OOTD", href: "#" }
+                          },
+                          [_vm._v("#OOTD")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "dropdown-item",
+                            attrs: { to: "/categories/Wedding", href: "#" }
+                          },
+                          [_vm._v("Wedding")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "dropdown-item",
+                            attrs: {
+                              to: "/categories/Graphics and illustrations",
+                              href: "#"
+                            }
+                          },
+                          [_vm._v("Graphics and illustrations")]
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.validRoute
+                  ? _c("li", { staticClass: "nav-item pr-3 pl-3" }, [
                       _c(
-                        "router-link",
+                        "a",
                         {
-                          staticClass: "dropdown-item",
-                          attrs: { to: "/foodtography" }
+                          staticClass: "nav-link text-white",
+                          attrs: { href: "#" }
                         },
-                        [_vm._v("Foodtography")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        { staticClass: "dropdown-item", attrs: { href: "#" } },
-                        [_vm._v("Travel and leisure")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        { staticClass: "dropdown-item", attrs: { href: "#" } },
-                        [_vm._v("Our Heritage")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        { staticClass: "dropdown-item", attrs: { href: "#" } },
-                        [_vm._v("#OOTD")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        { staticClass: "dropdown-item", attrs: { href: "#" } },
-                        [_vm._v("Wedding")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        { staticClass: "dropdown-item", attrs: { href: "#" } },
-                        [_vm._v("Graphics and illustrations")]
+                        [_vm._v("Categories")]
                       )
-                    ],
-                    1
-                  )
-                ]),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c("li", { staticClass: "nav-item dropdown pr-3 pl-3" }, [
                   _c(
@@ -54340,7 +54575,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item  pr-3 pl-3" }, [
+    return _c("li", { staticClass: "nav-item pr-3 pl-3" }, [
       _c("a", { staticClass: "nav-link text-white", attrs: { href: "#" } }, [
         _vm._v("Discover")
       ])
@@ -54381,6 +54616,91 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(97);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("626bbd9b", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-76e16b42\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MainPage.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-76e16b42\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MainPage.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "/*General*/\n.container90 {\n  width: 90%;\n  margin: auto;\n}\n.br-10 {\n  border-radius: 10px;\n}\n.hidden {\n  display: none;\n}\n.carousel-item img {\n  height: 500px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 98 */,
+/* 99 */,
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(101);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("6cc7112b", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4bfcfa5a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Categories.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4bfcfa5a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Categories.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.list-group-item[data-v-4bfcfa5a]:hover {\n  background-color: #28a745;\n  color: #fff;\n}\n.card[data-v-4bfcfa5a] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card img[data-v-4bfcfa5a] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card:hover img[data-v-4bfcfa5a] {\n  opacity: 0.5;\n}\n.card:hover .text[data-v-4bfcfa5a] {\n  opacity: 1;\n}\n.text[data-v-4bfcfa5a] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n#postModal[data-v-4bfcfa5a] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-4bfcfa5a], #postModal .modal-dialog[data-v-4bfcfa5a] {\n    max-width: none !important;\n}\n#postModal img[data-v-4bfcfa5a] {\n    width: 54vw;\n    height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.loader[data-v-4bfcfa5a] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-4bfcfa5a 2s linear infinite;\n          animation: spin-data-v-4bfcfa5a 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-4bfcfa5a {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-4bfcfa5a {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

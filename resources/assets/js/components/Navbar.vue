@@ -7,22 +7,25 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSmall">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active pr-3 pl-3">
+					<li class="nav-item pr-3 pl-3">
 						<router-link class="nav-link text-white" to="/">Home</router-link>
 					</li>
-					<li class="nav-item  pr-3 pl-3">
+					<li class="nav-item pr-3 pl-3">
 						<a class="nav-link text-white" href="#">Discover</a>
 					</li>
-					<li class="nav-item dropdown pr-3 pl-3">
+					<li class="nav-item pr-3 pl-3 dropdown" :class="{hidden: validRoute}">
 						<a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<router-link class="dropdown-item" to="/foodtography">Foodtography</router-link>
-							<a class="dropdown-item" href="#">Travel and leisure</a>
-							<a class="dropdown-item" href="#">Our Heritage</a>
-							<a class="dropdown-item" href="#">#OOTD</a>
-							<a class="dropdown-item" href="#">Wedding</a>
-							<a class="dropdown-item" href="#">Graphics and illustrations</a>
+							<router-link to="/categories/Foodtography" class="dropdown-item" href="#">Foodtography</router-link>
+							<router-link to="/categories/Travel and leisure" class="dropdown-item" href="#">Travel and leisure</router-link>
+							<router-link to="/categories/Our heritage" class="dropdown-item" href="#">Our heritage</router-link>
+							<router-link to="/categories/OOTD" class="dropdown-item" href="#">#OOTD</router-link>
+							<router-link to="/categories/Wedding" class="dropdown-item" href="#">Wedding</router-link>
+							<router-link to="/categories/Graphics and illustrations" class="dropdown-item" href="#">Graphics and illustrations</router-link>
 						</div>
+					</li>
+					<li class="nav-item pr-3 pl-3" v-if="validRoute">
+						<a class="nav-link text-white" href="#">Categories</a>
 					</li>
 					<li class="nav-item dropdown pr-3 pl-3">
 						<a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Join us</a>
@@ -52,7 +55,17 @@
 <script>
 	export default {
 		name: 'navbar',
-		props: ['user']
+		props: ['user'],
+		data() {
+			return {
+				validRoute: false
+			}
+		},
+		watch: {
+		    '$route': function(from, to) {
+		    	this.validRoute = this.$route.params.category ? true : false;
+		    }
+		}
 	}
 </script>
 

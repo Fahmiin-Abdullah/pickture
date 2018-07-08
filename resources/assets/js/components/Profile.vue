@@ -26,22 +26,20 @@
 			</ul>
 		</div>
 		<div class="col-md-9">
-			<div>
-				<div class="row">
-					<div class="col-md-3">
-						<h2>My work ({{posts.total}})</h2>
-					</div>
-					<div class="col-md-4">
-						<ul class="pagination justify-content-center">
-							<li class="page-item" :class="{disabled: !posts.prev_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts(posts.prev_page_url)">Previous</a></li>
-							<li class="page-item disabled"><a href="#" class="page-link">Page {{posts.current_page}} of {{posts.last_page}}</a></li>
-							<li class="page-item" :class="{disabled: !posts.next_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts(posts.next_page_url)">Next</a></li>
-							<div id="pagination" class="ml-3" :class="{loader: loader}"></div>
-						</ul>
-					</div>
-					<div class="col-md-5 text-lg-right">
-						<a class="btn btn-success text-white" data-toggle="modal" data-target="#postModal">Add new photo</a>
-					</div>
+			<div class="row">
+				<div class="col-md-3">
+					<h2>My work ({{posts.total}})</h2>
+				</div>
+				<div class="col-md-4">
+					<ul class="pagination">
+						<li class="page-item" :class="{disabled: !posts.prev_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts(posts.prev_page_url)">Previous</a></li>
+						<li class="page-item disabled"><a href="#" class="page-link">Page {{posts.current_page}} of {{posts.last_page}}</a></li>
+						<li class="page-item" :class="{disabled: !posts.next_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts(posts.next_page_url)">Next</a></li>
+						<div id="pagination" class="ml-3" :class="{loader: loader}"></div>
+					</ul>
+				</div>
+				<div class="col-md-5 text-lg-right">
+					<a class="btn btn-success text-white" data-toggle="modal" data-target="#postModal">Add new photo</a>
 				</div>
 			</div>
 			<hr class="my-2">
@@ -466,6 +464,7 @@
 
 		img {
 			width: 54vw;
+			max-height: 80vh;
 			object-fit: contain;
 		}
 	}

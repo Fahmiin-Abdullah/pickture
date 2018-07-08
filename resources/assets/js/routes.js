@@ -22,18 +22,9 @@ export default new VueRouter ({
 			component: Discover
 		},
 		{
-			path: '/categories',
+			path: '/categories/:category',
 			component: Categories,
-			children: [
-				{
-					path: '/foodtography',
-					component: Foodtography
-				},
-				{
-					path: '/travel',
-					component: Travel
-				}
-			]
+			props: true
 		},
 		{
 			path: '/register',

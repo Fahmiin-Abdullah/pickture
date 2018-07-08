@@ -1,73 +1,55 @@
 <template>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4 mb-4">
+			<div class="col-md-3">
+				<h2>Total posts ({{posts.total}})</h2>
+			</div>
+			<div class="col-md-4">
+				<ul class="pagination justify-content-center">
+					<li class="page-item" :class="{disabled: !posts.prev_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts(posts.prev_page_url)">Previous</a></li>
+					<li class="page-item disabled"><a href="#" class="page-link">Page {{posts.current_page}} of {{posts.last_page}}</a></li>
+					<li class="page-item" :class="{disabled: !posts.next_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts(posts.next_page_url)">Next</a></li>
+					<div id="pagination" class="ml-3" :class="{loader: loader}"></div>
+				</ul>
+			</div>
+		</div>
+		<hr class="my-2">
+		<div class="row">
+			<div class="col-md-4 mb-4" v-for="post in posts.data">
 				<div class="card">
-					<a href="#modal" data-toggle="modal" @click="modal(1)">
-						<img class="card-img-top" :src="require('../../img/food/food_1.jpg')" alt="Card image cap">
+					<a href="#postModal" data-toggle="modal" @click="modalOpen(post.id)">
+						<img class="card-img-top" :src="`http://pickture.me/images/uploads/postphoto/${post.postphoto}`">
 						<div class="text">
-							<h1><strong><i class="fas fa-heart pr-3"></i>63</strong></h1>
-							<h1><strong><i class="fas fa-star pr-3"></i>24</strong></h1>
+							<h1><strong><i class="fas fa-heart pr-3"></i></strong></h1>
+							<h1><strong><i class="fas fa-star pr-3"></i></strong></h1>
 						</div>
 					</a>
 				</div>
 			</div>
-			<div class="col-md-4 mb-4">
-				<div class="card">
-					<a href="#modal" data-toggle="modal" @click="modal(2)">
-						<img class="card-img-top" :src="require('../../img/food/food_2.jpg')" alt="Card image cap">
-					</a>
-				</div>
-			</div>
-			<div class="col-md-4 mb-4">
-				<div class="card">
-					<a href="#modal" data-toggle="modal" @click="modal(3)">
-						<img class="card-img-top" :src="require('../../img/food/food_3.jpg')" alt="Card image cap">
-					</a>
-				</div>
-			</div>
-			<div class="col-md-4 mb-4">
-				<div class="card">
-					<a href="#modal" data-toggle="modal" @click="modal(4)">
-						<img class="card-img-top" :src="require('../../img/food/food_4.jpg')" alt="Card image cap">
-					</a>
-				</div>
-			</div>
-			<div class="col-md-4 mb-4">
-				<div class="card">
-					<a href="#modal" data-toggle="modal" @click="modal(5)">
-						<img class="card-img-top" :src="require('../../img/food/food_5.jpg')" alt="Card image cap">
-					</a>
-				</div>
-			</div>
-			<div class="col-md-4 mb-4">
-				<div class="card">
-					<a href="#modal" data-toggle="modal" @click="modal(6)">
-						<img class="card-img-top" :src="require('../../img/food/food_6.jpg')" alt="Card image cap">
-					</a>
-				</div>
-			</div>
 
-			<div class="modal fade" id="modal" tabindex="-1">
+
+
+
+			<div class="modal fade" id="postModal" tabindex="-1">
 				<div class="modal-dialog modal-dialog-centered modal-lg">
 					<div class="modal-content">
 						<div class="row">
 							<div class="col-md-8">
-								<img alt="Card image cap" id="modalImg" class="rounded-left">
+								<img alt="Card image cap" :src="`http://pickture.me/images/uploads/postphoto/${modalInfo.postphoto}`" class="rounded-left">
 							</div>
 							<div class="col-md-4 pr-4">
 								<div class="modal-header">
-									 <h5 class="modal-title">Salad</h5>
+									 <h5 class="modal-title">{{modalInfo.title}}</h5>
 									<button type="button" class="close" data-dismiss="modal">
 										<span>&times;</span>
 									</button>
 								</div>
 								<div class="modal-body">
 									<h6><strong>Description</strong></h6>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem voluptate numquam laborum, id sint nobis. Laborum nisi labore sapiente corporis quos eligendi minima a, officiis eveniet inventore expedita similique necessitatibus harum enim explicabo dolor natus tenetur, veritatis, aliquid fugit facilis.</p>
+									<p>{{modalInfo.description}}</p>
 									<br>
 									<h6><strong>Captured by:</strong></h6>
-									<p><em>Lorem ipsum dolor sit amet</em></p>
+									<p><em>{{modalInfo.name}}</em></p>
 								</div>
 								<button class="btn btn-success text-white btn-block mb-2">Buy</button>
 								<button class="btn btn-dark text-white btn-block mb-2">Connect</button>
@@ -83,9 +65,44 @@
 <script>
 	export default {
 		name: 'foodtography',
+		data() {
+			return {
+				posts: [],
+				modalInfo: {
+					name: null,
+					title: null,
+					description: null,
+					postphoto: null
+				},
+				loader: false,
+			}
+		},
+		created() {
+			this.fetchPosts();
+		},
 		methods: {
-			modal(id) {
-				$('#modalImg').attr('src', `/images/food_${id}.jpg`);
+			fetchPosts(page) {
+				const _this = this;
+				this.loader = true;
+				page = page || '/posts/category/foodtography';
+				axios.get(page)
+				.then(res => {
+					_this.posts = res.data;
+					_this.loader = false;
+				})
+				.catch(err => console.log(err));
+			},
+			modalOpen(id) {
+				const _this = this;
+				axios.get(`/post/${id}`)
+				.then(res => {
+					console.log(res);
+					_this.modalInfo.name = res.data.user.name;
+					_this.modalInfo.title = res.data.title;
+					_this.modalInfo.description = res.data.description;
+					_this.modalInfo.postphoto = res.data.postphoto;
+				})
+				.catch(err => console.log(err));
 			}
 		}
 	}
@@ -94,12 +111,12 @@
 <style lang="scss" scoped>
 	.card {
 		background-color: #fff;
-		height: 38vh !important;
+		height: 33vh !important;
 		border-radius: 5px;
 
 		img {
 			background-color: #fff;
-			height: 38vh !important;
+			height: 33vh !important;
 			border-radius: 5px;
 			transition: 0.5s;
 			object-fit: cover;
@@ -129,17 +146,38 @@
 		text-align: center;
 	}
 
-	.modal {
+	#postModal {
 		width: 80vw !important;
 		margin: auto;
 
+		.modal-lg, .modal-dialog {
+			max-width: none !important;
+		}
+
 		img {
 			width: 54vw;
+			height: 80vh;
 			object-fit: contain;
 		}
 	}
 
-	.modal-lg, .modal-dialog {
-		max-width: none !important;
+	.loader {
+	    border: 3px solid #fff; 
+	    border-top: 3px solid #28a745;
+	    border-bottom: 3px solid #28a745;
+	    border-radius: 50%;
+	    width: 30px;
+	    height: 30px;
+	    animation: spin 2s linear infinite;
+	}
+
+	@-webkit-keyframes spin {
+		0% { -webkit-transform: rotate(0deg); }
+		100% { -webkit-transform: rotate(360deg); }
+	}
+
+	@keyframes spin {
+		0% { transform: rotate(0deg); }
+		100% { transform: rotate(360deg); }
 	}
 </style>

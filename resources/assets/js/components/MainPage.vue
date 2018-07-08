@@ -40,7 +40,7 @@
                     <router-link to="/discover" class="btn btn-success text-white btn-block"><i class="fa fa-search mr-3"></i>Discover</router-link>
                 </div>
                 <div class="col-md-6">
-                    <router-link to="/categories" class="btn btn-dark text-white btn-block"><i class="fa fa-globe-americas mr-3"></i>Browse Categories</router-link>
+                    <router-link to="/categories/any" class="btn btn-dark text-white btn-block"><i class="fa fa-globe-americas mr-3"></i>Browse Categories</router-link>
                 </div>
             </div>
             <h6 class="text-center mt-4">Pickture &copy; since 2018 | All rights reserved</h6>
@@ -54,7 +54,7 @@
     }
 </script>
 
-<style>
+<style lang="scss">
     /*General*/
     .container90 {
         width: 90%;
@@ -69,7 +69,9 @@
         display: none;
     }
 
-    .carousel-item, img {
-        height: 500px;
+    .carousel-item {
+        img {
+            height: 500px;
+        }
     }
 </style>
