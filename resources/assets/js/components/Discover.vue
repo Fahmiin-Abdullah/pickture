@@ -1,25 +1,52 @@
 <template>
 	<div class="mb-3">
+		<div class="row">
+			<div class="col-md-6">
+				<h3>{{introMessage}}</h3>
+			</div>
+			<div class="col-md-6">
+				<form class="form-inline my-2 my-lg-0 float-right">
+					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="searchTerm">
+					<button class="btn btn-outline-success my-2 my-sm-0" @click.prevent="getPosts(searchTerm)">Search</button>
+				</form>
+			</div>
+		</div>
+		<hr>
 		<div class="row result"></div>
-		<button class="btn btn-block btn-success text-white" @click="fetchPosts()">Get more!</button>
+		<button class="btn btn-block btn-success text-white" @click="getPosts(next_page_url)">{{message}}</button>
 	</div>
 </template>
 
 <script>
 	export default {
 		name: 'discover',
+		props: ['search'],
+		data() {
+			return {
+				introMessage: null,
+				message: null,
+				searchTerm: null,
+				next_page_url: null
+			}
+		},
 		created() {
-			this.fetchPosts();
+			const _this = this;
+			const url = this.search == 'any' ? axios.get('/discover') : axios.post(`/search/${_this.search}`);
+			this.fetchPosts(url);
+			this.introMessage = this.search != 'any' ? `You searched for "${this.search}"` : 'Discover';
+			this.message = 'Get more!';
 		},
 		methods: {
-			fetchPosts() {
+			fetchPosts(url) {
 				const _this = this;
-				axios.get('/discover')
+				url
 				.then(res => {
+					_this.next_page_url = res.data.next_page_url;
+					_this.message = _this.next_page_url == null ? 'There is no more!' : 'Get more!';
 					let result = '';
-					res.data.forEach(post => {
+					res.data.data.forEach(post => {
 						result += `
-							<div class="col-md-4 mb-4">
+							<div class="col-md-4 mb-4 discover">
 								<div class="card-discover">
 									<a href="#postModal${post.id}" data-toggle="modal">
 										<img class="card-img-top" src="http://pickture.me/images/uploads/postphoto/${post.postphoto}">
@@ -31,7 +58,7 @@
 								</div>
 							</div>
 
-							<div class="modal fade discoverModal" id="postModal${post.id}" tabindex="-1">
+							<div class="modal fade discoverModal discover" id="postModal${post.id}" tabindex="-1">
 								<div class="modal-dialog modal-dialog-centered modal-lg">
 									<div class="modal-content">
 										<div class="row">
@@ -64,6 +91,17 @@
 					$('.result').append(result);
 				})
 				.catch(err => console.log(err));
+			},
+			getPosts(params) {
+				let url = '';
+				if (params == this.next_page_url) {
+					url = axios.get(params);
+				} else {
+					this.introMessage = `You searched for "${params}"`;
+					$('.discover').remove();
+					url = axios.post(`/search/${params}`);
+				}
+				this.fetchPosts(url);
 			}
 		}
 	}

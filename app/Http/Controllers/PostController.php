@@ -26,9 +26,16 @@ class PostController extends Controller
 
     public function discover()
     {
-        $posts = Post::with('User')->inRandomOrder()->take(12)->get();
+        $posts = Post::with('User')->inRandomOrder()->paginate(24);
 
         return response(json_encode($posts));
+    }
+
+    public function search(Request $request, $query = null)
+    {
+         $posts = Post::with('User')->where('title', 'like', '%'.$query.'%')->paginate(6);
+
+         return response(json_encode($posts));
     }
 
     public function create(Request $request)

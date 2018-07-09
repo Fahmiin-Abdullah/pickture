@@ -11,7 +11,7 @@
 						<router-link class="nav-link text-white" to="/">Home</router-link>
 					</li>
 					<li class="nav-item pr-3 pl-3">
-						<router-link class="nav-link text-white" to="/discover">Discover</router-link>
+						<router-link class="nav-link text-white" to="/discover/any">Discover</router-link>
 					</li>
 					<li class="nav-item pr-3 pl-3 dropdown" :class="{hidden: validRoute}">
 						<a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
@@ -43,9 +43,9 @@
 					</template>
 				</ul>
 				
-				<form class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				<form class="form-inline my-2 my-lg-0" :class="{hidden: validDiscovery}">
+					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="searchTerm">
+					<button class="btn btn-outline-success my-2 my-sm-0" @click.prevent="search()">Search</button>
 				</form>
 			</div>
 		</div>
@@ -58,13 +58,22 @@
 		props: ['user'],
 		data() {
 			return {
-				validRoute: false
+				validRoute: false,
+				validDiscovery: false,
+				searchTerm: null
 			}
 		},
 		watch: {
-		    '$route': function(from, to) {
+		    '$route'(from, to) {
 		    	this.validRoute = this.$route.params.category ? true : false;
+		    	this.validDiscovery = this.$route.matched[0].path == '/discover/:search' ? true : false;
 		    }
+		},
+		methods: {
+			search() {
+				this.$router.push(`/discover/${this.searchTerm}`);
+				this.searchTerm = null;
+			}
 		}
 	}
 </script>

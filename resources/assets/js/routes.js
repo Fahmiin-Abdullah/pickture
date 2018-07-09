@@ -16,8 +16,9 @@ export default new VueRouter ({
 			component: MainPage
 		},
 		{
-			path: '/discover',
-			component: Discover
+			path: '/discover/:search',
+			component: Discover,
+			props: true
 		},
 		{
 			path: '/categories/:category',

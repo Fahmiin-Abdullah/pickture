@@ -31,6 +31,7 @@ Route::post('/profile/update/{id}', 'UserController@update');
 Route::get('/posts/{id}', 'PostController@getPosts');
 Route::post('/post/create', 'PostController@create');
 Route::get('/post/{id}', 'PostController@getPost');
-
-Route::get('/discover', 'PostController@discover');
 Route::get('/posts/category/{page}', 'PostController@getCategory');
+Route::get('/discover', 'PostController@discover');
+Route::post('/search/{query}', 'PostController@search');
+Route::get('/search/{query}', 'PostController@search');
