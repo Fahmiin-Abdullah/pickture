@@ -3,12 +3,9 @@
 		<div class="col-md-3">
 			<h5 class="text-center mb-3">Pick one to begin</h5>
 			<div class="list-group mb-5">
-				<a href="#" class="list-group-item list-group-item-action" @click="fetchPosts('category', 'Foodtography')">Foodtography</a>
-				<a href="#" class="list-group-item list-group-item-action" @click="fetchPosts('category', 'Travel and leisure')">Travel and leisure</a>
-				<a href="#" class="list-group-item list-group-item-action" @click="fetchPosts('category', 'Our heritage')">Our heritage</a>
-				<a href="#" class="list-group-item list-group-item-action" @click="fetchPosts('category', '#OOTD')">#OOTD</a>
-				<a href="#" class="list-group-item list-group-item-action" @click="fetchPosts('category', 'Wedding')">Wedding</a>
-				<a href="#" class="list-group-item list-group-item-action" @click="fetchPosts('category', 'Graphics and illustrations')">Graphics and illustrations</a>
+				<template v-for="category in categories">
+					<a href="#" class="list-group-item list-group-item-action" @click="fetchPosts('category', `${category.category}`)">{{category.category}}</a>
+				</template>
 			</div>
 		</div>
 		<div class="col md-9">
@@ -60,10 +57,10 @@
 											<p>{{modalInfo.description}}</p>
 											<br>
 											<h6><strong>Captured by:</strong></h6>
-											<p><em>{{modalInfo.name}}</em></p>
+											<p><em>{{userInfo.name}}</em></p>
 										</div>
 										<button class="btn btn-success text-white btn-block mb-2">Buy</button>
-										<button class="btn btn-dark text-white btn-block mb-2">Connect</button>
+										<button class="btn btn-dark text-white btn-block mb-2" @click="connect(userInfo.id)">Connect</button>
 									</div>
 								</div>
 							</div>
@@ -81,21 +78,30 @@
 		props: ['category'],
 		data() {
 			return {
+				categories: [],
 				posts: [],
-				modalInfo: {
-					name: null,
-					title: null,
-					description: null,
-					postphoto: null
+				modalInfo: [],
+				userInfo: {
+					id: null,
+					name: null
 				},
 				loader: false,
 			}
 		},
 		created() {
 			this.category = this.category === 'OOTD' ? '#OOTD' : this.category;
+			this.fetchCategories();
 			this.fetchPosts('category', this.category);
 		},
 		methods: {
+			fetchCategories() {
+				const _this = this;
+				axios.get('/categories')
+				.then(res => {
+					_this.categories = res.data;
+				})
+				.catch(err => console.log(err));
+			},
 			fetchPosts(action, page) {
 				const _this = this;
 				this.loader = true;
@@ -111,13 +117,15 @@
 				const _this = this;
 				axios.get(`/post/${id}`)
 				.then(res => {
-					console.log(res);
-					_this.modalInfo.name = res.data.user.name;
-					_this.modalInfo.title = res.data.title;
-					_this.modalInfo.description = res.data.description;
-					_this.modalInfo.postphoto = res.data.postphoto;
+					_this.modalInfo = res.data;
+					_this.userInfo.id = res.data.user.id;
+					_this.userInfo.name = res.data.user.name;
 				})
 				.catch(err => console.log(err));
+			},
+			connect(id) {
+				$('#postModal').modal('hide');
+				this.$router.push(`/profile/${id}`);
 			}
 		}
 	}

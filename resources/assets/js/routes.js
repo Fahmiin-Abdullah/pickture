@@ -30,8 +30,9 @@ export default new VueRouter ({
 			component: Register
 		},
 		{
-			path: '/profile',
-			component: Profile
+			path: '/profile/:id',
+			component: Profile,
+			props: true
 		}
 	]
 });

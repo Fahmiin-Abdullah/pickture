@@ -71,4 +71,11 @@ class PostController extends Controller
 
         return response($posts);
     }
+
+    public function getCategories()
+    {
+        $categories = Category::all();
+
+        return response(json_encode($categories));
+    }
 }

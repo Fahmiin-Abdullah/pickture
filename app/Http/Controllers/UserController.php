@@ -12,7 +12,7 @@ class UserController extends Controller
 	{
 		$user = User::find($id);
 
-		return $user;
+		return response(json_encode($user));
 	}
 
     public function getSocial($id)

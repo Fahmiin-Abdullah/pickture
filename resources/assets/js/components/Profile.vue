@@ -3,7 +3,7 @@
 		<div class="col-md-3">
 			<div class="card mb-3">
 				<div class="card-body">
-					<h4 class="text-center mb-3"><strong>Hi, {{update.name}}</strong><span class="float-right"><a data-toggle="modal" data-target="#editModal"><i class="fas fa-pen"></i></a></span></h4>
+					<h4 class="text-center mb-3"><strong><span v-if="user != null && user.id == id">Hi, </span>{{update.name}}</strong><span class="float-right"><a data-toggle="modal" data-target="#editModal" v-if="user != null && user.id == id"><i class="fas fa-pen"></i></a></span></h4>
 					<div class="card-image text-center">
 						<img :src="`http://pickture.me/images/uploads/profilepic/${update.profilepic}`" v-model="update.profilepic" class="profilepic">
 					</div>
@@ -39,7 +39,7 @@
 					</ul>
 				</div>
 				<div class="col-md-5 text-lg-right">
-					<a class="btn btn-success text-white" data-toggle="modal" data-target="#postModal">Add new photo</a>
+					<a class="btn btn-success text-white" data-toggle="modal" data-target="#postModal" v-if="user != null && user.id == id">Add new photo</a>
 				</div>
 			</div>
 			<hr class="my-2">
@@ -213,9 +213,6 @@
 							<div class="modal-body">
 								<h6><strong>Description</strong></h6>
 								<p>{{modalInfo.description}}</p>
-								<br>
-								<h6><strong>Captured by:</strong></h6>
-								<p><em>{{user.name}}</em></p>
 							</div>
 							<button class="btn btn-success text-white btn-block mb-2">Buy</button>
 							<button class="btn btn-dark text-white btn-block mb-2">Connect</button>
@@ -230,18 +227,18 @@
 <script>
 	export default {
 		name: 'profile',
-		props: ['user', 'categories'],
+		props: ['id', 'categories', 'user'],
 		data() {
 			return {
 				csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 				posts: [],
 				total: 0,
 				update: {
-					profilepic: this.user.profilepic,
+					profilepic: null,
 					profilepicURL: null,
-					name: this.user.name,
-					tagline: this.user.tagline,
-					email: this.user.email,
+					name: null,
+					tagline: null,
+					email: null,
 					socials: [
 						{social: 'fab fa-facebook', link: null},
 						{social: 'fab fa-instagram', link: null},
@@ -278,15 +275,26 @@
 			}
 		},
 		created() {
+			this.fetchUser();
 			this.fetchPosts();
 			this.fetchSocial();
 		},
 		methods: {
+			fetchUser() {
+				const _this = this;
+				axios.get(`/profile/${_this.id}`)
+				.then(res => {
+					_this.update.profilepic = res.data.profilepic;
+					_this.update.name = res.data.name;
+					_this.update.tagline = res.data.tagline;
+					_this.update.email = res.data.email;
+				})
+				.catch(err => console.log(err));
+			},
 			fetchPosts(page) {
 				const _this = this;
-				const id = this.user.id;
 				this.loader = true;
-				page = page || `/posts/${id}`;
+				page = page || `/posts/${_this.id}`;
 				axios.get(page)
 				.then(res => {
 					_this.posts = res.data;
@@ -296,8 +304,7 @@
 			},
 			fetchSocial() {
 				const _this = this;
-				const id = this.user.id;
-				axios.get(`/profile/social/${id}`)
+				axios.get(`/profile/social/${_this.id}`)
 				.then(res => {
 					res.data.forEach(social => {
 						if (social.social == 'fab fa-facebook') {
@@ -331,7 +338,6 @@
 			profileAction(action) {
 				this.text = true;
 				this.loader = true;
-				const id = this.user.id;
 				const _this = this;
 				const _hasErrors = this.hasErrors;
 				const _errMessage = this.errorMessage;
@@ -344,11 +350,10 @@
 				    this.errorMessage[key] = null;
 				}
 
-				const url = action === '#update' ? `/profile/update/${id}` : '/post/create';
+				const url = action === '#update' ? `/profile/update/${_this.id}` : '/post/create';
 				const data = action === '#update' ? _this.update : _this.postData;
 				axios.post(url, data)
 				.then(res => {
-					console.log(res);
 					const message = action === '#update' ? 'Saved!' : 'Created!';
 					_this.loader = false;
 					$(action).text(message);
@@ -418,6 +423,7 @@
 		width: 10vw;
 		height: 20vh;
 		border-radius: 50%;
+		object-fit: cover;
 	}
 
 	.fa-pen {

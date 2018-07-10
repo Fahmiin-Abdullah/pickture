@@ -50251,8 +50251,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 		path: '/register',
 		component: __WEBPACK_IMPORTED_MODULE_5__components_Register___default.a
 	}, {
-		path: '/profile',
-		component: __WEBPACK_IMPORTED_MODULE_6__components_Profile___default.a
+		path: '/profile/:id',
+		component: __WEBPACK_IMPORTED_MODULE_6__components_Profile___default.a,
+		props: true
 	}]
 }));
 
@@ -50747,7 +50748,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.card-discover {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-discover img {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-discover:hover img {\n  opacity: 0.5;\n}\n.card-discover:hover .text {\n  opacity: 1;\n}\n.text {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n.discoverModal {\n  width: 80vw !important;\n  margin: auto;\n}\n.discoverModal .modal-lg, .discoverModal .modal-dialog {\n    max-width: none !important;\n}\n.discoverModal img {\n    width: 54vw;\n    height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n", ""]);
+exports.push([module.i, "\n.card-discover {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-discover img {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-discover:hover img {\n  opacity: 0.5;\n}\n.card-discover:hover .text {\n  opacity: 1;\n}\n.text {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n.discoverModal {\n  width: 80vw !important;\n  margin: auto;\n}\n.discoverModal .modal-lg, .discoverModal .modal-dialog {\n    max-width: none !important;\n}\n.discoverModal img {\n    width: 50vw;\n    max-height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.discover_loader {\n  border: 3px solid #f9f9f9;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin 2s linear infinite;\n          animation: spin 2s linear infinite;\n}\n@-webkit-keyframes spin {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n", ""]);
 
 // exports
 
@@ -50777,16 +50778,65 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'discover',
 	props: ['search'],
 	data: function data() {
 		return {
+			posts: [],
+			modalInfo: [],
+			userInfo: {
+				id: null,
+				name: null
+			},
 			introMessage: null,
 			message: null,
 			searchTerm: null,
-			next_page_url: null
+			next_page_url: null,
+			loader: false
 		};
 	},
 	created: function created() {
@@ -50799,17 +50849,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods: {
 		fetchPosts: function fetchPosts(url) {
+			this.loader = true;
 			var _this = this;
 			url.then(function (res) {
+				_this.loader = false;
 				_this.next_page_url = res.data.next_page_url;
 				_this.message = _this.next_page_url == null ? 'There is no more!' : 'Get more!';
-				var result = '';
-				res.data.data.forEach(function (post) {
-					result += '\n\t\t\t\t\t\t<div class="col-md-4 mb-4 discover">\n\t\t\t\t\t\t\t<div class="card-discover">\n\t\t\t\t\t\t\t\t<a href="#postModal' + post.id + '" data-toggle="modal">\n\t\t\t\t\t\t\t\t\t<img class="card-img-top" src="http://pickture.me/images/uploads/postphoto/' + post.postphoto + '">\n\t\t\t\t\t\t\t\t\t<div class="text">\n\t\t\t\t\t\t\t\t\t\t<h1><strong><i class="fas fa-heart pr-3"></i></strong></h1>\n\t\t\t\t\t\t\t\t\t\t<h1><strong><i class="fas fa-star pr-3"></i></strong></h1>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t\t<div class="modal fade discoverModal discover" id="postModal' + post.id + '" tabindex="-1">\n\t\t\t\t\t\t\t<div class="modal-dialog modal-dialog-centered modal-lg">\n\t\t\t\t\t\t\t\t<div class="modal-content">\n\t\t\t\t\t\t\t\t\t<div class="row">\n\t\t\t\t\t\t\t\t\t\t<div class="col-md-8">\n\t\t\t\t\t\t\t\t\t\t\t<img alt="Card image cap" src="http://pickture.me/images/uploads/postphoto/' + post.postphoto + '" class="rounded-left">\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t<div class="col-md-4 pr-4">\n\t\t\t\t\t\t\t\t\t\t\t<div class="modal-header">\n\t\t\t\t\t\t\t\t\t\t\t\t <h5 class="modal-title">' + post.title + '</h5>\n\t\t\t\t\t\t\t\t\t\t\t\t<button type="button" class="close" data-dismiss="modal">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<span>&times;</span>\n\t\t\t\t\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class="modal-body">\n\t\t\t\t\t\t\t\t\t\t\t\t<h6><strong>Description</strong></h6>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>' + post.description + '</p>\n\t\t\t\t\t\t\t\t\t\t\t\t<br>\n\t\t\t\t\t\t\t\t\t\t\t\t<h6><strong>Captured by:</strong></h6>\n\t\t\t\t\t\t\t\t\t\t\t\t<p><em>' + post.user.name + '</em></p>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<button class="btn btn-success text-white btn-block mb-2">Buy</button>\n\t\t\t\t\t\t\t\t\t\t\t<button class="btn btn-dark text-white btn-block mb-2">Connect</button>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t';
-				});
-				$('.result').append(result);
+				console.log(_this.posts);
+				if (_this.posts.length == 0) {
+					_this.posts.push(res.data.data);
+				} else {
+					res.data.data.forEach(function (post) {
+						_this.posts[0].push(post);
+					});
+				}
+				console.log(_this.posts);
 			}).catch(function (err) {
-				return console.log(err);
+				_this.loader = false;
+				console.log(err);
 			});
 		},
 		getPosts: function getPosts(params) {
@@ -50817,11 +50874,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			if (params == this.next_page_url) {
 				url = axios.get(params);
 			} else {
+				this.posts = [];
 				this.introMessage = 'You searched for "' + params + '"';
 				$('.discover').remove();
 				url = axios.post('/search/' + params);
 			}
 			this.fetchPosts(url);
+		},
+		modalOpen: function modalOpen(id) {
+			var _this = this;
+			axios.get('/post/' + id).then(function (res) {
+				_this.modalInfo = res.data;
+				_this.userInfo.id = res.data.user.id;
+				_this.userInfo.name = res.data.user.name;
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		},
+		connect: function connect(id) {
+			$('.discoverModal').modal('hide');
+			this.$router.push('/profile/' + id);
 		}
 	}
 });
@@ -50842,6 +50914,11 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "col-md-6" }, [
         _c("form", { staticClass: "form-inline my-2 my-lg-0 float-right" }, [
+          _c("div", {
+            staticClass: "mr-3",
+            class: { discover_loader: _vm.loader }
+          }),
+          _vm._v(" "),
           _c("input", {
             directives: [
               {
@@ -50887,7 +50964,117 @@ var render = function() {
     _vm._v(" "),
     _c("hr"),
     _vm._v(" "),
-    _c("div", { staticClass: "row result" }),
+    _c(
+      "div",
+      { staticClass: "row" },
+      [
+        _vm._l(_vm.posts[0], function(post) {
+          return _c("div", { staticClass: "col-md-4 mb-4 discover" }, [
+            _c("div", { staticClass: "card-discover" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#postModal", "data-toggle": "modal" },
+                  on: {
+                    click: function($event) {
+                      _vm.modalOpen(post.id)
+                    }
+                  }
+                },
+                [
+                  _c("img", {
+                    staticClass: "card-img-top",
+                    attrs: {
+                      src:
+                        "http://pickture.me/images/uploads/postphoto/" +
+                        post.postphoto
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(0, true)
+                ]
+              )
+            ])
+          ])
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "modal fade discoverModal",
+            attrs: { id: "postModal", tabindex: "-1" }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "modal-dialog modal-dialog-centered modal-lg" },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-8" }, [
+                      _c("img", {
+                        staticClass: "rounded-left",
+                        attrs: {
+                          alt: "Card image cap",
+                          src:
+                            "http://pickture.me/images/uploads/postphoto/" +
+                            _vm.modalInfo.postphoto
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-4 pr-4" }, [
+                      _c("div", { staticClass: "modal-header" }, [
+                        _c("h5", { staticClass: "modal-title" }, [
+                          _vm._v(_vm._s(_vm.modalInfo.title))
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(1)
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "modal-body" }, [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(_vm.modalInfo.description))]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("p", [_c("em", [_vm._v(_vm._s(_vm.userInfo.name))])])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "btn btn-success text-white btn-block mb-2"
+                        },
+                        [_vm._v("Buy")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-dark text-white btn-block mb-2",
+                          on: {
+                            click: function($event) {
+                              _vm.connect(_vm.userInfo.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Connect")]
+                      )
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ]
+        )
+      ],
+      2
+    ),
     _vm._v(" "),
     _c(
       "button",
@@ -50903,7 +51090,43 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text" }, [
+      _c("h1", [_c("strong", [_c("i", { staticClass: "fas fa-heart pr-3" })])]),
+      _vm._v(" "),
+      _c("h1", [_c("strong", [_c("i", { staticClass: "fas fa-star pr-3" })])])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: { type: "button", "data-dismiss": "modal" }
+      },
+      [_c("span", [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_c("strong", [_vm._v("Description")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_c("strong", [_vm._v("Captured by:")])])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -51084,31 +51307,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'categories',
 	props: ['category'],
 	data: function data() {
 		return {
+			categories: [],
 			posts: [],
-			modalInfo: {
-				name: null,
-				title: null,
-				description: null,
-				postphoto: null
+			modalInfo: [],
+			userInfo: {
+				id: null,
+				name: null
 			},
 			loader: false
 		};
 	},
 	created: function created() {
 		this.category = this.category === 'OOTD' ? '#OOTD' : this.category;
+		this.fetchCategories();
 		this.fetchPosts('category', this.category);
 	},
 
 	methods: {
+		fetchCategories: function fetchCategories() {
+			var _this = this;
+			axios.get('/categories').then(function (res) {
+				_this.categories = res.data;
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		},
 		fetchPosts: function fetchPosts(action, page) {
 			var _this = this;
 			this.loader = true;
@@ -51123,14 +51352,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		modalOpen: function modalOpen(id) {
 			var _this = this;
 			axios.get('/post/' + id).then(function (res) {
-				console.log(res);
-				_this.modalInfo.name = res.data.user.name;
-				_this.modalInfo.title = res.data.title;
-				_this.modalInfo.description = res.data.description;
-				_this.modalInfo.postphoto = res.data.postphoto;
+				_this.modalInfo = res.data;
+				_this.userInfo.id = res.data.user.id;
+				_this.userInfo.name = res.data.user.name;
 			}).catch(function (err) {
 				return console.log(err);
 			});
+		},
+		connect: function connect(id) {
+			$('#postModal').modal('hide');
+			this.$router.push('/profile/' + id);
 		}
 	}
 });
@@ -51149,91 +51380,30 @@ var render = function() {
         _vm._v("Pick one to begin")
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "list-group mb-5" }, [
-        _c(
-          "a",
-          {
-            staticClass: "list-group-item list-group-item-action",
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                _vm.fetchPosts("category", "Foodtography")
-              }
-            }
-          },
-          [_vm._v("Foodtography")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "list-group-item list-group-item-action",
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                _vm.fetchPosts("category", "Travel and leisure")
-              }
-            }
-          },
-          [_vm._v("Travel and leisure")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "list-group-item list-group-item-action",
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                _vm.fetchPosts("category", "Our heritage")
-              }
-            }
-          },
-          [_vm._v("Our heritage")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "list-group-item list-group-item-action",
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                _vm.fetchPosts("category", "#OOTD")
-              }
-            }
-          },
-          [_vm._v("#OOTD")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "list-group-item list-group-item-action",
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                _vm.fetchPosts("category", "Wedding")
-              }
-            }
-          },
-          [_vm._v("Wedding")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "list-group-item list-group-item-action",
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                _vm.fetchPosts("category", "Graphics and illustrations")
-              }
-            }
-          },
-          [_vm._v("Graphics and illustrations")]
-        )
-      ])
+      _c(
+        "div",
+        { staticClass: "list-group mb-5" },
+        [
+          _vm._l(_vm.categories, function(category) {
+            return [
+              _c(
+                "a",
+                {
+                  staticClass: "list-group-item list-group-item-action",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      _vm.fetchPosts("category", "" + category.category)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(category.category))]
+              )
+            ]
+          })
+        ],
+        2
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "col md-9" }, [
@@ -51395,7 +51565,7 @@ var render = function() {
                             _vm._m(3),
                             _vm._v(" "),
                             _c("p", [
-                              _c("em", [_vm._v(_vm._s(_vm.modalInfo.name))])
+                              _c("em", [_vm._v(_vm._s(_vm.userInfo.name))])
                             ])
                           ]),
                           _vm._v(" "),
@@ -51412,7 +51582,12 @@ var render = function() {
                             "button",
                             {
                               staticClass:
-                                "btn btn-dark text-white btn-block mb-2"
+                                "btn btn-dark text-white btn-block mb-2",
+                              on: {
+                                click: function($event) {
+                                  _vm.connect(_vm.userInfo.id)
+                                }
+                              }
                             },
                             [_vm._v("Connect")]
                           )
@@ -52276,7 +52451,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  height: 20vh;\n  border-radius: 50%;\n}\n.fa-pen[data-v-22ef5402] {\n  cursor: pointer;\n}\n.has-error input[data-v-22ef5402], .has-error textarea[data-v-22ef5402], .has-error select[data-v-22ef5402] {\n  border: 1px solid red;\n}\n.help-block[data-v-22ef5402] {\n  color: red;\n}\n.loader[data-v-22ef5402] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-22ef5402 2s linear infinite;\n          animation: spin-data-v-22ef5402 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#postModal[data-v-22ef5402], #photoModal[data-v-22ef5402] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-22ef5402], #postModal .modal-dialog[data-v-22ef5402], #photoModal .modal-lg[data-v-22ef5402], #photoModal .modal-dialog[data-v-22ef5402] {\n    max-width: none !important;\n}\n#postModal img[data-v-22ef5402], #photoModal img[data-v-22ef5402] {\n    width: 54vw;\n    max-height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.card-post[data-v-22ef5402] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-post img[data-v-22ef5402] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-post:hover img[data-v-22ef5402] {\n  opacity: 0.5;\n}\n.card-post:hover .text[data-v-22ef5402] {\n  opacity: 1;\n}\n.text[data-v-22ef5402] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  height: 20vh;\n  border-radius: 50%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.fa-pen[data-v-22ef5402] {\n  cursor: pointer;\n}\n.has-error input[data-v-22ef5402], .has-error textarea[data-v-22ef5402], .has-error select[data-v-22ef5402] {\n  border: 1px solid red;\n}\n.help-block[data-v-22ef5402] {\n  color: red;\n}\n.loader[data-v-22ef5402] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-22ef5402 2s linear infinite;\n          animation: spin-data-v-22ef5402 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#postModal[data-v-22ef5402], #photoModal[data-v-22ef5402] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-22ef5402], #postModal .modal-dialog[data-v-22ef5402], #photoModal .modal-lg[data-v-22ef5402], #photoModal .modal-dialog[data-v-22ef5402] {\n    max-width: none !important;\n}\n#postModal img[data-v-22ef5402], #photoModal img[data-v-22ef5402] {\n    width: 54vw;\n    max-height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.card-post[data-v-22ef5402] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-post img[data-v-22ef5402] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-post:hover img[data-v-22ef5402] {\n  opacity: 0.5;\n}\n.card-post:hover .text[data-v-22ef5402] {\n  opacity: 1;\n}\n.text[data-v-22ef5402] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -52513,24 +52688,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'profile',
-	props: ['user', 'categories'],
+	props: ['id', 'categories', 'user'],
 	data: function data() {
 		return {
 			csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 			posts: [],
 			total: 0,
 			update: {
-				profilepic: this.user.profilepic,
+				profilepic: null,
 				profilepicURL: null,
-				name: this.user.name,
-				tagline: this.user.tagline,
-				email: this.user.email,
+				name: null,
+				tagline: null,
+				email: null,
 				socials: [{ social: 'fab fa-facebook', link: null }, { social: 'fab fa-instagram', link: null }, { social: 'fab fa-twitter', link: null }, { social: 'fas fa-globe-americas', link: null }]
 			},
 			postData: {
@@ -52562,16 +52734,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		};
 	},
 	created: function created() {
+		this.fetchUser();
 		this.fetchPosts();
 		this.fetchSocial();
 	},
 
 	methods: {
+		fetchUser: function fetchUser() {
+			var _this = this;
+			axios.get('/profile/' + _this.id).then(function (res) {
+				_this.update.profilepic = res.data.profilepic;
+				_this.update.name = res.data.name;
+				_this.update.tagline = res.data.tagline;
+				_this.update.email = res.data.email;
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		},
 		fetchPosts: function fetchPosts(page) {
 			var _this = this;
-			var id = this.user.id;
 			this.loader = true;
-			page = page || '/posts/' + id;
+			page = page || '/posts/' + _this.id;
 			axios.get(page).then(function (res) {
 				_this.posts = res.data;
 				_this.loader = false;
@@ -52581,8 +52764,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		fetchSocial: function fetchSocial() {
 			var _this = this;
-			var id = this.user.id;
-			axios.get('/profile/social/' + id).then(function (res) {
+			axios.get('/profile/social/' + _this.id).then(function (res) {
 				res.data.forEach(function (social) {
 					if (social.social == 'fab fa-facebook') {
 						_this.update.socials[0].link = social.link;
@@ -52618,7 +52800,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		profileAction: function profileAction(action) {
 			this.text = true;
 			this.loader = true;
-			var id = this.user.id;
 			var _this = this;
 			var _hasErrors = this.hasErrors;
 			var _errMessage = this.errorMessage;
@@ -52673,10 +52854,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}
 			}
 
-			var url = action === '#update' ? '/profile/update/' + id : '/post/create';
+			var url = action === '#update' ? '/profile/update/' + _this.id : '/post/create';
 			var data = action === '#update' ? _this.update : _this.postData;
 			axios.post(url, data).then(function (res) {
-				console.log(res);
 				var message = action === '#update' ? 'Saved!' : 'Created!';
 				_this.loader = false;
 				$(action).text(message);
@@ -52774,8 +52954,26 @@ var render = function() {
       _c("div", { staticClass: "card mb-3" }, [
         _c("div", { staticClass: "card-body" }, [
           _c("h4", { staticClass: "text-center mb-3" }, [
-            _c("strong", [_vm._v("Hi, " + _vm._s(_vm.update.name))]),
-            _vm._m(0)
+            _c("strong", [
+              _vm.user != null && _vm.user.id == _vm.id
+                ? _c("span", [_vm._v("Hi, ")])
+                : _vm._e(),
+              _vm._v(_vm._s(_vm.update.name))
+            ]),
+            _c("span", { staticClass: "float-right" }, [
+              _vm.user != null && _vm.user.id == _vm.id
+                ? _c(
+                    "a",
+                    {
+                      attrs: {
+                        "data-toggle": "modal",
+                        "data-target": "#editModal"
+                      }
+                    },
+                    [_c("i", { staticClass: "fas fa-pen" })]
+                  )
+                : _vm._e()
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-image text-center" }, [
@@ -52913,7 +53111,18 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(1)
+        _c("div", { staticClass: "col-md-5 text-lg-right" }, [
+          _vm.user != null && _vm.user.id == _vm.id
+            ? _c(
+                "a",
+                {
+                  staticClass: "btn btn-success text-white",
+                  attrs: { "data-toggle": "modal", "data-target": "#postModal" }
+                },
+                [_vm._v("Add new photo")]
+              )
+            : _vm._e()
+        ])
       ]),
       _vm._v(" "),
       _c("hr", { staticClass: "my-2" }),
@@ -52944,7 +53153,7 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm._m(2, true)
+                  _vm._m(0, true)
                 ]
               )
             ])
@@ -52971,7 +53180,7 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
+              _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("form", [
@@ -53081,13 +53290,13 @@ var render = function() {
                           on: { change: _vm.openFile }
                         }),
                         _vm._v(" "),
-                        _vm._m(4)
+                        _vm._m(2)
                       ])
                     ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "input-group mb-2" }, [
-                    _vm._m(5),
+                    _vm._m(3),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -53120,7 +53329,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "input-group mb-2" }, [
-                    _vm._m(6),
+                    _vm._m(4),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -53153,7 +53362,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "input-group mb-2" }, [
-                    _vm._m(7),
+                    _vm._m(5),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -53186,7 +53395,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "input-group mb-2" }, [
-                    _vm._m(8),
+                    _vm._m(6),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -53300,7 +53509,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-4" }, [
-                  _vm._m(9),
+                  _vm._m(7),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
                     _c("div", { staticClass: "custom-file text-center mb-3" }, [
@@ -53314,7 +53523,7 @@ var render = function() {
                         on: { change: _vm.openFile }
                       }),
                       _vm._v(" "),
-                      _vm._m(10)
+                      _vm._m(8)
                     ]),
                     _vm._v(" "),
                     _c("form", { staticClass: "mb-4" }, [
@@ -53418,7 +53627,7 @@ var render = function() {
                           class: { "has-error": _vm.hasErrors.category }
                         },
                         [
-                          _vm._m(11),
+                          _vm._m(9),
                           _vm._v(" "),
                           _c(
                             "select",
@@ -53543,19 +53752,13 @@ var render = function() {
                       _vm._v(_vm._s(_vm.modalInfo.title))
                     ]),
                     _vm._v(" "),
-                    _vm._m(12)
+                    _vm._m(10)
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
-                    _vm._m(13),
+                    _vm._m(11),
                     _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(_vm.modalInfo.description))]),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _vm._m(14),
-                    _vm._v(" "),
-                    _c("p", [_c("em", [_vm._v(_vm._s(_vm.user.name))])])
+                    _c("p", [_vm._v(_vm._s(_vm.modalInfo.description))])
                   ]),
                   _vm._v(" "),
                   _c(
@@ -53581,33 +53784,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "float-right" }, [
-      _c(
-        "a",
-        { attrs: { "data-toggle": "modal", "data-target": "#editModal" } },
-        [_c("i", { staticClass: "fas fa-pen" })]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-5 text-lg-right" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-success text-white",
-          attrs: { "data-toggle": "modal", "data-target": "#postModal" }
-        },
-        [_vm._v("Add new photo")]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -53750,12 +53926,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h6", [_c("strong", [_vm._v("Description")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h6", [_c("strong", [_vm._v("Captured by:")])])
   }
 ]
 render._withStripped = true
@@ -53916,8 +54086,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'navbar',
@@ -53926,6 +54094,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			validRoute: false,
 			validDiscovery: false,
+			validUser: true,
 			searchTerm: null
 		};
 	},
@@ -53934,6 +54103,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		'$route': function $route(from, to) {
 			this.validRoute = this.$route.params.category ? true : false;
 			this.validDiscovery = this.$route.matched[0].path == '/discover/:search' ? true : false;
+			this.validUser = this.$route.params.id ? false : true;
 		}
 	},
 	methods: {
@@ -54140,14 +54310,6 @@ var render = function() {
                       attrs: { "aria-labelledby": "navbarDropdown" }
                     },
                     [
-                      _c(
-                        "a",
-                        { staticClass: "dropdown-item", attrs: { href: "#" } },
-                        [_vm._v("Looking to hire creative people")]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "dropdown-divider" }),
-                      _vm._v(" "),
                       !_vm.user
                         ? _c(
                             "router-link",
@@ -54174,7 +54336,7 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm.user
+                _vm.user && _vm.validUser
                   ? [
                       _c(
                         "li",
@@ -54184,7 +54346,10 @@ var render = function() {
                             "router-link",
                             {
                               staticClass: "nav-link text-white",
-                              attrs: { to: "/profile", href: "#" }
+                              attrs: {
+                                to: "/profile/" + _vm.user.id,
+                                href: "#"
+                              }
                             },
                             [
                               _c("i", { staticClass: "fas fa-user" }),

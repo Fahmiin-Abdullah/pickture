@@ -1,7 +1,5 @@
 <?php
 
-use App\Category;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,12 +11,7 @@ use App\Category;
 |
 */
 
-Route::get('/', function() {
-	$categories = Category::all();
-
-	return view('app')
-			->with('categories', $categories);
-});
+Route::view('/', 'app');
 
 Route::post('/register', 'Auth\RegisterController@register');
 Route::post('/login', 'Auth\LoginController@login');
@@ -28,6 +21,7 @@ Route::get('/profile/{id}', 'UserController@getUser');
 Route::get('/profile/social/{id}', 'UserController@getSocial');
 Route::post('/profile/update/{id}', 'UserController@update');
 
+Route::get('/categories', 'PostController@getCategories');
 Route::get('/posts/{id}', 'PostController@getPosts');
 Route::post('/post/create', 'PostController@create');
 Route::get('/post/{id}', 'PostController@getPost');

@@ -30,15 +30,13 @@
 					<li class="nav-item dropdown pr-3 pl-3">
 						<a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Join us</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">Looking to hire creative people</a>
-							<div class="dropdown-divider"></div>
 							<router-link to="/register" class="dropdown-item" v-if="!user">Login/Signup</router-link>
 							<a class="dropdown-item" href="/logout" v-if="user">Logout</a>
 						</div>
 					</li>
-					<template v-if="user">
+					<template v-if="user && validUser">
 						<li class="nav-item pr-3 pl-3">
-							<router-link to="/profile" class="nav-link text-white" href="#"><i class="fas fa-user"></i><p class="white-text float-right pl-3">Welcome, {{user.name}}</p></router-link>
+							<router-link :to="`/profile/${user.id}`" class="nav-link text-white" href="#"><i class="fas fa-user"></i><p class="white-text float-right pl-3">Welcome, {{user.name}}</p></router-link>
 						</li>
 					</template>
 				</ul>
@@ -60,6 +58,7 @@
 			return {
 				validRoute: false,
 				validDiscovery: false,
+				validUser: true,
 				searchTerm: null
 			}
 		},
@@ -67,6 +66,7 @@
 		    '$route'(from, to) {
 		    	this.validRoute = this.$route.params.category ? true : false;
 		    	this.validDiscovery = this.$route.matched[0].path == '/discover/:search' ? true : false;
+		    	this.validUser = this.$route.params.id ? false : true;
 		    }
 		},
 		methods: {
