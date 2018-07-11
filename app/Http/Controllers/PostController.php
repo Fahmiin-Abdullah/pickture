@@ -65,9 +65,36 @@ class PostController extends Controller
     	return response(json_encode($post));
     }
 
-    public function getCategory($page)
+    public function update(Request $request, $id)
     {
-        $posts = Post::where('category', $page)->orderby('id', 'desc')->paginate(6);
+        $request->validate([
+            'title' => 'required|max:20',
+            'description' => 'required|max:100',
+            'category' => 'required'
+        ]);
+
+        $user = Auth::user();
+        $post = Post::find($id);
+        $post->title = $request->get('title');
+        $post->description = $request->get('description');
+        $post->category = $request->get('category');
+
+        $user->posts()->save($post);
+
+        return response(json_encode($post));
+    }
+
+    public function delete($id)
+    {
+        $post = Post::find($id);
+        $post->delete();
+
+        return response('success');
+    }
+
+    public function getCategory($params)
+    {
+        $posts = Post::where('category', $params)->orderby('id', 'desc')->paginate(6);
 
         return response($posts);
     }

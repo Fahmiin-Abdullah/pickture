@@ -89,7 +89,6 @@
 			}
 		},
 		created() {
-			this.category = this.category === 'OOTD' ? '#OOTD' : this.category;
 			this.fetchCategories();
 			this.fetchPosts('category', this.category);
 		},
@@ -102,11 +101,11 @@
 				})
 				.catch(err => console.log(err));
 			},
-			fetchPosts(action, page) {
+			fetchPosts(action, params) {
 				const _this = this;
 				this.loader = true;
-				page = action === 'category' ? `/posts/category/${page}` : page;
-				axios.get(page)
+				params = action === 'category' ? `/posts/category/${params}` : params;
+				axios.get(params)
 				.then(res => {
 					_this.posts = res.data;
 					_this.loader = false;

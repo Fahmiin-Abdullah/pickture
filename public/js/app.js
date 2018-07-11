@@ -51324,7 +51324,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		};
 	},
 	created: function created() {
-		this.category = this.category === 'OOTD' ? '#OOTD' : this.category;
 		this.fetchCategories();
 		this.fetchPosts('category', this.category);
 	},
@@ -51338,11 +51337,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				return console.log(err);
 			});
 		},
-		fetchPosts: function fetchPosts(action, page) {
+		fetchPosts: function fetchPosts(action, params) {
 			var _this = this;
 			this.loader = true;
-			page = action === 'category' ? '/posts/category/' + page : page;
-			axios.get(page).then(function (res) {
+			params = action === 'category' ? '/posts/category/' + params : params;
+			axios.get(params).then(function (res) {
 				_this.posts = res.data;
 				_this.loader = false;
 			}).catch(function (err) {
@@ -52688,13 +52687,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'profile',
-	props: ['id', 'categories', 'user'],
+	props: ['id', 'user'],
 	data: function data() {
 		return {
 			csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+			categories: [],
 			posts: [],
 			total: 0,
 			update: {
@@ -52726,20 +52759,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			},
 			loader: false,
 			text: false,
-			modalInfo: {
-				title: null,
-				description: null,
-				postphoto: null
-			}
+			modalInfo: [],
+			edit: false,
+			deleteP: false
 		};
 	},
 	created: function created() {
+		this.fetchCategories();
 		this.fetchUser();
 		this.fetchPosts();
 		this.fetchSocial();
 	},
 
 	methods: {
+		fetchCategories: function fetchCategories() {
+			var _this = this;
+			axios.get('/categories').then(function (res) {
+				_this.categories = res.data;
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		},
 		fetchUser: function fetchUser() {
 			var _this = this;
 			axios.get('/profile/' + _this.id).then(function (res) {
@@ -52931,11 +52971,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		modalOpen: function modalOpen(id) {
 			var _this = this;
 			axios.get('/post/' + id).then(function (res) {
-				_this.modalInfo.title = res.data.title;
-				_this.modalInfo.description = res.data.description;
-				_this.modalInfo.postphoto = res.data.postphoto;
+				_this.modalInfo = res.data;
 			}).catch(function (err) {
 				return console.log(err);
+			});
+		},
+		editPost: function editPost(id) {
+			this.delete = false;
+			this.text = true;
+			this.loader = true;
+			var _this = this;
+			axios.post('/post/update/' + id, _this.modalInfo).then(function () {
+				_this.loader = false;
+				$('#updatePost').text('Saved!');
+				setTimeout(function () {
+					_this.text = false;
+					_this.edit = false;
+					$('#photoModal').modal('hide');
+				}, 2000);
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		},
+		deletePost: function deletePost(id) {
+			this.edit = false;
+			this.text = true;
+			this.loader = true;
+			var _this = this;
+			axios.post('/post/delete/' + id).then(function () {
+				_this.loader = false;
+				$('#deletePost').text('Deleted!');
+
+				setTimeout(function () {
+					_this.text = false;
+					_this.deletePost = false;
+					$('#photoModal').modal('hide');
+					_this.fetchPosts();
+				}, 2000);
 			});
 		}
 	}
@@ -53746,35 +53818,243 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-4 pr-4" }, [
-                  _c("div", { staticClass: "modal-header" }, [
-                    _c("h5", { staticClass: "modal-title" }, [
-                      _vm._v(_vm._s(_vm.modalInfo.title))
-                    ]),
+                _c(
+                  "div",
+                  { staticClass: "col-md-4 pr-4" },
+                  [
+                    !_vm.edit
+                      ? _c("div", { staticClass: "modal-header" }, [
+                          _c("h5", { staticClass: "modal-title" }, [
+                            _vm._v(_vm._s(_vm.modalInfo.title))
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(10)
+                        ])
+                      : _vm._e(),
                     _vm._v(" "),
-                    _vm._m(10)
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-body" }, [
-                    _vm._m(11),
+                    !_vm.edit
+                      ? _c("div", { staticClass: "modal-body" }, [
+                          _vm._m(11),
+                          _vm._v(" "),
+                          _c("p", [_vm._v(_vm._s(_vm.modalInfo.description))])
+                        ])
+                      : _vm._e(),
                     _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(_vm.modalInfo.description))])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-success text-white btn-block mb-2"
-                    },
-                    [_vm._v("Buy")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    { staticClass: "btn btn-dark text-white btn-block mb-2" },
-                    [_vm._v("Connect")]
-                  )
-                ])
+                    _vm.user != null && _vm.user.id == _vm.id
+                      ? [
+                          !_vm.deleteP
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-success text-white btn-block my-2",
+                                  on: {
+                                    click: function($event) {
+                                      _vm.edit = !_vm.edit
+                                    }
+                                  }
+                                },
+                                [_vm._v("Edit")]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          !_vm.edit
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-dark texxt-white btn-block",
+                                  on: {
+                                    click: function($event) {
+                                      _vm.deleteP = !_vm.deleteP
+                                    }
+                                  }
+                                },
+                                [_vm._v("Delete")]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _vm.edit
+                            ? _c("form", [
+                                _c("h5", { staticClass: "modal-title mb-2" }, [
+                                  _vm._v("Edit post details")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.modalInfo.title,
+                                        expression: "modalInfo.title"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: { type: "text" },
+                                    domProps: { value: _vm.modalInfo.title },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.modalInfo,
+                                          "title",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c("textarea", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.modalInfo.description,
+                                        expression: "modalInfo.description"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    domProps: {
+                                      value: _vm.modalInfo.description
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.modalInfo,
+                                          "description",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "input-group mb-4" }, [
+                                  _vm._m(12),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.modalInfo.category,
+                                          expression: "modalInfo.category"
+                                        }
+                                      ],
+                                      staticClass: "custom-select",
+                                      attrs: { id: "inputGroupSelect" },
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            _vm.modalInfo,
+                                            "category",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        }
+                                      }
+                                    },
+                                    _vm._l(_vm.categories, function(category) {
+                                      return _c("option", [
+                                        _vm._v(_vm._s(category.category))
+                                      ])
+                                    })
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "modal-footer" }, [
+                                  _vm.text
+                                    ? _c("div", {
+                                        staticClass: "mr-3",
+                                        class: { loader: _vm.loader },
+                                        attrs: { id: "updatePost" }
+                                      })
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-success",
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          _vm.editPost(_vm.modalInfo.id)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Save changes")]
+                                  )
+                                ])
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.deleteP
+                            ? _c("form", [
+                                _c("div", { staticClass: "text-center" }, [
+                                  _c("h5", { staticClass: "mb-3" }, [
+                                    _vm._v(
+                                      "Are you sure you want to delete this post?"
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "modal-footer" }, [
+                                    _vm.text
+                                      ? _c("div", {
+                                          staticClass: "mr-3",
+                                          class: { loader: _vm.loader },
+                                          attrs: { id: "deletePost" }
+                                        })
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-dark",
+                                        on: {
+                                          click: function($event) {
+                                            $event.preventDefault()
+                                            _vm.deletePost(_vm.modalInfo.id)
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("Yes, delete")]
+                                    )
+                                  ])
+                                ])
+                              ])
+                            : _vm._e()
+                        ]
+                      : _vm._e()
+                  ],
+                  2
+                )
               ])
             ])
           ]
@@ -53926,6 +54206,18 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h6", [_c("strong", [_vm._v("Description")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "label",
+        { staticClass: "input-group-text", attrs: { for: "inputGroupSelect" } },
+        [_vm._v("Select a category")]
+      )
+    ])
   }
 ]
 render._withStripped = true

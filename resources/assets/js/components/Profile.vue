@@ -204,18 +204,51 @@
 							<img alt="Card image cap" :src="`http://pickture.me/images/uploads/postphoto/${modalInfo.postphoto}`" class="rounded-left">
 						</div>
 						<div class="col-md-4 pr-4">
-							<div class="modal-header">
+							<div class="modal-header" v-if="!edit">
 								 <h5 class="modal-title">{{modalInfo.title}}</h5>
 								<button type="button" class="close" data-dismiss="modal">
 									<span>&times;</span>
 								</button>
 							</div>
-							<div class="modal-body">
+							<div class="modal-body" v-if="!edit">
 								<h6><strong>Description</strong></h6>
 								<p>{{modalInfo.description}}</p>
 							</div>
-							<button class="btn btn-success text-white btn-block mb-2">Buy</button>
-							<button class="btn btn-dark text-white btn-block mb-2">Connect</button>
+							<template v-if="user != null && user.id == id">
+								<button class="btn btn-success text-white btn-block my-2" @click="edit = !edit" v-if="!deleteP">Edit</button>
+								<button class="btn btn-dark texxt-white btn-block" @click="deleteP = !deleteP" v-if="!edit">Delete</button>
+								<br>
+								<form v-if="edit">
+									<h5 class="modal-title mb-2">Edit post details</h5>
+									<div class="form-group">
+										<input type="text" class="form-control" v-model="modalInfo.title">
+									</div>
+									<div class="form-group">
+										<textarea class="form-control" v-model="modalInfo.description"></textarea>
+									</div>
+									<div class="input-group mb-4">
+										<div class="input-group-prepend">
+											<label class="input-group-text" for="inputGroupSelect">Select a category</label>
+										</div>
+										<select class="custom-select" id="inputGroupSelect" v-model="modalInfo.category">
+											<option v-for="category in categories">{{category.category}}</option>
+										</select>
+									</div>
+									<div class="modal-footer">
+										<div id="updatePost" class="mr-3" :class="{loader: loader}" v-if="text"></div>
+										<button class="btn btn-success" @click.prevent="editPost(modalInfo.id)">Save changes</button>
+									</div>
+								</form>
+								<form v-if="deleteP">
+									<div class="text-center">
+										<h5 class="mb-3">Are you sure you want to delete this post?</h5>
+										<div class="modal-footer">
+											<div id="deletePost" class="mr-3" :class="{loader: loader}" v-if="text"></div>
+											<button class="btn btn-dark" @click.prevent="deletePost(modalInfo.id)">Yes, delete</button>
+										</div>
+									</div>
+								</form>
+							</template>
 						</div>
 					</div>
 				</div>
@@ -227,10 +260,11 @@
 <script>
 	export default {
 		name: 'profile',
-		props: ['id', 'categories', 'user'],
+		props: ['id', 'user'],
 		data() {
 			return {
 				csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+				categories: [],
 				posts: [],
 				total: 0,
 				update: {
@@ -267,19 +301,26 @@
 				},
 				loader: false,
 				text: false,
-				modalInfo: {
-					title: null,
-					description: null,
-					postphoto: null
-				}
+				modalInfo: [],
+				edit: false,
+				deleteP: false
 			}
 		},
 		created() {
+			this.fetchCategories();
 			this.fetchUser();
 			this.fetchPosts();
 			this.fetchSocial();
 		},
 		methods: {
+			fetchCategories() {
+				const _this = this;
+				axios.get('/categories')
+				.then(res => {
+					_this.categories = res.data;
+				})
+				.catch(err => console.log(err));
+			},
 			fetchUser() {
 				const _this = this;
 				axios.get(`/profile/${_this.id}`)
@@ -408,11 +449,44 @@
 				const _this = this;
 				axios.get(`/post/${id}`)
 				.then(res => {
-					_this.modalInfo.title = res.data.title;
-					_this.modalInfo.description = res.data.description;
-					_this.modalInfo.postphoto = res.data.postphoto;
+					_this.modalInfo = res.data;
 				})
 				.catch(err => console.log(err));
+			},
+			editPost(id) {
+				this.delete = false;
+				this.text = true;
+				this.loader = true;
+				const _this = this;
+				axios.post(`/post/update/${id}`, _this.modalInfo)
+				.then(() => {
+					_this.loader = false;
+					$('#updatePost').text('Saved!');
+					setTimeout(() => {
+						_this.text = false;
+						_this.edit = false;
+						$('#photoModal').modal('hide');
+					}, 2000);
+				})
+				.catch(err => console.log(err));
+			},
+			deletePost(id) {
+				this.edit = false;
+				this.text = true;
+				this.loader = true;
+				const _this = this;
+				axios.post(`/post/delete/${id}`)
+				.then(() => {
+					_this.loader = false;
+					$('#deletePost').text('Deleted!');
+
+					setTimeout(() => {
+						_this.text = false;
+						_this.deletePost = false;
+						$('#photoModal').modal('hide');
+						_this.fetchPosts();
+					}, 2000);
+				})
 			}
 		}
 	}

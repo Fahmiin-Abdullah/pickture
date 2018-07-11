@@ -21,11 +21,14 @@ Route::get('/profile/{id}', 'UserController@getUser');
 Route::get('/profile/social/{id}', 'UserController@getSocial');
 Route::post('/profile/update/{id}', 'UserController@update');
 
-Route::get('/categories', 'PostController@getCategories');
 Route::get('/posts/{id}', 'PostController@getPosts');
 Route::post('/post/create', 'PostController@create');
 Route::get('/post/{id}', 'PostController@getPost');
-Route::get('/posts/category/{page}', 'PostController@getCategory');
+Route::post('/post/update/{id}', 'PostController@update');
+Route::post('/post/delete/{id}', 'PostController@delete');
+
+Route::get('/categories', 'PostController@getCategories');
+Route::get('/posts/category/{params}', 'PostController@getCategory');
 Route::get('/discover', 'PostController@discover');
 Route::post('/search/{query}', 'PostController@search');
 Route::get('/search/{query}', 'PostController@search');
