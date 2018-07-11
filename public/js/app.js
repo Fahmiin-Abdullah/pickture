@@ -50510,7 +50510,7 @@ var render = function() {
               "router-link",
               {
                 staticClass: "btn btn-success text-white btn-block",
-                attrs: { to: "/discover" }
+                attrs: { to: "/discover/any" }
               },
               [
                 _c("i", { staticClass: "fa fa-search mr-3" }),
@@ -50820,10 +50820,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'discover',
-	props: ['search'],
+	props: ['user', 'search'],
 	data: function data() {
 		return {
 			posts: [],
@@ -50836,7 +50843,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			message: null,
 			searchTerm: null,
 			next_page_url: null,
-			loader: false
+			loader: false,
+			like: false,
+			likeMessage: 'Loading...',
+			fav: false,
+			favMessage: 'Loading...'
 		};
 	},
 	created: function created() {
@@ -50855,7 +50866,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this.loader = false;
 				_this.next_page_url = res.data.next_page_url;
 				_this.message = _this.next_page_url == null ? 'There is no more!' : 'Get more!';
-				console.log(_this.posts);
 				if (_this.posts.length == 0) {
 					_this.posts.push(res.data.data);
 				} else {
@@ -50863,7 +50873,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 						_this.posts[0].push(post);
 					});
 				}
-				console.log(_this.posts);
 			}).catch(function (err) {
 				_this.loader = false;
 				console.log(err);
@@ -50887,6 +50896,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this.modalInfo = res.data;
 				_this.userInfo.id = res.data.user.id;
 				_this.userInfo.name = res.data.user.name;
+				if (user != null) {
+					_this.isLiked(res.data.id);
+					_this.isFaved(res.data.id);
+				}
 			}).catch(function (err) {
 				return console.log(err);
 			});
@@ -50894,6 +50907,60 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		connect: function connect(id) {
 			$('.discoverModal').modal('hide');
 			this.$router.push('/profile/' + id);
+		},
+		likePost: function likePost() {
+			var _this = this;
+			axios.get('/like/' + _this.modalInfo.id).then(function (res) {
+				if (res.data == 1) {
+					_this.like = true;
+					_this.likeMessage = 'Unlike';
+				} else {
+					_this.like = false;
+					_this.likeMessage = 'Like';
+				}
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		},
+		favPost: function favPost() {
+			var _this = this;
+			axios.get('/favourite/' + _this.modalInfo.id).then(function (res) {
+				if (res.data == 1) {
+					_this.fav = true;
+					_this.favMessage = 'Unfavourite';
+				} else {
+					_this.fav = false;
+					_this.favMessage = 'Favourite';
+				}
+			});
+		},
+		isLiked: function isLiked(id) {
+			var _this = this;
+			axios.get('/isLiked/' + id).then(function (res) {
+				if (res.data == 1) {
+					_this.like = true;
+					_this.likeMessage = 'Unlike';
+				} else {
+					_this.like = false;
+					_this.likeMessage = 'Like';
+				}
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		},
+		isFaved: function isFaved(id) {
+			var _this = this;
+			axios.get('/isFaved/' + id).then(function (res) {
+				if (res.data == 1) {
+					_this.fav = true;
+					_this.favMessage = 'Unfavourite';
+				} else {
+					_this.fav = false;
+					_this.favMessage = 'Favourite';
+				}
+			}).catch(function (err) {
+				return console.log(err);
+			});
 		}
 	}
 });
@@ -51044,27 +51111,61 @@ var render = function() {
                         _c("p", [_c("em", [_vm._v(_vm._s(_vm.userInfo.name))])])
                       ]),
                       _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass:
-                            "btn btn-success text-white btn-block mb-2"
-                        },
-                        [_vm._v("Buy")]
-                      ),
+                      _vm.user != null
+                        ? _c("div", { staticClass: "row mb-2" }, [
+                            _c("div", { staticClass: "col-md-6 pr-1" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-success text-white btn-block",
+                                  class: { "btn-dark": _vm.like },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      _vm.likePost()
+                                    }
+                                  }
+                                },
+                                [_vm._v(_vm._s(_vm.likeMessage))]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-md-6 pl-1" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-success text-white btn-block",
+                                  class: { "btn-dark": _vm.fav },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      _vm.favPost()
+                                    }
+                                  }
+                                },
+                                [_vm._v(_vm._s(_vm.favMessage))]
+                              )
+                            ])
+                          ])
+                        : _vm._e(),
                       _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-dark text-white btn-block mb-2",
-                          on: {
-                            click: function($event) {
-                              _vm.connect(_vm.userInfo.id)
-                            }
-                          }
-                        },
-                        [_vm._v("Connect")]
-                      )
+                      _vm.user == null || _vm.user.id != _vm.userInfo.id
+                        ? _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn btn-dark text-white btn-block mb-2",
+                              on: {
+                                click: function($event) {
+                                  _vm.connect(_vm.userInfo.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Connect")]
+                          )
+                        : _vm._e()
                     ])
                   ])
                 ])
@@ -51307,10 +51408,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'categories',
-	props: ['category'],
+	props: ['user', 'category'],
 	data: function data() {
 		return {
 			categories: [],
@@ -51320,7 +51428,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				id: null,
 				name: null
 			},
-			loader: false
+			loader: false,
+			like: false,
+			likeMessage: 'Loading...',
+			fav: false,
+			favMessage: 'Loading...'
 		};
 	},
 	created: function created() {
@@ -51354,6 +51466,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this.modalInfo = res.data;
 				_this.userInfo.id = res.data.user.id;
 				_this.userInfo.name = res.data.user.name;
+				if (_this.user != null) {
+					_this.isLiked(res.data.id);
+					_this.isFaved(res.data.id);
+				}
 			}).catch(function (err) {
 				return console.log(err);
 			});
@@ -51361,6 +51477,60 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		connect: function connect(id) {
 			$('#postModal').modal('hide');
 			this.$router.push('/profile/' + id);
+		},
+		likePost: function likePost() {
+			var _this = this;
+			axios.get('/like/' + _this.modalInfo.id).then(function (res) {
+				if (res.data == 1) {
+					_this.like = true;
+					_this.likeMessage = 'Unlike';
+				} else {
+					_this.like = false;
+					_this.likeMessage = 'Like';
+				}
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		},
+		favPost: function favPost() {
+			var _this = this;
+			axios.get('/favourite/' + _this.modalInfo.id).then(function (res) {
+				if (res.data == 1) {
+					_this.fav = true;
+					_this.favMessage = 'Unfavourite';
+				} else {
+					_this.fav = false;
+					_this.favMessage = 'Favourite';
+				}
+			});
+		},
+		isLiked: function isLiked(id) {
+			var _this = this;
+			axios.get('/isLiked/' + id).then(function (res) {
+				if (res.data == 1) {
+					_this.like = true;
+					_this.likeMessage = 'Unlike';
+				} else {
+					_this.like = false;
+					_this.likeMessage = 'Like';
+				}
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		},
+		isFaved: function isFaved(id) {
+			var _this = this;
+			axios.get('/isFaved/' + id).then(function (res) {
+				if (res.data == 1) {
+					_this.fav = true;
+					_this.favMessage = 'Unfavourite';
+				} else {
+					_this.fav = false;
+					_this.favMessage = 'Favourite';
+				}
+			}).catch(function (err) {
+				return console.log(err);
+			});
 		}
 	}
 });
@@ -51568,28 +51738,61 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-success text-white btn-block mb-2"
-                            },
-                            [_vm._v("Buy")]
-                          ),
+                          _vm.user != null
+                            ? _c("div", { staticClass: "row mb-2" }, [
+                                _c("div", { staticClass: "col-md-6 pr-1" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-success text-white btn-block",
+                                      class: { "btn-dark": _vm.like },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          _vm.likePost()
+                                        }
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(_vm.likeMessage))]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-md-6 pl-1" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-success text-white btn-block",
+                                      class: { "btn-dark": _vm.fav },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          _vm.favPost()
+                                        }
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(_vm.favMessage))]
+                                  )
+                                ])
+                              ])
+                            : _vm._e(),
                           _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-dark text-white btn-block mb-2",
-                              on: {
-                                click: function($event) {
-                                  _vm.connect(_vm.userInfo.id)
-                                }
-                              }
-                            },
-                            [_vm._v("Connect")]
-                          )
+                          _vm.user == null || _vm.user.id != _vm.userInfo.id
+                            ? _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-dark text-white btn-block mb-2",
+                                  on: {
+                                    click: function($event) {
+                                      _vm.connect(_vm.userInfo.id)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Connect")]
+                              )
+                            : _vm._e()
                         ])
                       ])
                     ])
@@ -52720,6 +52923,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'profile',
@@ -52761,7 +52974,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			text: false,
 			modalInfo: [],
 			edit: false,
-			deleteP: false
+			deleteP: false,
+			like: false,
+			likeMessage: 'Loading...',
+			fav: false,
+			favMessage: 'Loading...'
 		};
 	},
 	created: function created() {
@@ -52972,6 +53189,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this = this;
 			axios.get('/post/' + id).then(function (res) {
 				_this.modalInfo = res.data;
+				if (user != null) {
+					_this.isLiked(res.data.id);
+					_this.isFaved(res.data.id);
+				}
 			}).catch(function (err) {
 				return console.log(err);
 			});
@@ -53008,6 +53229,60 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					$('#photoModal').modal('hide');
 					_this.fetchPosts();
 				}, 2000);
+			});
+		},
+		likePost: function likePost() {
+			var _this = this;
+			axios.get('/like/' + _this.modalInfo.id).then(function (res) {
+				if (res.data == 1) {
+					_this.like = true;
+					_this.likeMessage = 'Unlike';
+				} else {
+					_this.like = false;
+					_this.likeMessage = 'Like';
+				}
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		},
+		favPost: function favPost() {
+			var _this = this;
+			axios.get('/favourite/' + _this.modalInfo.id).then(function (res) {
+				if (res.data == 1) {
+					_this.fav = true;
+					_this.favMessage = 'Unfavourite';
+				} else {
+					_this.fav = false;
+					_this.favMessage = 'Favourite';
+				}
+			});
+		},
+		isLiked: function isLiked(id) {
+			var _this = this;
+			axios.get('/isLiked/' + id).then(function (res) {
+				if (res.data == 1) {
+					_this.like = true;
+					_this.likeMessage = 'Unlike';
+				} else {
+					_this.like = false;
+					_this.likeMessage = 'Like';
+				}
+			}).catch(function (err) {
+				return console.log(err);
+			});
+		},
+		isFaved: function isFaved(id) {
+			var _this = this;
+			axios.get('/isFaved/' + id).then(function (res) {
+				if (res.data == 1) {
+					_this.fav = true;
+					_this.favMessage = 'Unfavourite';
+				} else {
+					_this.fav = false;
+					_this.favMessage = 'Favourite';
+				}
+			}).catch(function (err) {
+				return console.log(err);
 			});
 		}
 	}
@@ -53823,21 +54098,61 @@ var render = function() {
                   { staticClass: "col-md-4 pr-4" },
                   [
                     !_vm.edit
-                      ? _c("div", { staticClass: "modal-header" }, [
-                          _c("h5", { staticClass: "modal-title" }, [
-                            _vm._v(_vm._s(_vm.modalInfo.title))
+                      ? [
+                          _c("div", { staticClass: "modal-header" }, [
+                            _c("h5", { staticClass: "modal-title" }, [
+                              _vm._v(_vm._s(_vm.modalInfo.title))
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(10)
                           ]),
                           _vm._v(" "),
-                          _vm._m(10)
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    !_vm.edit
-                      ? _c("div", { staticClass: "modal-body" }, [
-                          _vm._m(11),
+                          _c("div", { staticClass: "modal-body" }, [
+                            _vm._m(11),
+                            _vm._v(" "),
+                            _c("p", [_vm._v(_vm._s(_vm.modalInfo.description))])
+                          ]),
                           _vm._v(" "),
-                          _c("p", [_vm._v(_vm._s(_vm.modalInfo.description))])
-                        ])
+                          _vm.user != null
+                            ? _c("div", { staticClass: "row mb-2" }, [
+                                _c("div", { staticClass: "col-md-6 pr-1" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-success text-white btn-block",
+                                      class: { "btn-dark": _vm.like },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          _vm.likePost()
+                                        }
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(_vm.likeMessage))]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-md-6 pl-1" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-success text-white btn-block",
+                                      class: { "btn-dark": _vm.fav },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          _vm.favPost()
+                                        }
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(_vm.favMessage))]
+                                  )
+                                ])
+                              ])
+                            : _vm._e()
+                        ]
                       : _vm._e(),
                     _vm._v(" "),
                     _vm.user != null && _vm.user.id == _vm.id
@@ -54632,7 +54947,7 @@ var render = function() {
                   ? [
                       _c(
                         "li",
-                        { staticClass: "nav-item pr-3 pl-3" },
+                        { staticClass: "nav-item px-3" },
                         [
                           _c(
                             "router-link",
@@ -54647,7 +54962,10 @@ var render = function() {
                               _c("i", { staticClass: "fas fa-user" }),
                               _c(
                                 "p",
-                                { staticClass: "white-text float-right pl-3" },
+                                {
+                                  staticClass:
+                                    "white-text float-right pl-3 mb-0"
+                                },
                                 [_vm._v("Welcome, " + _vm._s(_vm.user.name))]
                               )
                             ]

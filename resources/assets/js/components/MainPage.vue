@@ -37,7 +37,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-md-6">
-                    <router-link to="/discover" class="btn btn-success text-white btn-block"><i class="fa fa-search mr-3"></i>Discover</router-link>
+                    <router-link to="/discover/any" class="btn btn-success text-white btn-block"><i class="fa fa-search mr-3"></i>Discover</router-link>
                 </div>
                 <div class="col-md-6">
                     <router-link to="/categories/any" class="btn btn-dark text-white btn-block"><i class="fa fa-globe-americas mr-3"></i>Browse Categories</router-link>

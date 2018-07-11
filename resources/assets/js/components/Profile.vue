@@ -204,16 +204,26 @@
 							<img alt="Card image cap" :src="`http://pickture.me/images/uploads/postphoto/${modalInfo.postphoto}`" class="rounded-left">
 						</div>
 						<div class="col-md-4 pr-4">
-							<div class="modal-header" v-if="!edit">
-								 <h5 class="modal-title">{{modalInfo.title}}</h5>
-								<button type="button" class="close" data-dismiss="modal">
-									<span>&times;</span>
-								</button>
-							</div>
-							<div class="modal-body" v-if="!edit">
-								<h6><strong>Description</strong></h6>
-								<p>{{modalInfo.description}}</p>
-							</div>
+							<template v-if="!edit">
+								<div class="modal-header">
+									 <h5 class="modal-title">{{modalInfo.title}}</h5>
+									<button type="button" class="close" data-dismiss="modal">
+										<span>&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<h6><strong>Description</strong></h6>
+									<p>{{modalInfo.description}}</p>
+								</div>
+								<div class="row mb-2" v-if="user != null">
+									<div class="col-md-6 pr-1">
+										<button class="btn btn-success text-white btn-block" @click.prevent="likePost()" :class="{'btn-dark': like}">{{likeMessage}}</button>
+									</div>
+									<div class="col-md-6 pl-1">
+										<button class="btn btn-success text-white btn-block"@click.prevent="favPost()" :class="{'btn-dark': fav}">{{favMessage}}</button>
+									</div>
+								</div>
+							</template>
 							<template v-if="user != null && user.id == id">
 								<button class="btn btn-success text-white btn-block my-2" @click="edit = !edit" v-if="!deleteP">Edit</button>
 								<button class="btn btn-dark texxt-white btn-block" @click="deleteP = !deleteP" v-if="!edit">Delete</button>
@@ -303,7 +313,11 @@
 				text: false,
 				modalInfo: [],
 				edit: false,
-				deleteP: false
+				deleteP: false,
+				like: false,
+				likeMessage: 'Loading...',
+				fav: false,
+				favMessage: 'Loading...'
 			}
 		},
 		created() {
@@ -450,6 +464,10 @@
 				axios.get(`/post/${id}`)
 				.then(res => {
 					_this.modalInfo = res.data;
+					if (user != null) {
+						_this.isLiked(res.data.id);
+						_this.isFaved(res.data.id);
+					}
 				})
 				.catch(err => console.log(err));
 			},
@@ -487,6 +505,61 @@
 						_this.fetchPosts();
 					}, 2000);
 				})
+			},
+			likePost() {
+				const _this = this;
+				axios.get(`/like/${_this.modalInfo.id}`)
+				.then(res => {
+					if (res.data == 1) {
+						_this.like = true;
+						_this.likeMessage = 'Unlike';
+					} else {
+						_this.like = false;
+						_this.likeMessage = 'Like';
+					}
+				})
+				.catch(err => console.log(err));
+			},
+			favPost() {
+				const _this = this;
+				axios.get(`/favourite/${_this.modalInfo.id}`)
+				.then(res => {
+					if (res.data == 1) {
+						_this.fav = true;
+						_this.favMessage = 'Unfavourite';
+					} else {
+						_this.fav = false;
+						_this.favMessage = 'Favourite';
+					}
+				})
+			},
+			isLiked(id) {
+				const _this = this;
+				axios.get(`/isLiked/${id}`)
+				.then(res => {
+					if (res.data == 1) {
+						_this.like = true;
+						_this.likeMessage = 'Unlike';
+					} else {
+						_this.like = false;
+						_this.likeMessage = 'Like';
+					}
+				})
+				.catch(err => console.log(err));
+			},
+			isFaved(id) {
+				const _this = this;
+				axios.get(`/isFaved/${id}`)
+				.then(res => {
+					if (res.data == 1) {
+						_this.fav = true;
+						_this.favMessage = 'Unfavourite';
+					} else {
+						_this.fav = false;
+						_this.favMessage = 'Favourite';
+					}
+				})
+				.catch(err => console.log(err));
 			}
 		}
 	}

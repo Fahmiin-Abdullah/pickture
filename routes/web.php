@@ -32,3 +32,8 @@ Route::get('/posts/category/{params}', 'PostController@getCategory');
 Route::get('/discover', 'PostController@discover');
 Route::post('/search/{query}', 'PostController@search');
 Route::get('/search/{query}', 'PostController@search');
+
+Route::get('/like/{id}', 'ActionsController@like');
+Route::get('/isLiked/{id}', 'ActionsController@isLiked');
+Route::get('/favourite/{id}', 'ActionsController@fav');
+Route::get('/isFaved/{id}', 'ActionsController@isFaved');

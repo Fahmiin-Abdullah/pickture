@@ -47,8 +47,15 @@
 									<h6><strong>Captured by:</strong></h6>
 									<p><em>{{userInfo.name}}</em></p>
 								</div>
-								<button class="btn btn-success text-white btn-block mb-2">Buy</button>
-								<button class="btn btn-dark text-white btn-block mb-2" @click="connect(userInfo.id)">Connect</button>
+								<div class="row mb-2" v-if="user != null">
+									<div class="col-md-6 pr-1">
+										<button class="btn btn-success text-white btn-block" @click.prevent="likePost()" :class="{'btn-dark': like}">{{likeMessage}}</button>
+									</div>
+									<div class="col-md-6 pl-1">
+										<button class="btn btn-success text-white btn-block"@click.prevent="favPost()" :class="{'btn-dark': fav}">{{favMessage}}</button>
+									</div>
+								</div>
+								<button class="btn btn-dark text-white btn-block mb-2" @click="connect(userInfo.id)" v-if="user == null || user.id != userInfo.id">Connect</button>
 							</div>
 						</div>
 					</div>
@@ -62,7 +69,7 @@
 <script>
 	export default {
 		name: 'discover',
-		props: ['search'],
+		props: ['user', 'search'],
 		data() {
 			return {
 				posts: [],
@@ -75,7 +82,11 @@
 				message: null,
 				searchTerm: null,
 				next_page_url: null,
-				loader: false
+				loader: false,
+				like: false,
+				likeMessage: 'Loading...',
+				fav: false,
+				favMessage: 'Loading...'
 			}
 		},
 		created() {
@@ -94,7 +105,6 @@
 					_this.loader = false;
 					_this.next_page_url = res.data.next_page_url;
 					_this.message = _this.next_page_url == null ? 'There is no more!' : 'Get more!';
-					console.log(_this.posts);
 					if (_this.posts.length == 0) {
 						_this.posts.push(res.data.data);
 					} else {
@@ -102,7 +112,6 @@
 							_this.posts[0].push(post);
 						});
 					}
-					console.log(_this.posts);
 				})
 				.catch(err => {
 					_this.loader = false;
@@ -128,12 +137,71 @@
 					_this.modalInfo = res.data;
 					_this.userInfo.id = res.data.user.id;
 					_this.userInfo.name = res.data.user.name;
+					if (user != null) {
+						_this.isLiked(res.data.id);
+						_this.isFaved(res.data.id);
+					}
 				})
 				.catch(err => console.log(err));
 			},
 			connect(id) {
 				$('.discoverModal').modal('hide');
 				this.$router.push(`/profile/${id}`);
+			},
+			likePost() {
+				const _this = this;
+				axios.get(`/like/${_this.modalInfo.id}`)
+				.then(res => {
+					if (res.data == 1) {
+						_this.like = true;
+						_this.likeMessage = 'Unlike';
+					} else {
+						_this.like = false;
+						_this.likeMessage = 'Like';
+					}
+				})
+				.catch(err => console.log(err));
+			},
+			favPost() {
+				const _this = this;
+				axios.get(`/favourite/${_this.modalInfo.id}`)
+				.then(res => {
+					if (res.data == 1) {
+						_this.fav = true;
+						_this.favMessage = 'Unfavourite';
+					} else {
+						_this.fav = false;
+						_this.favMessage = 'Favourite';
+					}
+				})
+			},
+			isLiked(id) {
+				const _this = this;
+				axios.get(`/isLiked/${id}`)
+				.then(res => {
+					if (res.data == 1) {
+						_this.like = true;
+						_this.likeMessage = 'Unlike';
+					} else {
+						_this.like = false;
+						_this.likeMessage = 'Like';
+					}
+				})
+				.catch(err => console.log(err));
+			},
+			isFaved(id) {
+				const _this = this;
+				axios.get(`/isFaved/${id}`)
+				.then(res => {
+					if (res.data == 1) {
+						_this.fav = true;
+						_this.favMessage = 'Unfavourite';
+					} else {
+						_this.fav = false;
+						_this.favMessage = 'Favourite';
+					}
+				})
+				.catch(err => console.log(err));
 			}
 		}
 	}

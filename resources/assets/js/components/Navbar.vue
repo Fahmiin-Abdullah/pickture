@@ -35,8 +35,8 @@
 						</div>
 					</li>
 					<template v-if="user && validUser">
-						<li class="nav-item pr-3 pl-3">
-							<router-link :to="`/profile/${user.id}`" class="nav-link text-white" href="#"><i class="fas fa-user"></i><p class="white-text float-right pl-3">Welcome, {{user.name}}</p></router-link>
+						<li class="nav-item px-3">
+							<router-link :to="`/profile/${user.id}`" class="nav-link text-white" href="#"><i class="fas fa-user"></i><p class="white-text float-right pl-3 mb-0">Welcome, {{user.name}}</p></router-link>
 						</li>
 					</template>
 				</ul>
