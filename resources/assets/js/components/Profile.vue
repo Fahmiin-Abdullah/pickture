@@ -217,10 +217,10 @@
 								</div>
 								<div class="row mb-2" v-if="user != null">
 									<div class="col-md-6 pr-1">
-										<button class="btn btn-success text-white btn-block" @click.prevent="likePost()" :class="{'btn-dark': like}">{{likeMessage}}</button>
+										<button class="btn btn-success text-white btn-block" @click.prevent="postSocial('like')" :class="{'btn-dark': like}">{{likeMessage}}</button>
 									</div>
 									<div class="col-md-6 pl-1">
-										<button class="btn btn-success text-white btn-block"@click.prevent="favPost()" :class="{'btn-dark': fav}">{{favMessage}}</button>
+										<button class="btn btn-success text-white btn-block"@click.prevent="postSocial('favourite')" :class="{'btn-dark': favourite}">{{favouriteMessage}}</button>
 									</div>
 								</div>
 							</template>
@@ -246,7 +246,7 @@
 									</div>
 									<div class="modal-footer">
 										<div id="updatePost" class="mr-3" :class="{loader: loader}" v-if="text"></div>
-										<button class="btn btn-success" @click.prevent="editPost(modalInfo.id)">Save changes</button>
+										<button class="btn btn-success" @click.prevent="postAction(modalInfo.id, 'update')">Save changes</button>
 									</div>
 								</form>
 								<form v-if="deleteP">
@@ -254,7 +254,7 @@
 										<h5 class="mb-3">Are you sure you want to delete this post?</h5>
 										<div class="modal-footer">
 											<div id="deletePost" class="mr-3" :class="{loader: loader}" v-if="text"></div>
-											<button class="btn btn-dark" @click.prevent="deletePost(modalInfo.id)">Yes, delete</button>
+											<button class="btn btn-dark" @click.prevent="postAction(modalInfo.id, 'delete')">Yes, delete</button>
 										</div>
 									</div>
 								</form>
@@ -316,15 +316,14 @@
 				deleteP: false,
 				like: false,
 				likeMessage: 'Loading...',
-				fav: false,
-				favMessage: 'Loading...'
+				favourite: false,
+				favouriteMessage: 'Loading...'
 			}
 		},
 		created() {
 			this.fetchCategories();
 			this.fetchUser();
 			this.fetchPosts();
-			this.fetchSocial();
 		},
 		methods: {
 			fetchCategories() {
@@ -343,6 +342,17 @@
 					_this.update.name = res.data.name;
 					_this.update.tagline = res.data.tagline;
 					_this.update.email = res.data.email;
+					res.data.socials.forEach(social => {
+						if (social.social == 'fab fa-facebook') {
+							_this.update.socials[0].link = social.link;
+						} else if (social.social == 'fab fa-instagram') {
+							_this.update.socials[1].link = social.link;
+						} else if (social.social == 'fab fa-twitter') {
+							_this.update.socials[2].link = social.link;
+						} else if (social.social == 'fas fa-globe-americas') {
+							_this.update.socials[3].link = social.link;
+						}
+					});
 				})
 				.catch(err => console.log(err));
 			},
@@ -354,24 +364,6 @@
 				.then(res => {
 					_this.posts = res.data;
 					_this.loader = false;
-				})
-				.catch(err => console.log(err));
-			},
-			fetchSocial() {
-				const _this = this;
-				axios.get(`/profile/social/${_this.id}`)
-				.then(res => {
-					res.data.forEach(social => {
-						if (social.social == 'fab fa-facebook') {
-							_this.update.socials[0].link = social.link;
-						} else if (social.social == 'fab fa-instagram') {
-							_this.update.socials[1].link = social.link;
-						} else if (social.social == 'fab fa-twitter') {
-							_this.update.socials[2].link = social.link;
-						} else if (social.social == 'fas fa-globe-americas') {
-							_this.update.socials[3].link = social.link;
-						}
-					});
 				})
 				.catch(err => console.log(err));
 			},
@@ -390,6 +382,8 @@
 				}
 				reader.readAsDataURL(input.files[0]);
 			},
+
+			//Handles profile update and post create
 			profileAction(action) {
 				this.text = true;
 				this.loader = true;
@@ -464,99 +458,50 @@
 				axios.get(`/post/${id}`)
 				.then(res => {
 					_this.modalInfo = res.data;
-					if (user != null) {
-						_this.isLiked(res.data.id);
-						_this.isFaved(res.data.id);
+					if (_this.user != null) {
+						_this.postSocial('isLiked', res.data.id);
+						_this.postSocial('isFaved', res.data.id);
 					}
 				})
 				.catch(err => console.log(err));
 			},
-			editPost(id) {
-				this.delete = false;
-				this.text = true;
-				this.loader = true;
-				const _this = this;
-				axios.post(`/post/update/${id}`, _this.modalInfo)
-				.then(() => {
-					_this.loader = false;
-					$('#updatePost').text('Saved!');
-					setTimeout(() => {
-						_this.text = false;
-						_this.edit = false;
-						$('#photoModal').modal('hide');
-					}, 2000);
-				})
-				.catch(err => console.log(err));
-			},
-			deletePost(id) {
-				this.edit = false;
-				this.text = true;
-				this.loader = true;
-				const _this = this;
-				axios.post(`/post/delete/${id}`)
-				.then(() => {
-					_this.loader = false;
-					$('#deletePost').text('Deleted!');
 
+			//Handles post edit and delete
+			postAction(id, params) {
+				this.params = false;
+				this.text = true;
+				this.loader = true;
+				const _this = this;
+				axios.post(`/post/${params}/${id}`, _this.modalInfo)
+				.then(res => {
+					_this.loader = false;
+					if (params == 'update') {
+						$('#updatePost').text('Saved!');
+					} else {
+						$('#deletePost').text('Deleted!');
+					}
 					setTimeout(() => {
 						_this.text = false;
-						_this.deletePost = false;
+						_this.edit = _this.deletePost = false;
 						$('#photoModal').modal('hide');
 						_this.fetchPosts();
 					}, 2000);
 				})
-			},
-			likePost() {
-				const _this = this;
-				axios.get(`/like/${_this.modalInfo.id}`)
-				.then(res => {
-					if (res.data == 1) {
-						_this.like = true;
-						_this.likeMessage = 'Unlike';
-					} else {
-						_this.like = false;
-						_this.likeMessage = 'Like';
-					}
-				})
 				.catch(err => console.log(err));
 			},
-			favPost() {
+
+			//Handles likes, isLiked, favourites and isFaved
+			postSocial(params, id) {
 				const _this = this;
-				axios.get(`/favourite/${_this.modalInfo.id}`)
+				const url = id == null ? axios.get(`/${params}/${_this.modalInfo.id}`) : axios.get(`/${params}/${id}`)
+				url
 				.then(res => {
 					if (res.data == 1) {
-						_this.fav = true;
-						_this.favMessage = 'Unfavourite';
+						params == 'like' || params == 'isLiked' ? _this.like = true : _this.favourite = true;
+						params == 'like' || params == 'isLiked' ? _this.likeMessage = 'Unlike' : _this.favouriteMessage = 'Unfavourite';
 					} else {
-						_this.fav = false;
-						_this.favMessage = 'Favourite';
-					}
-				})
-			},
-			isLiked(id) {
-				const _this = this;
-				axios.get(`/isLiked/${id}`)
-				.then(res => {
-					if (res.data == 1) {
-						_this.like = true;
-						_this.likeMessage = 'Unlike';
-					} else {
-						_this.like = false;
-						_this.likeMessage = 'Like';
-					}
-				})
-				.catch(err => console.log(err));
-			},
-			isFaved(id) {
-				const _this = this;
-				axios.get(`/isFaved/${id}`)
-				.then(res => {
-					if (res.data == 1) {
-						_this.fav = true;
-						_this.favMessage = 'Unfavourite';
-					} else {
-						_this.fav = false;
-						_this.favMessage = 'Favourite';
+						params == 'like' || params == 'isLiked' ? _this.like = false : _this.favourite = false;
+						params == 'like' || params == 'isLiked' ? _this.likeMessage = 'Like' : _this.favouriteMessage = 'Favourite';
 					}
 				})
 				.catch(err => console.log(err));

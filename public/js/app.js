@@ -50846,8 +50846,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			loader: false,
 			like: false,
 			likeMessage: 'Loading...',
-			fav: false,
-			favMessage: 'Loading...'
+			favourite: false,
+			favouriteMessage: 'Loading...'
 		};
 	},
 	created: function created() {
@@ -50896,9 +50896,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this.modalInfo = res.data;
 				_this.userInfo.id = res.data.user.id;
 				_this.userInfo.name = res.data.user.name;
-				if (user != null) {
-					_this.isLiked(res.data.id);
-					_this.isFaved(res.data.id);
+				if (_this.user != null) {
+					_this.postSocial('isLiked', res.data.id);
+					_this.postSocial('isFaved', res.data.id);
 				}
 			}).catch(function (err) {
 				return console.log(err);
@@ -50908,55 +50908,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			$('.discoverModal').modal('hide');
 			this.$router.push('/profile/' + id);
 		},
-		likePost: function likePost() {
+
+
+		//Handles post edit and delete
+		postAction: function postAction(id, params) {
+			this.params = false;
+			this.text = true;
+			this.loader = true;
 			var _this = this;
-			axios.get('/like/' + _this.modalInfo.id).then(function (res) {
-				if (res.data == 1) {
-					_this.like = true;
-					_this.likeMessage = 'Unlike';
+			axios.post('/post/' + params + '/' + id, _this.modalInfo).then(function (res) {
+				_this.loader = false;
+				if (params == 'update') {
+					$('#updatePost').text('Saved!');
 				} else {
-					_this.like = false;
-					_this.likeMessage = 'Like';
+					$('#deletePost').text('Deleted!');
 				}
+				setTimeout(function () {
+					_this.text = false;
+					_this.edit = _this.deletePost = false;
+					$('#photoModal').modal('hide');
+					_this.fetchPosts();
+				}, 2000);
 			}).catch(function (err) {
 				return console.log(err);
 			});
 		},
-		favPost: function favPost() {
+
+
+		//Handles likes, isLiked, favourites and isFaved
+		postSocial: function postSocial(params, id) {
 			var _this = this;
-			axios.get('/favourite/' + _this.modalInfo.id).then(function (res) {
+			var url = id == null ? axios.get('/' + params + '/' + _this.modalInfo.id) : axios.get('/' + params + '/' + id);
+			url.then(function (res) {
 				if (res.data == 1) {
-					_this.fav = true;
-					_this.favMessage = 'Unfavourite';
+					params == 'like' || params == 'isLiked' ? _this.like = true : _this.favourite = true;
+					params == 'like' || params == 'isLiked' ? _this.likeMessage = 'Unlike' : _this.favouriteMessage = 'Unfavourite';
 				} else {
-					_this.fav = false;
-					_this.favMessage = 'Favourite';
-				}
-			});
-		},
-		isLiked: function isLiked(id) {
-			var _this = this;
-			axios.get('/isLiked/' + id).then(function (res) {
-				if (res.data == 1) {
-					_this.like = true;
-					_this.likeMessage = 'Unlike';
-				} else {
-					_this.like = false;
-					_this.likeMessage = 'Like';
-				}
-			}).catch(function (err) {
-				return console.log(err);
-			});
-		},
-		isFaved: function isFaved(id) {
-			var _this = this;
-			axios.get('/isFaved/' + id).then(function (res) {
-				if (res.data == 1) {
-					_this.fav = true;
-					_this.favMessage = 'Unfavourite';
-				} else {
-					_this.fav = false;
-					_this.favMessage = 'Favourite';
+					params == 'like' || params == 'isLiked' ? _this.like = false : _this.favourite = false;
+					params == 'like' || params == 'isLiked' ? _this.likeMessage = 'Like' : _this.favouriteMessage = 'Favourite';
 				}
 			}).catch(function (err) {
 				return console.log(err);
@@ -51123,7 +51112,7 @@ var render = function() {
                                   on: {
                                     click: function($event) {
                                       $event.preventDefault()
-                                      _vm.likePost()
+                                      _vm.postSocial("like")
                                     }
                                   }
                                 },
@@ -51137,15 +51126,15 @@ var render = function() {
                                 {
                                   staticClass:
                                     "btn btn-success text-white btn-block",
-                                  class: { "btn-dark": _vm.fav },
+                                  class: { "btn-dark": _vm.favourite },
                                   on: {
                                     click: function($event) {
                                       $event.preventDefault()
-                                      _vm.favPost()
+                                      _vm.postSocial("favourite")
                                     }
                                   }
                                 },
-                                [_vm._v(_vm._s(_vm.favMessage))]
+                                [_vm._v(_vm._s(_vm.favouriteMessage))]
                               )
                             ])
                           ])
@@ -51431,8 +51420,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			loader: false,
 			like: false,
 			likeMessage: 'Loading...',
-			fav: false,
-			favMessage: 'Loading...'
+			favourite: false,
+			favouriteMessage: 'Loading...'
 		};
 	},
 	created: function created() {
@@ -51467,8 +51456,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this.userInfo.id = res.data.user.id;
 				_this.userInfo.name = res.data.user.name;
 				if (_this.user != null) {
-					_this.isLiked(res.data.id);
-					_this.isFaved(res.data.id);
+					_this.postSocial('isLiked', res.data.id);
+					_this.postSocial('isFaved', res.data.id);
 				}
 			}).catch(function (err) {
 				return console.log(err);
@@ -51478,55 +51467,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			$('#postModal').modal('hide');
 			this.$router.push('/profile/' + id);
 		},
-		likePost: function likePost() {
+
+
+		//Handles post edit and delete
+		postAction: function postAction(id, params) {
+			this.params = false;
+			this.text = true;
+			this.loader = true;
 			var _this = this;
-			axios.get('/like/' + _this.modalInfo.id).then(function (res) {
-				if (res.data == 1) {
-					_this.like = true;
-					_this.likeMessage = 'Unlike';
+			axios.post('/post/' + params + '/' + id, _this.modalInfo).then(function (res) {
+				_this.loader = false;
+				if (params == 'update') {
+					$('#updatePost').text('Saved!');
 				} else {
-					_this.like = false;
-					_this.likeMessage = 'Like';
+					$('#deletePost').text('Deleted!');
 				}
+				setTimeout(function () {
+					_this.text = false;
+					_this.edit = _this.deletePost = false;
+					$('#photoModal').modal('hide');
+					_this.fetchPosts();
+				}, 2000);
 			}).catch(function (err) {
 				return console.log(err);
 			});
 		},
-		favPost: function favPost() {
+
+
+		//Handles likes, isLiked, favourites and isFaved
+		postSocial: function postSocial(params, id) {
 			var _this = this;
-			axios.get('/favourite/' + _this.modalInfo.id).then(function (res) {
+			var url = id == null ? axios.get('/' + params + '/' + _this.modalInfo.id) : axios.get('/' + params + '/' + id);
+			url.then(function (res) {
 				if (res.data == 1) {
-					_this.fav = true;
-					_this.favMessage = 'Unfavourite';
+					params == 'like' || params == 'isLiked' ? _this.like = true : _this.favourite = true;
+					params == 'like' || params == 'isLiked' ? _this.likeMessage = 'Unlike' : _this.favouriteMessage = 'Unfavourite';
 				} else {
-					_this.fav = false;
-					_this.favMessage = 'Favourite';
-				}
-			});
-		},
-		isLiked: function isLiked(id) {
-			var _this = this;
-			axios.get('/isLiked/' + id).then(function (res) {
-				if (res.data == 1) {
-					_this.like = true;
-					_this.likeMessage = 'Unlike';
-				} else {
-					_this.like = false;
-					_this.likeMessage = 'Like';
-				}
-			}).catch(function (err) {
-				return console.log(err);
-			});
-		},
-		isFaved: function isFaved(id) {
-			var _this = this;
-			axios.get('/isFaved/' + id).then(function (res) {
-				if (res.data == 1) {
-					_this.fav = true;
-					_this.favMessage = 'Unfavourite';
-				} else {
-					_this.fav = false;
-					_this.favMessage = 'Favourite';
+					params == 'like' || params == 'isLiked' ? _this.like = false : _this.favourite = false;
+					params == 'like' || params == 'isLiked' ? _this.likeMessage = 'Like' : _this.favouriteMessage = 'Favourite';
 				}
 			}).catch(function (err) {
 				return console.log(err);
@@ -51750,7 +51728,7 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           $event.preventDefault()
-                                          _vm.likePost()
+                                          _vm.postSocial("like")
                                         }
                                       }
                                     },
@@ -51764,15 +51742,15 @@ var render = function() {
                                     {
                                       staticClass:
                                         "btn btn-success text-white btn-block",
-                                      class: { "btn-dark": _vm.fav },
+                                      class: { "btn-dark": _vm.favourite },
                                       on: {
                                         click: function($event) {
                                           $event.preventDefault()
-                                          _vm.favPost()
+                                          _vm.postSocial("favourite")
                                         }
                                       }
                                     },
-                                    [_vm._v(_vm._s(_vm.favMessage))]
+                                    [_vm._v(_vm._s(_vm.favouriteMessage))]
                                   )
                                 ])
                               ])
@@ -52977,15 +52955,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			deleteP: false,
 			like: false,
 			likeMessage: 'Loading...',
-			fav: false,
-			favMessage: 'Loading...'
+			favourite: false,
+			favouriteMessage: 'Loading...'
 		};
 	},
 	created: function created() {
 		this.fetchCategories();
 		this.fetchUser();
 		this.fetchPosts();
-		this.fetchSocial();
 	},
 
 	methods: {
@@ -53004,6 +52981,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this.update.name = res.data.name;
 				_this.update.tagline = res.data.tagline;
 				_this.update.email = res.data.email;
+				res.data.socials.forEach(function (social) {
+					if (social.social == 'fab fa-facebook') {
+						_this.update.socials[0].link = social.link;
+					} else if (social.social == 'fab fa-instagram') {
+						_this.update.socials[1].link = social.link;
+					} else if (social.social == 'fab fa-twitter') {
+						_this.update.socials[2].link = social.link;
+					} else if (social.social == 'fas fa-globe-americas') {
+						_this.update.socials[3].link = social.link;
+					}
+				});
 			}).catch(function (err) {
 				return console.log(err);
 			});
@@ -53015,24 +53003,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			axios.get(page).then(function (res) {
 				_this.posts = res.data;
 				_this.loader = false;
-			}).catch(function (err) {
-				return console.log(err);
-			});
-		},
-		fetchSocial: function fetchSocial() {
-			var _this = this;
-			axios.get('/profile/social/' + _this.id).then(function (res) {
-				res.data.forEach(function (social) {
-					if (social.social == 'fab fa-facebook') {
-						_this.update.socials[0].link = social.link;
-					} else if (social.social == 'fab fa-instagram') {
-						_this.update.socials[1].link = social.link;
-					} else if (social.social == 'fab fa-twitter') {
-						_this.update.socials[2].link = social.link;
-					} else if (social.social == 'fas fa-globe-americas') {
-						_this.update.socials[3].link = social.link;
-					}
-				});
 			}).catch(function (err) {
 				return console.log(err);
 			});
@@ -53054,6 +53024,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			};
 			reader.readAsDataURL(input.files[0]);
 		},
+
+
+		//Handles profile update and post create
 		profileAction: function profileAction(action) {
 			this.text = true;
 			this.loader = true;
@@ -53189,97 +53162,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this = this;
 			axios.get('/post/' + id).then(function (res) {
 				_this.modalInfo = res.data;
-				if (user != null) {
-					_this.isLiked(res.data.id);
-					_this.isFaved(res.data.id);
+				if (_this.user != null) {
+					_this.postSocial('isLiked', res.data.id);
+					_this.postSocial('isFaved', res.data.id);
 				}
 			}).catch(function (err) {
 				return console.log(err);
 			});
 		},
-		editPost: function editPost(id) {
-			this.delete = false;
-			this.text = true;
-			this.loader = true;
-			var _this = this;
-			axios.post('/post/update/' + id, _this.modalInfo).then(function () {
-				_this.loader = false;
-				$('#updatePost').text('Saved!');
-				setTimeout(function () {
-					_this.text = false;
-					_this.edit = false;
-					$('#photoModal').modal('hide');
-				}, 2000);
-			}).catch(function (err) {
-				return console.log(err);
-			});
-		},
-		deletePost: function deletePost(id) {
-			this.edit = false;
-			this.text = true;
-			this.loader = true;
-			var _this = this;
-			axios.post('/post/delete/' + id).then(function () {
-				_this.loader = false;
-				$('#deletePost').text('Deleted!');
 
+
+		//Handles post edit and delete
+		postAction: function postAction(id, params) {
+			this.params = false;
+			this.text = true;
+			this.loader = true;
+			var _this = this;
+			axios.post('/post/' + params + '/' + id, _this.modalInfo).then(function (res) {
+				_this.loader = false;
+				if (params == 'update') {
+					$('#updatePost').text('Saved!');
+				} else {
+					$('#deletePost').text('Deleted!');
+				}
 				setTimeout(function () {
 					_this.text = false;
-					_this.deletePost = false;
+					_this.edit = _this.deletePost = false;
 					$('#photoModal').modal('hide');
 					_this.fetchPosts();
 				}, 2000);
-			});
-		},
-		likePost: function likePost() {
-			var _this = this;
-			axios.get('/like/' + _this.modalInfo.id).then(function (res) {
-				if (res.data == 1) {
-					_this.like = true;
-					_this.likeMessage = 'Unlike';
-				} else {
-					_this.like = false;
-					_this.likeMessage = 'Like';
-				}
 			}).catch(function (err) {
 				return console.log(err);
 			});
 		},
-		favPost: function favPost() {
+
+
+		//Handles likes, isLiked, favourites and isFaved
+		postSocial: function postSocial(params, id) {
 			var _this = this;
-			axios.get('/favourite/' + _this.modalInfo.id).then(function (res) {
+			var url = id == null ? axios.get('/' + params + '/' + _this.modalInfo.id) : axios.get('/' + params + '/' + id);
+			url.then(function (res) {
 				if (res.data == 1) {
-					_this.fav = true;
-					_this.favMessage = 'Unfavourite';
+					params == 'like' || params == 'isLiked' ? _this.like = true : _this.favourite = true;
+					params == 'like' || params == 'isLiked' ? _this.likeMessage = 'Unlike' : _this.favouriteMessage = 'Unfavourite';
 				} else {
-					_this.fav = false;
-					_this.favMessage = 'Favourite';
-				}
-			});
-		},
-		isLiked: function isLiked(id) {
-			var _this = this;
-			axios.get('/isLiked/' + id).then(function (res) {
-				if (res.data == 1) {
-					_this.like = true;
-					_this.likeMessage = 'Unlike';
-				} else {
-					_this.like = false;
-					_this.likeMessage = 'Like';
-				}
-			}).catch(function (err) {
-				return console.log(err);
-			});
-		},
-		isFaved: function isFaved(id) {
-			var _this = this;
-			axios.get('/isFaved/' + id).then(function (res) {
-				if (res.data == 1) {
-					_this.fav = true;
-					_this.favMessage = 'Unfavourite';
-				} else {
-					_this.fav = false;
-					_this.favMessage = 'Favourite';
+					params == 'like' || params == 'isLiked' ? _this.like = false : _this.favourite = false;
+					params == 'like' || params == 'isLiked' ? _this.likeMessage = 'Like' : _this.favouriteMessage = 'Favourite';
 				}
 			}).catch(function (err) {
 				return console.log(err);
@@ -54125,7 +54053,7 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           $event.preventDefault()
-                                          _vm.likePost()
+                                          _vm.postSocial("like")
                                         }
                                       }
                                     },
@@ -54139,15 +54067,15 @@ var render = function() {
                                     {
                                       staticClass:
                                         "btn btn-success text-white btn-block",
-                                      class: { "btn-dark": _vm.fav },
+                                      class: { "btn-dark": _vm.favourite },
                                       on: {
                                         click: function($event) {
                                           $event.preventDefault()
-                                          _vm.favPost()
+                                          _vm.postSocial("favourite")
                                         }
                                       }
                                     },
-                                    [_vm._v(_vm._s(_vm.favMessage))]
+                                    [_vm._v(_vm._s(_vm.favouriteMessage))]
                                   )
                                 ])
                               ])
@@ -54320,7 +54248,10 @@ var render = function() {
                                       on: {
                                         click: function($event) {
                                           $event.preventDefault()
-                                          _vm.editPost(_vm.modalInfo.id)
+                                          _vm.postAction(
+                                            _vm.modalInfo.id,
+                                            "update"
+                                          )
                                         }
                                       }
                                     },
@@ -54355,7 +54286,10 @@ var render = function() {
                                         on: {
                                           click: function($event) {
                                             $event.preventDefault()
-                                            _vm.deletePost(_vm.modalInfo.id)
+                                            _vm.postAction(
+                                              _vm.modalInfo.id,
+                                              "delete"
+                                            )
                                           }
                                         }
                                       },

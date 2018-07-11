@@ -49,10 +49,10 @@
 								</div>
 								<div class="row mb-2" v-if="user != null">
 									<div class="col-md-6 pr-1">
-										<button class="btn btn-success text-white btn-block" @click.prevent="likePost()" :class="{'btn-dark': like}">{{likeMessage}}</button>
+										<button class="btn btn-success text-white btn-block" @click.prevent="postSocial('like')" :class="{'btn-dark': like}">{{likeMessage}}</button>
 									</div>
 									<div class="col-md-6 pl-1">
-										<button class="btn btn-success text-white btn-block"@click.prevent="favPost()" :class="{'btn-dark': fav}">{{favMessage}}</button>
+										<button class="btn btn-success text-white btn-block"@click.prevent="postSocial('favourite')" :class="{'btn-dark': favourite}">{{favouriteMessage}}</button>
 									</div>
 								</div>
 								<button class="btn btn-dark text-white btn-block mb-2" @click="connect(userInfo.id)" v-if="user == null || user.id != userInfo.id">Connect</button>
@@ -85,8 +85,8 @@
 				loader: false,
 				like: false,
 				likeMessage: 'Loading...',
-				fav: false,
-				favMessage: 'Loading...'
+				favourite: false,
+				favouriteMessage: 'Loading...'
 			}
 		},
 		created() {
@@ -137,9 +137,9 @@
 					_this.modalInfo = res.data;
 					_this.userInfo.id = res.data.user.id;
 					_this.userInfo.name = res.data.user.name;
-					if (user != null) {
-						_this.isLiked(res.data.id);
-						_this.isFaved(res.data.id);
+					if (_this.user != null) {
+						_this.postSocial('isLiked', res.data.id);
+						_this.postSocial('isFaved', res.data.id);
 					}
 				})
 				.catch(err => console.log(err));
@@ -148,57 +148,43 @@
 				$('.discoverModal').modal('hide');
 				this.$router.push(`/profile/${id}`);
 			},
-			likePost() {
+
+			//Handles post edit and delete
+			postAction(id, params) {
+				this.params = false;
+				this.text = true;
+				this.loader = true;
 				const _this = this;
-				axios.get(`/like/${_this.modalInfo.id}`)
+				axios.post(`/post/${params}/${id}`, _this.modalInfo)
 				.then(res => {
-					if (res.data == 1) {
-						_this.like = true;
-						_this.likeMessage = 'Unlike';
+					_this.loader = false;
+					if (params == 'update') {
+						$('#updatePost').text('Saved!');
 					} else {
-						_this.like = false;
-						_this.likeMessage = 'Like';
+						$('#deletePost').text('Deleted!');
 					}
+					setTimeout(() => {
+						_this.text = false;
+						_this.edit = _this.deletePost = false;
+						$('#photoModal').modal('hide');
+						_this.fetchPosts();
+					}, 2000);
 				})
 				.catch(err => console.log(err));
 			},
-			favPost() {
+
+			//Handles likes, isLiked, favourites and isFaved
+			postSocial(params, id) {
 				const _this = this;
-				axios.get(`/favourite/${_this.modalInfo.id}`)
+				const url = id == null ? axios.get(`/${params}/${_this.modalInfo.id}`) : axios.get(`/${params}/${id}`)
+				url
 				.then(res => {
 					if (res.data == 1) {
-						_this.fav = true;
-						_this.favMessage = 'Unfavourite';
+						params == 'like' || params == 'isLiked' ? _this.like = true : _this.favourite = true;
+						params == 'like' || params == 'isLiked' ? _this.likeMessage = 'Unlike' : _this.favouriteMessage = 'Unfavourite';
 					} else {
-						_this.fav = false;
-						_this.favMessage = 'Favourite';
-					}
-				})
-			},
-			isLiked(id) {
-				const _this = this;
-				axios.get(`/isLiked/${id}`)
-				.then(res => {
-					if (res.data == 1) {
-						_this.like = true;
-						_this.likeMessage = 'Unlike';
-					} else {
-						_this.like = false;
-						_this.likeMessage = 'Like';
-					}
-				})
-				.catch(err => console.log(err));
-			},
-			isFaved(id) {
-				const _this = this;
-				axios.get(`/isFaved/${id}`)
-				.then(res => {
-					if (res.data == 1) {
-						_this.fav = true;
-						_this.favMessage = 'Unfavourite';
-					} else {
-						_this.fav = false;
-						_this.favMessage = 'Favourite';
+						params == 'like' || params == 'isLiked' ? _this.like = false : _this.favourite = false;
+						params == 'like' || params == 'isLiked' ? _this.likeMessage = 'Like' : _this.favouriteMessage = 'Favourite';
 					}
 				})
 				.catch(err => console.log(err));

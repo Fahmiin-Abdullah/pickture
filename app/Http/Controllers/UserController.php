@@ -10,7 +10,7 @@ class UserController extends Controller
 {
 	public function getUser($id)
 	{
-		$user = User::find($id);
+		$user = User::with('socials')->find($id);
 
 		return response(json_encode($user));
 	}
