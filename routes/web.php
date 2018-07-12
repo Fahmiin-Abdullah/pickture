@@ -26,13 +26,12 @@ Route::post('/post/create', 'PostController@create');
 Route::get('/post/{id}', 'PostController@getPost');
 Route::post('/post/update/{id}', 'PostController@update');
 Route::post('/post/delete/{id}', 'PostController@delete');
-
-Route::get('/categories', 'PostController@getCategories');
-Route::get('/posts/category/{params}', 'PostController@getCategory');
 Route::get('/discover', 'PostController@discover');
 Route::post('/search/{query}', 'PostController@search');
 Route::get('/search/{query}', 'PostController@search');
 
+Route::get('/categories', 'ActionsController@getCategories');
+Route::get('/posts/category/{params}', 'ActionsController@getCategory');
 Route::get('/like/{id}', 'ActionsController@like');
 Route::get('/isLiked/{id}', 'ActionsController@isLiked');
 Route::get('/favourite/{id}', 'ActionsController@fav');

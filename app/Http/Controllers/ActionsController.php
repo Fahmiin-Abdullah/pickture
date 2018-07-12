@@ -5,12 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Post;
+use App\Category;
 use App\Like;
 use App\Favourite;
 use Auth;
 
 class ActionsController extends Controller
 {
+	public function getCategory($params)
+    {
+        $posts = Post::withCount('likes')->withCount('favourites')->where('category', $params)->orderby('id', 'desc')->paginate(6);
+
+        return response($posts);
+    }
+
+    public function getCategories()
+    {
+        $categories = Category::all();
+
+        return response(json_encode($categories));
+    }
+
     public function like($id)
     {
         $user = Auth::user();

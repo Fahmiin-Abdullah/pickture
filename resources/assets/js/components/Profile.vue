@@ -18,8 +18,8 @@
 						<div class="col-md-2">
 							<i :class="social.social"></i>
 						</div>
-						<div class="col-md-10">
-							<a href="#" v-model="social.link">{{social.link}}</a>
+						<div class="col-md-10 text-truncate">
+							<a :href="social.link" v-model="social.link" target="_blank">{{social.link}}</a>
 						</div>
 					</div>
 				</li>
@@ -49,8 +49,8 @@
 						<a href="#photoModal" data-toggle="modal" @click="modalOpen(post.id)">
 							<img class="card-img-top" :src="`http://pickture.me/images/uploads/postphoto/${post.postphoto}`">
 							<div class="text">
-								<h1><strong><i class="fas fa-heart pr-3"></i></strong></h1>
-								<h1><strong><i class="fas fa-star pr-3"></i></strong></h1>
+								<h1><strong><i class="fas fa-heart pr-3"></i>{{post.likes_count}}</strong></h1>
+								<h1><strong><i class="fas fa-star pr-3"></i>{{post.favourites_count}}</strong></h1>
 							</div>
 						</a>
 					</div>
@@ -73,15 +73,17 @@
 					<div class="modal-body">
 						<form>
 							<div class="form-row">
-								<div class="col mt-3 mb-2">
+								<div class="col mb-2">
 									<div class="form-group">
 										<input type="text" class="form-control" v-model="update.name">
+										<span class="float-right mb-1">{{update.name.length}}/20</span>
 									</div>
 									<div class="form-group">
 										<input type="email" class="form-control" v-model="update.email">
 									</div>
 									<div class="form-group">
 										<textarea class="form-control" v-model="update.tagline"></textarea>
+										<span class="float-right mb-1">{{update.tagline.length}}/50</span>
 									</div>
 								</div>
 								<div class="col text-center">
@@ -108,15 +110,15 @@
 							</div>
 							<div class="input-group mb-2">
 								<div class="input-group-prepend">
-									<div class="input-group-text"><i class="fab fa-twitter"></i></div>
+									<div class="input-group-text"><i class="fas fa-globe-americas"></i></div>
 								</div>
-								<input type="text" class="form-control" placeholder="Add your twitter link here" v-model="update.socials[2].link">
+								<input type="text" class="form-control" placeholder="Add your website link here" v-model="update.socials[2].link">
 							</div>
 							<div class="input-group mb-2">
 								<div class="input-group-prepend">
-									<div class="input-group-text"><i class="fas fa-globe-americas"></i></div>
+									<div class="input-group-text"><i class="fab fa-whatsapp"></i></div>
 								</div>
-								<input type="text" class="form-control" placeholder="Add your website link here" v-model="update.socials[3].link">
+								<input type="text" class="form-control" placeholder="Add your contact number here" v-model="update.socials[3].link">
 							</div>
 						</form>
 					</div>
@@ -133,8 +135,8 @@
 
 
 
-		<div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal fade" id="postModal" tabindex="-1">
+			<div class="modal-dialog modal-dialog-centered modal-lg">
 				<div class="modal-content">
 					<div class="row">
 						<div class="col-md-8">
@@ -155,15 +157,16 @@
 									</label>
 								</div>
 								<form class="mb-4">
-									<input type="hidden" name="_token" :value="csrf">
 									<div class="form-group" :class="{'has-error': hasErrors.title}">
 										<input type="text" class="form-control" placeholder="Title" v-model="postData.title">
+										<span class="float-right mb-1" v-if="postData.title != null">{{postData.title.length}}/50</span>
 										<span v-if="hasErrors.title" class="help-block">
 		                                    <strong>{{errorMessage.title}}</strong>
 		                                </span>
 									</div>
 									<div class="form-group" :class="{'has-error': hasErrors.description}">
-										<textarea class="form-control" placeholder="Tell the world what's on your mind" v-model="postData.description"></textarea>
+										<textarea class="form-control" rows="4" placeholder="Tell the world what's on your mind" v-model="postData.description"></textarea>
+										<span class="float-right mb-1" v-if="postData.description != null">{{postData.description.length}}/200</span>
 										<span v-if="hasErrors.description" class="help-block">
 		                                    <strong>{{errorMessage.description}}</strong>
 		                                </span>
@@ -180,6 +183,7 @@
 		                                </span>
 									</div>
 								</form>
+								<p><em>Please ensure that your photo is in accordance to our <a href="#" @click="goToLicence()">terms of licences</a> before uploading.</em></p>
 								<div class="text-center">
 									<button class="btn btn-block btn-success white-text" @click.prevent="profileAction('#post')">Create</button>
 									<div id="post" class="mt-3" :class="{loader: loader}" v-if="text"></div>
@@ -215,14 +219,16 @@
 									<h6><strong>Description</strong></h6>
 									<p>{{modalInfo.description}}</p>
 								</div>
-								<div class="row mb-2" v-if="user != null">
-									<div class="col-md-6 pr-1">
-										<button class="btn btn-success text-white btn-block" @click.prevent="postSocial('like')" :class="{'btn-dark': like}">{{likeMessage}}</button>
+								<template v-if="!deleteP">
+									<div class="row mb-2" v-if="user != null">
+										<div class="col-md-6 pr-1">
+											<button class="btn btn-success text-white btn-block" @click.prevent="postSocial('like')" :class="{'btn-dark': like}">{{likeMessage}}</button>
+										</div>
+										<div class="col-md-6 pl-1">
+											<button class="btn btn-success text-white btn-block"@click.prevent="postSocial('favourite')" :class="{'btn-dark': favourite}">{{favouriteMessage}}</button>
+										</div>
 									</div>
-									<div class="col-md-6 pl-1">
-										<button class="btn btn-success text-white btn-block"@click.prevent="postSocial('favourite')" :class="{'btn-dark': favourite}">{{favouriteMessage}}</button>
-									</div>
-								</div>
+								</template>
 							</template>
 							<template v-if="user != null && user.id == id">
 								<button class="btn btn-success text-white btn-block my-2" @click="edit = !edit" v-if="!deleteP">Edit</button>
@@ -230,19 +236,30 @@
 								<br>
 								<form v-if="edit">
 									<h5 class="modal-title mb-2">Edit post details</h5>
-									<div class="form-group">
+									<div class="form-group" :class="{'has-error': hasErrors.title}">
 										<input type="text" class="form-control" v-model="modalInfo.title">
+										<span class="float-right mb-1">{{modalInfo.title.length}}/50</span>
+										<span v-if="hasErrors.title" class="help-block">
+		                                    <strong>{{errorMessage.title}}</strong>
+		                                </span>
 									</div>
-									<div class="form-group">
-										<textarea class="form-control" v-model="modalInfo.description"></textarea>
+									<div class="form-group" :class="{'has-error': hasErrors.description}">
+										<textarea class="form-control" rows="4" v-model="modalInfo.description"></textarea>
+										<span class="float-right mb-1">{{modalInfo.description.length}}/200</span>
+										<span v-if="hasErrors.description" class="help-block">
+		                                    <strong>{{errorMessage.description}}</strong>
+		                                </span>
 									</div>
-									<div class="input-group mb-4">
+									<div class="input-group mb-4" :class="{'has-error': hasErrors.category}">
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="inputGroupSelect">Select a category</label>
 										</div>
-										<select class="custom-select" id="inputGroupSelect" v-model="modalInfo.category">
+										<select class="custom-select" id="inputGroupSelect" v-model="modalInfo.category" >
 											<option v-for="category in categories">{{category.category}}</option>
 										</select>
+										<span v-if="hasErrors.category" class="help-block">
+		                                    <strong>{{errorMessage.category}}</strong>
+		                                </span>
 									</div>
 									<div class="modal-footer">
 										<div id="updatePost" class="mr-3" :class="{loader: loader}" v-if="text"></div>
@@ -273,7 +290,6 @@
 		props: ['id', 'user'],
 		data() {
 			return {
-				csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 				categories: [],
 				posts: [],
 				total: 0,
@@ -286,8 +302,8 @@
 					socials: [
 						{social: 'fab fa-facebook', link: null},
 						{social: 'fab fa-instagram', link: null},
-						{social: 'fab fa-twitter', link: null},
-						{social: 'fas fa-globe-americas', link: null}
+						{social: 'fas fa-globe-americas', link: null},
+						{social: 'fab fa-whatsapp', link: null},
 					]
 				},
 				postData: {
@@ -347,9 +363,9 @@
 							_this.update.socials[0].link = social.link;
 						} else if (social.social == 'fab fa-instagram') {
 							_this.update.socials[1].link = social.link;
-						} else if (social.social == 'fab fa-twitter') {
-							_this.update.socials[2].link = social.link;
 						} else if (social.social == 'fas fa-globe-americas') {
+							_this.update.socials[2].link = social.link;
+						} else if (social.social == 'fab fa-whatsapp') {
 							_this.update.socials[3].link = social.link;
 						}
 					});
@@ -472,6 +488,17 @@
 				this.text = true;
 				this.loader = true;
 				const _this = this;
+				const _hasErrors = this.hasErrors;
+				const _errMessage = this.errorMessage;
+
+				for (const key of Object.keys(this.hasErrors)) {
+				    this.hasErrors[key] = false;
+				}
+
+				for (const key of Object.keys(this.errorMessage)) {
+				    this.errorMessage[key] = null;
+				}
+
 				axios.post(`/post/${params}/${id}`, _this.modalInfo)
 				.then(res => {
 					_this.loader = false;
@@ -487,7 +514,26 @@
 						_this.fetchPosts();
 					}, 2000);
 				})
-				.catch(err => console.log(err));
+				.catch(err => {
+					const errors = err.response.data.errors;
+					if (err.response.statusText === 'Unprocessable Entity') {
+						if (errors) {
+							if (errors.title) {
+								_this.text = false;
+								_hasErrors.title = true;
+		                        _errMessage.title = _.isArray(errors.title) ? errors.title[0] : errors.title; 
+							} else if (errors.description) {
+								_this.text = false;
+								_hasErrors.description = true;
+		                        _errMessage.description = _.isArray(errors.description) ? errors.description[0] : errors.description; 
+							} else if (errors.category) {
+								_this.text = false;
+								_hasErrors.category = true;
+		                        _errMessage.category = _.isArray(errors.category) ? errors.category[0] : errors.category; 
+							}
+						}
+					}
+				});
 			},
 
 			//Handles likes, isLiked, favourites and isFaved
@@ -505,6 +551,10 @@
 					}
 				})
 				.catch(err => console.log(err));
+			},
+			goToLicence() {
+				$('#postModal').modal('hide');
+				this.$router.push('/licence');
 			}
 		}
 	}

@@ -30,8 +30,8 @@
 							<a href="#postModal" data-toggle="modal" @click="modalOpen(post.id)">
 								<img class="card-img-top" :src="`http://pickture.me/images/uploads/postphoto/${post.postphoto}`">
 								<div class="text">
-									<h1><strong><i class="fas fa-heart pr-3"></i></strong></h1>
-									<h1><strong><i class="fas fa-star pr-3"></i></strong></h1>
+									<h1><strong><i class="fas fa-heart pr-3"></i>{{post.likes_count}}</strong></h1>
+									<h1><strong><i class="fas fa-star pr-3"></i>{{post.favourites_count}}</strong></h1>
 								</div>
 							</a>
 						</div>

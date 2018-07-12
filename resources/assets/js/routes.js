@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import MainPage from './components/MainPage'
+import Licence from './components/Licence'
 import Discover from './components/Discover'
 import Categories from './components/Categories'
 import Register from './components/Register'
@@ -14,6 +15,10 @@ export default new VueRouter ({
 		{
 			path: '/',
 			component: MainPage
+		},
+		{
+			path: '/licence',
+			component: Licence
 		},
 		{
 			path: '/discover/:search',

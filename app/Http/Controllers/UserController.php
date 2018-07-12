@@ -15,19 +15,12 @@ class UserController extends Controller
 		return response(json_encode($user));
 	}
 
-    public function getSocial($id)
-    {
-        $socials = Social::where('user_id', $id)->get();
-
-        return response(json_encode($socials));
-    }
-
     public function update(Request $request, $id)
     {
     	$request->validate([
-    		'name' => 'max: 20',
+    		'name' => 'max:20',
     		'email' => 'email',
-    		'tagline' => 'max: 50'
+    		'tagline' => 'max:50'
     	]);
 
     	$user = User::find($id);
