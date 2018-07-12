@@ -16,6 +16,9 @@ Route::view('/', 'app');
 Route::post('/register', 'Auth\RegisterController@register');
 Route::post('/login', 'Auth\LoginController@login');
 Route::get('/logout', 'Auth\LoginController@logout');
+Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('/password/reset/{token?}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::get('/profile/{id}', 'UserController@getUser');
 Route::get('/profile/social/{id}', 'UserController@getSocial');

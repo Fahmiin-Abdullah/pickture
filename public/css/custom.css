@@ -7,6 +7,12 @@
 	-webkit-animation-duration: 0.5s;
 }
 
+
+/*General*/
+.navbar-brand {
+	font-size: 30px;
+}
+	
 .mt-10 {
 	margin-top: 6rem !important;
 }

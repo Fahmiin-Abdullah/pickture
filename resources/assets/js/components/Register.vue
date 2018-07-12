@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-md-5">
 				<div class="card">
-					<div class="card-body">
+					<div class="card-body pb-5">
 						<h5 class="card-title text-center mb-3">Don't have an account yet? Sign up now!</h5>
 						<form>
 							<div class="form-group" :class="{'has-error': hasErrors.name}">
@@ -30,13 +30,14 @@
 							<div class="form-group text-center">
 								<button class="btn btn-block btn-success text-white" @click.prevent="register('/register')">Signup</button>
 							</div>
+							<div :class="{loader: loaderSignup}"></div>
 						</form>
 					</div>
 				</div>	
 			</div>
 			<div class="col-md-7">
-				<div class="card">
-					<div class="card-body">
+				<div class="card mb-4">
+					<div class="card-body pb-5">
 						<h5 class="card-title text-center mb-3">Already have an account? Just login!</h5>
 						<form>
 							<div class="form-row mb-2">
@@ -56,15 +57,33 @@
 							<div class="form-check mb-4">
 								<input class="form-check-input float-left" type="checkbox" id="rememberMe" v-model="loginData.remember">
 								<label class="form-check-label" for="rememberMe">Remember me</label>
-								<a href="#" class="float-right">I forgot my password</a>
+								<a href="#" class="float-right" @click.prevent="showPasswordResetForm = !showPasswordResetForm">I forgot my password</a>
 							</div>
 							<div class="form-group text-center">
 								<button class="btn btn-block btn-success text-white" @click.prevent="register('/login')">Login</button>
 							</div>
+							<div :class="{loader: loaderLogin}"></div>
 						</form>
 					</div>
 				</div>
-				<div :class="{loader: loader}"></div>
+				<div class="card" v-if="showPasswordResetForm">
+					<div class="card-body pb-5">
+						<form>
+							<div class="form-group mb-4" :class="{'has-error': hasResetErrors}">
+								<label for="email">Email</label>
+		     					<input type="email" class="form-control" v-model="passwordResetEmail.email" required>
+		     					<span v-if="hasResetErrors" class="help-block">
+										<strong>{{errorResetMessage}}</strong>
+									</span>
+							</div>
+							<div class="form-group">
+								<button class="btn btn-success btn-block text-white" @click.prevent="resetEmail()">Send reset mail</button>
+							</div>
+						</form>
+						<div :class="{loader: loaderReset}"></div>
+						<div class="text-center">{{emailSentMessage}}</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -103,13 +122,19 @@
                 	name: null,
                 	password: null
                 },
-                loader: false
+                hasResetErrors: false,
+                errorResetMessage: null,
+                loaderSignup: false,
+                loaderLogin: false,
+                loaderReset: false,
+                showPasswordResetForm: false,
+                passwordResetEmail: {email: null},
+                emailSentMessage: null
 			}
 		},
 		methods: {
 			register(url) {
 				const _this = this;
-				this.loader = true;
 				let _hasErrors = this.hasErrors;
 				let _errMessage = this.errorMessage;
 				let _hasLoginErrors = this.hasLoginErrors;
@@ -132,6 +157,7 @@
 				}
 
 				const data = url === '/register' ? _this.registerData : _this.loginData;
+				url === '/register' ? this.loaderSignup = true : this.loaderLogin = true;
 
 				axios.post(url, data)
 				.then(() => {
@@ -144,29 +170,51 @@
                         if (errors) {
                         	if (url === '/register') {
                         		if (errors.name) {
-	                            	_this.loader = false;
+	                            	_this.loaderSignup = false;
 	                               _hasErrors.name = true;
 	                               _errMessage.name = _.isArray(errors.name) ? errors.name[0] : errors.name;  
 	                            } else if (errors.email) {
-	                            	_this.loader = false;
+	                            	_this.loaderSignup = false;
 	                            	_hasErrors.email = true;
 	                            	_errMessage.email = _.isArray(errors.email) ? errors.email[0] : errors.email;
 	                            } else if (errors.password) {
-	                            	_this.loader = false;
+	                            	_this.loaderSignup = false;
 	                            	_hasErrors.password = true;
 	                            	_errMessage.password = _.isArray(errors.password) ? errors.password[0] : errors.password;
 	                            }
                         	} else if (url === '/login') {
                         		if (errors.name) {
-	                            	_this.loader = false;
+	                            	_this.loaderLogin = false;
 	                               _hasLoginErrors.name = true;
 	                               _errLoginMessage.name = _.isArray(errors.name) ? errors.name[0] : errors.name;  
 	                            } else if (errors.password) {
-	                            	_this.loader = false;
+	                            	_this.loaderLogin = false;
 	                            	_hasLoginErrors.password = true;
 	                            	_errLoginMessage.password = _.isArray(errors.password) ? errors.password[0] : errors.password;
 	                            }
                         	}
+                        }
+                    }
+				});
+			},
+			resetEmail() {
+				const _this = this;
+				this.loaderReset = true;
+				this.hasResetErrors = false;
+				this.errorResetMessage = null;
+				axios.post('/password/email', _this.passwordResetEmail)
+				.then(res => {
+					_this.loaderReset = false;
+					_this.passwordResetEmail.email = null;
+					_this.emailSentMessage = 'Success! Please check your email';
+				})
+				.catch(err => {
+					const errors = err.response.data.errors;
+					if (err.response.statusText === 'Unprocessable Entity') {
+                        if (errors) {
+                        	_this.loaderReset = false;
+                        	_this.hasResetErrors = true;
+	                        _this.errorResetMessage = _.isArray(errors.email) ? errors.email[0] : errors.email;
                         }
                     }
 				});
@@ -175,9 +223,11 @@
 	}
 </script>
 
-<style scoped>
-	.has-error input {
-		border: 1px solid red;
+<style lang="scss" scoped>
+	.has-error{
+		input {
+			border: 1px solid red;
+		}
 	}
 
 	.help-block {
@@ -186,20 +236,14 @@
 
 	.loader {
 		position: absolute;
-		left: 50%;
-		top: 50%;
-		z-index: 1;
-		width: 150px;
-		height: 150px;
-		margin: 90px 0 0 -75px;
-		border: 16px solid #f9f9f9;
-		border-radius: 50%;
-		border-top: 16px solid #28a745;
-		border-bottom: 16px solid #28a745;
-		width: 120px;
-		height: 120px;
-		-webkit-animation: spin 2s linear infinite;
-		animation: spin 2s linear infinite;
+		left: 47%;
+	    border: 3px solid #fff; 
+	    border-top: 3px solid #28a745;
+	    border-bottom: 3px solid #28a745;
+	    border-radius: 50%;
+	    width: 30px;
+	    height: 30px;
+	    animation: spin 2s linear infinite;
 	}
 
 	@-webkit-keyframes spin {

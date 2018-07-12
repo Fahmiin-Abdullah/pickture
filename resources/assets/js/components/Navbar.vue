@@ -79,10 +79,6 @@
 </script>
 
 <style>
-	.navbar-brand {
-		font-size: 30px;
-	}
-
 	.navbar-nav li:hover > ul.dropdown-menu {
 	    display: block;
 	}

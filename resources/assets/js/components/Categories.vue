@@ -239,7 +239,7 @@
 
 		img {
 			width: 54vw;
-			height: 80vh;
+			max-height: 80vh;
 			object-fit: contain;
 		}
 	}

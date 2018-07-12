@@ -240,7 +240,7 @@
 		}
 
 		img {
-			width: 50vw;
+			width: 54vw;
 			max-height: 80vh;
 			object-fit: contain;
 		}
