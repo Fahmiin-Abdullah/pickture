@@ -50349,7 +50349,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "/*General*/\n.container90 {\n  width: 90%;\n  margin: auto;\n}\n.br-10 {\n  border-radius: 10px;\n}\n.hidden {\n  display: none;\n}\n.carousel-item img {\n  height: 500px;\n}\n", ""]);
+exports.push([module.i, "/*Main styles*/\n.container90 {\n  width: 90%;\n  margin: auto;\n}\n.br-10 {\n  border-radius: 10px;\n}\n.hidden {\n  display: none;\n}\n.carousel-item img {\n  height: 500px;\n}\n", ""]);
 
 // exports
 
@@ -50533,7 +50533,7 @@ var render = function() {
             _c(
               "li",
               [
-                _vm._v("Do check out "),
+                _vm._v("Do check out our "),
                 _c("router-link", { attrs: { to: "/licence" } }, [
                   _vm._v("terms of licenses")
                 ]),
@@ -51035,7 +51035,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.card-discover {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-discover img {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-discover:hover img {\n  opacity: 0.5;\n}\n.card-discover:hover .text {\n  opacity: 1;\n}\n.text {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n.discoverModal {\n  width: 80vw !important;\n  margin: auto;\n}\n.discoverModal .modal-lg, .discoverModal .modal-dialog {\n    max-width: none !important;\n}\n.discoverModal img {\n    width: 54vw;\n    max-height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.discover_loader {\n  border: 3px solid #f9f9f9;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin 2s linear infinite;\n          animation: spin 2s linear infinite;\n}\n@-webkit-keyframes spin {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n", ""]);
+exports.push([module.i, "\n.card-discover {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-discover img {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-discover:hover img {\n  opacity: 0.5;\n}\n.card-discover:hover .text {\n  opacity: 1;\n}\n.text {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n.discoverModal {\n  width: 80vw !important;\n  margin: auto;\n}\n.discoverModal .modal-lg, .discoverModal .modal-dialog {\n    max-width: none !important;\n}\n.discoverModal img {\n    width: 53vw;\n    max-height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.discover_loader {\n  border: 3px solid #f9f9f9;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin 2s linear infinite;\n          animation: spin 2s linear infinite;\n}\n@-webkit-keyframes spin {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n", ""]);
 
 // exports
 
@@ -51046,6 +51046,12 @@ exports.push([module.i, "\n.card-discover {\n  background-color: #fff;\n  height
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -51408,7 +51414,7 @@ var render = function() {
                                 "button",
                                 {
                                   staticClass:
-                                    "btn btn-success text-white btn-block",
+                                    "btn btn-danger text-white btn-block",
                                   class: { "btn-dark": _vm.like },
                                   on: {
                                     click: function($event) {
@@ -51426,7 +51432,7 @@ var render = function() {
                                 "button",
                                 {
                                   staticClass:
-                                    "btn btn-success text-white btn-block",
+                                    "btn btn-primary text-white btn-block",
                                   class: { "btn-dark": _vm.favourite },
                                   on: {
                                     click: function($event) {
@@ -51614,6 +51620,12 @@ exports.push([module.i, "\n.list-group-item[data-v-4bfcfa5a]:hover {\n  backgrou
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52028,7 +52040,7 @@ var render = function() {
                                     "button",
                                     {
                                       staticClass:
-                                        "btn btn-success text-white btn-block",
+                                        "btn btn-danger text-white btn-block",
                                       class: { "btn-dark": _vm.like },
                                       on: {
                                         click: function($event) {
@@ -52046,7 +52058,7 @@ var render = function() {
                                     "button",
                                     {
                                       staticClass:
-                                        "btn btn-success text-white btn-block",
+                                        "btn btn-primary text-white btn-block",
                                       class: { "btn-dark": _vm.favourite },
                                       on: {
                                         click: function($event) {
@@ -52314,11 +52326,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'register',
 	data: function data() {
 		return {
+			csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 			registerData: {
 				name: null,
 				email: null,
@@ -52546,6 +52567,11 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("form", [
+              _c("input", {
+                attrs: { type: "hidden", name: "_token" },
+                domProps: { value: _vm.csrf }
+              }),
+              _vm._v(" "),
               _c(
                 "div",
                 {
@@ -52701,6 +52727,11 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("form", [
+              _c("input", {
+                attrs: { type: "hidden", name: "_token" },
+                domProps: { value: _vm.csrf }
+              }),
+              _vm._v(" "),
               _c("div", { staticClass: "form-row mb-2" }, [
                 _c(
                   "div",
@@ -52890,6 +52921,11 @@ var render = function() {
           ? _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "card-body pb-5" }, [
                 _c("form", [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_token" },
+                    domProps: { value: _vm.csrf }
+                  }),
+                  _vm._v(" "),
                   _c(
                     "div",
                     {
@@ -53062,7 +53098,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  height: 20vh;\n  border-radius: 50%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.fa-pen[data-v-22ef5402] {\n  cursor: pointer;\n}\n.has-error input[data-v-22ef5402], .has-error textarea[data-v-22ef5402], .has-error select[data-v-22ef5402] {\n  border: 1px solid red;\n}\n.help-block[data-v-22ef5402] {\n  color: red;\n}\n.loader[data-v-22ef5402] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-22ef5402 2s linear infinite;\n          animation: spin-data-v-22ef5402 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#postModal[data-v-22ef5402], #photoModal[data-v-22ef5402] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-22ef5402], #postModal .modal-dialog[data-v-22ef5402], #photoModal .modal-lg[data-v-22ef5402], #photoModal .modal-dialog[data-v-22ef5402] {\n    max-width: none !important;\n}\n#postModal img[data-v-22ef5402], #photoModal img[data-v-22ef5402] {\n    width: 54vw;\n    max-height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.card-post[data-v-22ef5402] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-post img[data-v-22ef5402] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-post:hover img[data-v-22ef5402] {\n  opacity: 0.5;\n}\n.card-post:hover .text[data-v-22ef5402] {\n  opacity: 1;\n}\n.text[data-v-22ef5402] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  height: 20vh;\n  border-radius: 50%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.pointer[data-v-22ef5402] {\n  cursor: pointer;\n}\n.has-error input[data-v-22ef5402], .has-error textarea[data-v-22ef5402], .has-error select[data-v-22ef5402] {\n  border: 1px solid red;\n}\n.help-block[data-v-22ef5402] {\n  color: red;\n}\n.loader[data-v-22ef5402] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-22ef5402 2s linear infinite;\n          animation: spin-data-v-22ef5402 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#postModal[data-v-22ef5402], #photoModal[data-v-22ef5402] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-22ef5402], #postModal .modal-dialog[data-v-22ef5402], #photoModal .modal-lg[data-v-22ef5402], #photoModal .modal-dialog[data-v-22ef5402] {\n    max-width: none !important;\n}\n#postModal img[data-v-22ef5402], #photoModal img[data-v-22ef5402] {\n    width: 54vw;\n    max-height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.card-post[data-v-22ef5402] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-post img[data-v-22ef5402] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-post:hover img[data-v-22ef5402] {\n  opacity: 0.5;\n}\n.card-post:hover .text[data-v-22ef5402] {\n  opacity: 1;\n}\n.text[data-v-22ef5402] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -53359,6 +53395,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'profile',
@@ -53367,6 +53418,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			categories: [],
 			posts: [],
+			favouriteList: false,
+			headerMessage: 'My works',
 			total: 0,
 			update: {
 				profilepic: null,
@@ -53396,6 +53449,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				postphoto: null
 			},
 			loader: false,
+			postLoader: false,
 			text: false,
 			modalInfo: [],
 			edit: false,
@@ -53446,13 +53500,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		fetchPosts: function fetchPosts(page) {
 			var _this = this;
 			this.loader = true;
-			page = page || '/posts/' + _this.id;
+			page = page || '/posts/' + this.id;
 			axios.get(page).then(function (res) {
+				console.log(res);
 				_this.posts = res.data;
 				_this.loader = false;
 			}).catch(function (err) {
 				return console.log(err);
 			});
+		},
+		fetchFavourites: function fetchFavourites() {
+			this.favouriteList = !this.favouriteList;
+			if (this.favouriteList == true) {
+				var page = '/posts/favourites/' + this.id;
+				this.headerMessage = 'My favourites';
+				this.fetchPosts(page);
+			} else {
+				this.headerMessage = 'My works';
+				this.fetchPosts();
+			}
 		},
 		openFile: function openFile(e) {
 			var _this2 = this;
@@ -53476,7 +53542,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		//Handles profile update and post create
 		profileAction: function profileAction(action) {
 			this.text = true;
-			this.loader = true;
+			action == '#update' ? this.loader = true : this.postLoader = true;
 			var _this = this;
 			var _hasErrors = this.hasErrors;
 			var _errMessage = this.errorMessage;
@@ -53535,14 +53601,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var data = action === '#update' ? _this.update : _this.postData;
 			axios.post(url, data).then(function (res) {
 				var message = action === '#update' ? 'Saved!' : 'Created!';
-				_this.loader = false;
+				_this.loader = _this.postLoader = false;
 				$(action).text(message);
 				setTimeout(function () {
 					_this.text = false;
 					$(action).text('');
 					if (action !== '#update') {
 						_this.posts.data.unshift(res.data);
-						_this.posts.data.pop();
+						_this.posts.data.length > 6 ? _this.posts.data.pop() : '';
 						$('#postModal').modal('hide');
 						var _iteratorNormalCompletion3 = true;
 						var _didIteratorError3 = false;
@@ -53752,6 +53818,18 @@ var render = function() {
           _c("h4", { staticClass: "text-center mb-3" }, [
             _c("strong", [
               _vm.user != null && _vm.user.id == _vm.id
+                ? _c("span", { staticClass: "float-left" }, [
+                    _c("i", {
+                      staticClass: "fas fa-star pointer",
+                      on: {
+                        click: function($event) {
+                          _vm.fetchFavourites()
+                        }
+                      }
+                    })
+                  ])
+                : _vm._e(),
+              _vm.user != null && _vm.user.id == _vm.id
                 ? _c("span", [_vm._v("Hi, ")])
                 : _vm._e(),
               _vm._v(_vm._s(_vm.update.name))
@@ -53766,7 +53844,7 @@ var render = function() {
                         "data-target": "#editModal"
                       }
                     },
-                    [_c("i", { staticClass: "fas fa-pen" })]
+                    [_c("i", { staticClass: "fas fa-pen pointer" })]
                   )
                 : _vm._e()
             ])
@@ -53836,8 +53914,12 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "col-md-9" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-3" }, [
-          _c("h2", [_vm._v("My work (" + _vm._s(_vm.posts.total) + ")")])
+        _c("div", { staticClass: "col-md-4" }, [
+          _c("h2", [
+            _vm._v(
+              _vm._s(_vm.headerMessage) + " (" + _vm._s(_vm.posts.total) + ")"
+            )
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-4" }, [
@@ -53907,8 +53989,10 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-5 text-lg-right" }, [
-          _vm.user != null && _vm.user.id == _vm.id
+        _c("div", { staticClass: "col-md-4 text-lg-right" }, [
+          _vm.user != null &&
+          _vm.user.id == _vm.id &&
+          _vm.favouriteList == false
             ? _c(
                 "a",
                 {
@@ -53926,49 +54010,100 @@ var render = function() {
       _c(
         "div",
         { staticClass: "row " },
-        _vm._l(_vm.posts.data, function(post) {
-          return _c("div", { staticClass: "col-md-4" }, [
-            _c("div", { staticClass: "card card-post mb-3" }, [
-              _c(
-                "a",
-                {
-                  attrs: { href: "#photoModal", "data-toggle": "modal" },
-                  on: {
-                    click: function($event) {
-                      _vm.modalOpen(post.id)
-                    }
-                  }
-                },
-                [
-                  _c("img", {
-                    staticClass: "card-img-top",
-                    attrs: {
-                      src:
-                        "http://pickture.me/images/uploads/postphoto/" +
-                        post.postphoto
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "text" }, [
-                    _c("h1", [
-                      _c("strong", [
-                        _c("i", { staticClass: "fas fa-heart pr-3" }),
-                        _vm._v(_vm._s(post.likes_count))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("h1", [
-                      _c("strong", [
-                        _c("i", { staticClass: "fas fa-star pr-3" }),
-                        _vm._v(_vm._s(post.favourites_count))
-                      ])
-                    ])
+        [
+          _vm._l(_vm.posts.data, function(post) {
+            return !_vm.favouriteList
+              ? _c("div", { staticClass: "col-md-4" }, [
+                  _c("div", { staticClass: "card card-post mb-3" }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "#photoModal", "data-toggle": "modal" },
+                        on: {
+                          click: function($event) {
+                            _vm.modalOpen(post.id)
+                          }
+                        }
+                      },
+                      [
+                        _c("img", {
+                          staticClass: "card-img-top",
+                          attrs: {
+                            src:
+                              "http://pickture.me/images/uploads/postphoto/" +
+                              post.postphoto
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "text" }, [
+                          _c("h1", [
+                            _c("strong", [
+                              _c("i", { staticClass: "fas fa-heart pr-3" }),
+                              _vm._v(_vm._s(post.likes_count))
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("h1", [
+                            _c("strong", [
+                              _c("i", { staticClass: "fas fa-star pr-3" }),
+                              _vm._v(_vm._s(post.favourites_count))
+                            ])
+                          ])
+                        ])
+                      ]
+                    )
                   ])
-                ]
-              )
-            ])
-          ])
-        })
+                ])
+              : _vm._e()
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.posts.data, function(post) {
+            return _vm.favouriteList
+              ? _c("div", { staticClass: "col-md-4" }, [
+                  _c("div", { staticClass: "card card-post mb-3" }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "#photoModal", "data-toggle": "modal" },
+                        on: {
+                          click: function($event) {
+                            _vm.modalOpen(post.post.id)
+                          }
+                        }
+                      },
+                      [
+                        _c("img", {
+                          staticClass: "card-img-top",
+                          attrs: {
+                            src:
+                              "http://pickture.me/images/uploads/postphoto/" +
+                              post.post.postphoto
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "text" }, [
+                          _c("h1", [
+                            _c("strong", [
+                              _c("i", { staticClass: "fas fa-heart pr-3" }),
+                              _vm._v(_vm._s(post.likes_count))
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("h1", [
+                            _c("strong", [
+                              _c("i", { staticClass: "fas fa-star pr-3" }),
+                              _vm._v(_vm._s(post.favourites_count))
+                            ])
+                          ])
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              : _vm._e()
+          })
+        ],
+        2
       )
     ]),
     _vm._v(" "),
@@ -54521,11 +54656,19 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "text-center" }, [
+                    _c("div", { staticClass: "modal-footer" }, [
+                      _vm.text
+                        ? _c("div", {
+                            staticClass: "mr-3",
+                            class: { loader: _vm.postLoader },
+                            attrs: { id: "post" }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-block btn-success white-text",
+                          staticClass: "btn btn-success white-text text-right",
                           on: {
                             click: function($event) {
                               $event.preventDefault()
@@ -54534,15 +54677,7 @@ var render = function() {
                           }
                         },
                         [_vm._v("Create")]
-                      ),
-                      _vm._v(" "),
-                      _vm.text
-                        ? _c("div", {
-                            staticClass: "mt-3",
-                            class: { loader: _vm.loader },
-                            attrs: { id: "post" }
-                          })
-                        : _vm._e()
+                      )
                     ]),
                     _vm._v(" "),
                     _vm.hasErrors.postphoto
@@ -54618,7 +54753,7 @@ var render = function() {
                                             "button",
                                             {
                                               staticClass:
-                                                "btn btn-success text-white btn-block",
+                                                "btn btn-danger text-white btn-block",
                                               class: { "btn-dark": _vm.like },
                                               on: {
                                                 click: function($event) {
@@ -54640,7 +54775,7 @@ var render = function() {
                                             "button",
                                             {
                                               staticClass:
-                                                "btn btn-success text-white btn-block",
+                                                "btn btn-primary text-white btn-block",
                                               class: {
                                                 "btn-dark": _vm.favourite
                                               },
@@ -55167,7 +55302,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-cd7fb372"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -55210,13 +55345,13 @@ var content = __webpack_require__(80);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("1ea5d7e9", content, false, {});
+var update = __webpack_require__(2)("37ad863d", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-cd7fb372\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Navbar.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-cd7fb372\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Navbar.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-cd7fb372\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Navbar.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-cd7fb372\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Navbar.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -55234,7 +55369,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.navbar-nav li:hover > ul.dropdown-menu {\n    display: block;\n}\n.dropdown-submenu {\n    position:relative;\n}\n.dropdown-submenu>.dropdown-menu {\n    top:0;\n    left:100%;\n    margin-top:-6px;\n}\n", ""]);
+exports.push([module.i, "\n.navbar-nav li:hover ul.dropdown-menu[data-v-cd7fb372] {\n  display: block;\n}\n.dropdown-submenu[data-v-cd7fb372] {\n  position: relative;\n}\n.dropdown-submenu .dropdown-menu[data-v-cd7fb372] {\n  top: 0;\n  left: 100%;\n  margin-top: -6px;\n}\n", ""]);
 
 // exports
 
@@ -55245,6 +55380,7 @@ exports.push([module.i, "\n.navbar-nav li:hover > ul.dropdown-menu {\n    displa
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //

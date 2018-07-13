@@ -41,6 +41,7 @@
 					</template>
 				</ul>
 				
+				<!--Search bar-->
 				<form class="form-inline my-2 my-lg-0" :class="{hidden: validDiscovery}">
 					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="searchTerm">
 					<button class="btn btn-outline-success my-2 my-sm-0" @click.prevent="search()">Search</button>
@@ -78,18 +79,22 @@
 	}
 </script>
 
-<style>
-	.navbar-nav li:hover > ul.dropdown-menu {
-	    display: block;
+<style lang="scss" scoped>
+	.navbar-nav li:hover {
+		ul.dropdown-menu {
+		    display: block;
+		}
 	}
 
 	.dropdown-submenu {
 	    position:relative;
 	}
 
-	.dropdown-submenu>.dropdown-menu {
-	    top:0;
-	    left:100%;
-	    margin-top:-6px;
+	.dropdown-submenu {
+		.dropdown-menu {
+		    top:0;
+		    left:100%;
+		    margin-top:-6px;
+		}
 	}
 </style>

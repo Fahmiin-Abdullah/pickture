@@ -1,9 +1,10 @@
 <template>
 	<div class="row">
+		<!--Profile section-->
 		<div class="col-md-3">
 			<div class="card mb-3">
 				<div class="card-body">
-					<h4 class="text-center mb-3"><strong><span v-if="user != null && user.id == id">Hi, </span>{{update.name}}</strong><span class="float-right"><a data-toggle="modal" data-target="#editModal" v-if="user != null && user.id == id"><i class="fas fa-pen"></i></a></span></h4>
+					<h4 class="text-center mb-3"><strong><span class="float-left" v-if="user != null && user.id == id"><i class="fas fa-star pointer" @click="fetchFavourites()"></i></span><span v-if="user != null && user.id == id">Hi, </span>{{update.name}}</strong><span class="float-right"><a data-toggle="modal" data-target="#editModal" v-if="user != null && user.id == id"><i class="fas fa-pen pointer"></i></a></span></h4>
 					<div class="card-image text-center">
 						<img :src="`http://pickture.me/images/uploads/profilepic/${update.profilepic}`" v-model="update.profilepic" class="profilepic">
 					</div>
@@ -27,8 +28,8 @@
 		</div>
 		<div class="col-md-9">
 			<div class="row">
-				<div class="col-md-3">
-					<h2>My work ({{posts.total}})</h2>
+				<div class="col-md-4">
+					<h2>{{headerMessage}} ({{posts.total}})</h2>
 				</div>
 				<div class="col-md-4">
 					<ul class="pagination">
@@ -38,16 +39,27 @@
 						<div id="pagination" class="ml-3" :class="{loader: loader}"></div>
 					</ul>
 				</div>
-				<div class="col-md-5 text-lg-right">
-					<a class="btn btn-success text-white" data-toggle="modal" data-target="#postModal" v-if="user != null && user.id == id">Add new photo</a>
+				<div class="col-md-4 text-lg-right">
+					<a class="btn btn-success text-white" data-toggle="modal" data-target="#postModal" v-if="user != null && user.id == id && favouriteList == false">Add new photo</a>
 				</div>
 			</div>
 			<hr class="my-2">
 			<div class="row ">
-				<div class="col-md-4" v-for="post in posts.data">
+				<div class="col-md-4" v-for="post in posts.data" v-if="!favouriteList">
 					<div class="card card-post mb-3">
 						<a href="#photoModal" data-toggle="modal" @click="modalOpen(post.id)">
 							<img class="card-img-top" :src="`http://pickture.me/images/uploads/postphoto/${post.postphoto}`">
+							<div class="text">
+								<h1><strong><i class="fas fa-heart pr-3"></i>{{post.likes_count}}</strong></h1>
+								<h1><strong><i class="fas fa-star pr-3"></i>{{post.favourites_count}}</strong></h1>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4" v-for="post in posts.data" v-if="favouriteList">
+					<div class="card card-post mb-3">
+						<a href="#photoModal" data-toggle="modal" @click="modalOpen(post.post.id)">
+							<img class="card-img-top" :src="`http://pickture.me/images/uploads/postphoto/${post.post.postphoto}`">
 							<div class="text">
 								<h1><strong><i class="fas fa-heart pr-3"></i>{{post.likes_count}}</strong></h1>
 								<h1><strong><i class="fas fa-star pr-3"></i>{{post.favourites_count}}</strong></h1>
@@ -61,6 +73,7 @@
 
 
 
+		<!--Edit profile section-->
 		<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -134,7 +147,7 @@
 
 
 
-
+		<!--Create post section-->
 		<div class="modal fade" id="postModal" tabindex="-1">
 			<div class="modal-dialog modal-dialog-centered modal-lg">
 				<div class="modal-content">
@@ -184,9 +197,9 @@
 									</div>
 								</form>
 								<p><em>Please ensure that your photo is in accordance to our <a href="#" @click="goToLicence()">terms of licences</a> before uploading.</em></p>
-								<div class="text-center">
-									<button class="btn btn-block btn-success white-text" @click.prevent="profileAction('#post')">Create</button>
-									<div id="post" class="mt-3" :class="{loader: loader}" v-if="text"></div>
+								<div class="modal-footer">
+									<div id="post" class="mr-3" :class="{loader: postLoader}" v-if="text"></div>
+									<button class="btn btn-success white-text text-right" @click.prevent="profileAction('#post')">Create</button>
 								</div>
 								<span v-if="hasErrors.postphoto" class="help-block mt-3">
                                     <strong>{{errorMessage.postphoto}}</strong>
@@ -200,6 +213,8 @@
 
 
 
+
+		<!--Edit and vie post section-->
 		<div class="modal fade" id="photoModal" tabindex="-1">
 			<div class="modal-dialog modal-dialog-centered modal-lg">
 				<div class="modal-content">
@@ -222,10 +237,10 @@
 								<template v-if="!deleteP">
 									<div class="row mb-2" v-if="user != null">
 										<div class="col-md-6 pr-1">
-											<button class="btn btn-success text-white btn-block" @click.prevent="postSocial('like')" :class="{'btn-dark': like}">{{likeMessage}}</button>
+											<button class="btn btn-danger text-white btn-block" @click.prevent="postSocial('like')" :class="{'btn-dark': like}">{{likeMessage}}</button>
 										</div>
 										<div class="col-md-6 pl-1">
-											<button class="btn btn-success text-white btn-block"@click.prevent="postSocial('favourite')" :class="{'btn-dark': favourite}">{{favouriteMessage}}</button>
+											<button class="btn btn-primary text-white btn-block"@click.prevent="postSocial('favourite')" :class="{'btn-dark': favourite}">{{favouriteMessage}}</button>
 										</div>
 									</div>
 								</template>
@@ -292,6 +307,8 @@
 			return {
 				categories: [],
 				posts: [],
+				favouriteList: false,
+				headerMessage: 'My works',
 				total: 0,
 				update: {
 					profilepic: null,
@@ -326,6 +343,7 @@
 					postphoto: null
 				},
 				loader: false,
+				postLoader: false,
 				text: false,
 				modalInfo: [],
 				edit: false,
@@ -375,13 +393,26 @@
 			fetchPosts(page) {
 				const _this = this;
 				this.loader = true;
-				page = page || `/posts/${_this.id}`;
+				page = page || `/posts/${this.id}`;
 				axios.get(page)
 				.then(res => {
+					console.log(res);
 					_this.posts = res.data;
 					_this.loader = false;
 				})
 				.catch(err => console.log(err));
+			},
+			fetchFavourites() {
+				this.favouriteList = !this.favouriteList;
+				if (this.favouriteList == true) {
+					const page = `/posts/favourites/${this.id}`;
+					this.headerMessage = 'My favourites';
+					this.fetchPosts(page);
+				} else {
+					this.headerMessage = 'My works';
+					this.fetchPosts();
+				}
+					
 			},
 			openFile(e) {
 				const input = e.target;
@@ -402,7 +433,7 @@
 			//Handles profile update and post create
 			profileAction(action) {
 				this.text = true;
-				this.loader = true;
+				action == '#update' ? this.loader = true : this.postLoader = true;
 				const _this = this;
 				const _hasErrors = this.hasErrors;
 				const _errMessage = this.errorMessage;
@@ -420,14 +451,14 @@
 				axios.post(url, data)
 				.then(res => {
 					const message = action === '#update' ? 'Saved!' : 'Created!';
-					_this.loader = false;
+					_this.loader = _this.postLoader = false;
 					$(action).text(message);
 					setTimeout(() => {
 						_this.text = false;
 						$(action).text('');
 						if (action !== '#update') {
 							_this.posts.data.unshift(res.data);
-							_this.posts.data.pop();
+							_this.posts.data.length > 6 ? _this.posts.data.pop() : '';
 							$('#postModal').modal('hide');
 							for (const key of Object.keys(_this.postData)) {
 								_this.postData[key] = '';
@@ -568,7 +599,7 @@
 		object-fit: cover;
 	}
 
-	.fa-pen {
+	.pointer {
 		cursor: pointer;
 	}
 

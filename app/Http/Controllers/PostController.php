@@ -44,7 +44,7 @@ class PostController extends Controller
     {
     	$request->validate([
     		'title' => 'required|max:50',
-    		'description' => 'required|max:100',
+    		'description' => 'required|max:200',
     		'category' => 'required'
     	]);
 
@@ -89,6 +89,17 @@ class PostController extends Controller
     public function delete($id)
     {
         $post = Post::find($id);
+        $likes = Like::find('post_id', $id)->get();
+        $favourites = Favourite::find('post_id', $id)->get();
+
+        foreach ($likes as $like) {
+            $like->delete();
+        }
+
+        foreach ($favourites as $favourite) {
+            $favourite->delete();
+        }
+
         $post->delete();
 
         return response('success');

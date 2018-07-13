@@ -31,7 +31,6 @@
                                     <h4 class="text-center mb-3">You're almost there!</h4>
                                     <p class="text-center">Please do not leave this page until you have finished resetting your password. Make sure to use your original email but with a different password.</p>
                                 </div>
-                                
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input type="email" name="email" class="form-control" required>

@@ -1,5 +1,6 @@
 <template>
 	<div class="row">
+		<!--Categories section-->
 		<div class="col-md-3">
 			<h5 class="text-center mb-3">Pick one to begin</h5>
 			<div class="list-group mb-5">
@@ -8,6 +9,8 @@
 				</template>
 			</div>
 		</div>
+
+		<!--Gallery section-->
 		<div class="col md-9">
 			<div class="container">
 				<div class="row">
@@ -38,6 +41,9 @@
 					</div>
 
 
+
+
+					<!--Post modal section-->
 					<div class="modal fade" id="postModal" tabindex="-1">
 						<div class="modal-dialog modal-dialog-centered modal-lg">
 							<div class="modal-content">
@@ -61,10 +67,10 @@
 										</div>
 										<div class="row mb-2" v-if="user != null">
 											<div class="col-md-6 pr-1">
-												<button class="btn btn-success text-white btn-block" @click.prevent="postSocial('like')" :class="{'btn-dark': like}">{{likeMessage}}</button>
+												<button class="btn btn-danger text-white btn-block" @click.prevent="postSocial('like')" :class="{'btn-dark': like}">{{likeMessage}}</button>
 											</div>
 											<div class="col-md-6 pl-1">
-												<button class="btn btn-success text-white btn-block"@click.prevent="postSocial('favourite')" :class="{'btn-dark': favourite}">{{favouriteMessage}}</button>
+												<button class="btn btn-primary text-white btn-block"@click.prevent="postSocial('favourite')" :class="{'btn-dark': favourite}">{{favouriteMessage}}</button>
 											</div>
 										</div>
 										<button class="btn btn-dark text-white btn-block mb-2" @click="connect(userInfo.id)" v-if="user == null || user.id != userInfo.id">Connect</button>

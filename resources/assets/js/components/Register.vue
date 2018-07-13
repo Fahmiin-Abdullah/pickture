@@ -1,11 +1,13 @@
 <template>
 	<div class="container">
 		<div class="row">
+			<!--Signup section-->
 			<div class="col-md-5">
 				<div class="card">
 					<div class="card-body pb-5">
 						<h5 class="card-title text-center mb-3">Don't have an account yet? Sign up now!</h5>
 						<form>
+							<input type="hidden" name="_token" :value="csrf">
 							<div class="form-group" :class="{'has-error': hasErrors.name}">
 								<label for="name">Username</label>
 		     					<input type="text" class="form-control" v-model="registerData.name" required>
@@ -35,11 +37,14 @@
 					</div>
 				</div>	
 			</div>
+
+			<!--Login section-->
 			<div class="col-md-7">
 				<div class="card mb-4">
 					<div class="card-body pb-5">
 						<h5 class="card-title text-center mb-3">Already have an account? Just login!</h5>
 						<form>
+							<input type="hidden" name="_token" :value="csrf">
 							<div class="form-row mb-2">
 								<div class="col" :class="{'has-error': hasLoginErrors.name}">
 									<input type="text" class="form-control" placeholder="Username" v-model="loginData.name" required>
@@ -66,9 +71,12 @@
 						</form>
 					</div>
 				</div>
+
+				<!--Reset password section-->
 				<div class="card" v-if="showPasswordResetForm">
 					<div class="card-body pb-5">
 						<form>
+							<input type="hidden" name="_token" :value="csrf">
 							<div class="form-group mb-4" :class="{'has-error': hasResetErrors}">
 								<label for="email">Email</label>
 		     					<input type="email" class="form-control" v-model="passwordResetEmail.email" required>
@@ -94,6 +102,7 @@
 		name: 'register',
 		data() {
 			return {
+				csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 				registerData: {
 					name: null,
 					email: null,

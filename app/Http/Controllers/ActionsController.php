@@ -26,6 +26,13 @@ class ActionsController extends Controller
         return response(json_encode($categories));
     }
 
+    public function getFavourites($id)
+    {
+        $posts = Favourite::with('post')->where('user_id', $id)->orderby('id', 'desc')->paginate(6);
+
+        return response($posts);
+    }
+
     public function like($id)
     {
         $user = Auth::user();

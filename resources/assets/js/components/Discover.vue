@@ -1,5 +1,6 @@
 <template>
 	<div class="mb-3">
+		<!--Intro row-->
 		<div class="row">
 			<div class="col-md-6">
 				<h3>{{introMessage}}</h3>
@@ -14,6 +15,7 @@
 		</div>
 		<hr>
 		<div class="row">
+			<!--Gallery section-->
 			<div class="col-md-4 mb-4 discover" v-for="post in posts[0]">
 				<div class="card-discover">
 					<a href="#postModal" data-toggle="modal" @click="modalOpen(post.id)">
@@ -26,6 +28,10 @@
 				</div>
 			</div>
 
+
+
+
+			<!--Post modal section-->
 			<div class="modal fade discoverModal" id="postModal" tabindex="-1">
 				<div class="modal-dialog modal-dialog-centered modal-lg">
 					<div class="modal-content">
@@ -49,10 +55,10 @@
 								</div>
 								<div class="row mb-2" v-if="user != null">
 									<div class="col-md-6 pr-1">
-										<button class="btn btn-success text-white btn-block" @click.prevent="postSocial('like')" :class="{'btn-dark': like}">{{likeMessage}}</button>
+										<button class="btn btn-danger text-white btn-block" @click.prevent="postSocial('like')" :class="{'btn-dark': like}">{{likeMessage}}</button>
 									</div>
 									<div class="col-md-6 pl-1">
-										<button class="btn btn-success text-white btn-block"@click.prevent="postSocial('favourite')" :class="{'btn-dark': favourite}">{{favouriteMessage}}</button>
+										<button class="btn btn-primary text-white btn-block"@click.prevent="postSocial('favourite')" :class="{'btn-dark': favourite}">{{favouriteMessage}}</button>
 									</div>
 								</div>
 								<button class="btn btn-dark text-white btn-block mb-2" @click="connect(userInfo.id)" v-if="user == null || user.id != userInfo.id">Connect</button>
@@ -240,7 +246,7 @@
 		}
 
 		img {
-			width: 54vw;
+			width: 53vw;
 			max-height: 80vh;
 			object-fit: contain;
 		}

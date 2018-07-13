@@ -39,3 +39,4 @@ Route::get('/like/{id}', 'ActionsController@like');
 Route::get('/isLiked/{id}', 'ActionsController@isLiked');
 Route::get('/favourite/{id}', 'ActionsController@fav');
 Route::get('/isFaved/{id}', 'ActionsController@isFaved');
+Route::get('/posts/favourites/{id}', 'ActionsController@getFavourites');

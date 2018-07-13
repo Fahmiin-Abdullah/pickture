@@ -31,7 +31,7 @@
                         <li>Anyone looking to share their work with the rest of the world.</li>
                         <li>Anyone looking for that specific image you couldn't find on the net. You can browse through our stock photos or connect with one of our photographers and we'll arrange a purchase for you.</li>
                         <li>Anyone who appreciate good quality photos and doesn't mind hours of scrolling through them.</li>
-                        <li>Do check out <router-link to="/licence">terms of licenses</router-link> before uploading any photos onto the net. It can be a scary place at times...</li>
+                        <li>Do check out our <router-link to="/licence">terms of licenses</router-link> before uploading any photos onto the net. It can be a scary place at times...</li>
                     </ul>
                 </div>
             </div>
@@ -55,7 +55,7 @@
 </script>
 
 <style lang="scss">
-    /*General*/
+    /*Main styles*/
     .container90 {
         width: 90%;
         margin: auto;
