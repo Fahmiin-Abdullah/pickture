@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 mb-3">
             <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -36,10 +36,10 @@
                 </div>
             </div>
             <div class="row mt-4">
-                <div class="col-md-6">
+                <div class="col-6">
                     <router-link to="/discover/any" class="btn btn-success text-white btn-block"><i class="fa fa-search mr-3"></i>Discover</router-link>
                 </div>
-                <div class="col-md-6">
+                <div class="col-6">
                     <router-link to="/categories/any" class="btn btn-dark text-white btn-block"><i class="fa fa-globe-americas mr-3"></i>Browse Categories</router-link>
                 </div>
             </div>
@@ -72,6 +72,14 @@
     .carousel-item {
         img {
             height: 500px;
+        }
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .carousel-item {
+            img { 
+                height: 50vh !important;
+            }
         }
     }
 </style>

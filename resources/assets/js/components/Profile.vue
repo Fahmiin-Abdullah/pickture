@@ -1,7 +1,7 @@
 <template>
 	<div class="row">
 		<!--Profile section-->
-		<div class="col-md-3">
+		<div class="col-sm-3 mb-3">
 			<div class="card mb-3">
 				<div class="card-body">
 					<h4 class="text-center mb-3"><strong><span class="float-left" v-if="user != null && user.id == id"><i class="fas fa-star pointer" @click="fetchFavourites()"></i></span><span v-if="user != null && user.id == id">Hi, </span>{{update.name}}</strong><span class="float-right"><a data-toggle="modal" data-target="#editModal" v-if="user != null && user.id == id"><i class="fas fa-pen pointer"></i></a></span></h4>
@@ -16,22 +16,22 @@
 			<ul class="list-group">
 				<li class="list-group-item" v-for="social in update.socials">
 					<div class="row">
-						<div class="col-md-2">
+						<div class="col-2 text-center">
 							<i :class="social.social"></i>
 						</div>
-						<div class="col-md-10 text-truncate">
+						<div class="col-10 text-truncate">
 							<a :href="social.link" v-model="social.link" target="_blank">{{social.link}}</a>
 						</div>
 					</div>
 				</li>
 			</ul>
 		</div>
-		<div class="col-md-9">
+		<div class="col-sm-9">
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-6 col-sm-4">
 					<h2>{{headerMessage}} ({{posts.total}})</h2>
 				</div>
-				<div class="col-md-4">
+				<div class="col-sm-4 d-none d-sm-block">
 					<ul class="pagination">
 						<li class="page-item" :class="{disabled: !posts.prev_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts(posts.prev_page_url)">Previous</a></li>
 						<li class="page-item disabled"><a href="#" class="page-link">Page {{posts.current_page}} of {{posts.last_page}}</a></li>
@@ -39,13 +39,13 @@
 						<div id="pagination" class="ml-3" :class="{loader: loader}"></div>
 					</ul>
 				</div>
-				<div class="col-md-4 text-lg-right">
+				<div class="col-6 col-sm-4 text-lg-right">
 					<a class="btn btn-success text-white" data-toggle="modal" data-target="#postModal" v-if="user != null && user.id == id && favouriteList == false">Add new photo</a>
 				</div>
 			</div>
 			<hr class="my-2">
 			<div class="row ">
-				<div class="col-md-4" v-for="post in posts.data" v-if="!favouriteList">
+				<div class="col-sm-4" v-for="post in posts.data" v-if="!favouriteList">
 					<div class="card card-post mb-3">
 						<a href="#photoModal" data-toggle="modal" @click="modalOpen(post.id)">
 							<img class="card-img-top" :src="`http://pickture.me/images/uploads/postphoto/${post.postphoto}`">
@@ -56,7 +56,7 @@
 						</a>
 					</div>
 				</div>
-				<div class="col-md-4" v-for="post in posts.data" v-if="favouriteList">
+				<div class="col-sm-4" v-for="post in posts.data" v-if="favouriteList">
 					<div class="card card-post mb-3">
 						<a href="#photoModal" data-toggle="modal" @click="modalOpen(post.post.id)">
 							<img class="card-img-top" :src="`http://pickture.me/images/uploads/postphoto/${post.post.postphoto}`">
@@ -67,6 +67,15 @@
 						</a>
 					</div>
 				</div>
+			</div>
+
+			<div class="col-sm-4 d-block d-sm-none">
+				<ul class="pagination justify-content-center">
+					<li class="page-item" :class="{disabled: !posts.prev_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts(posts.prev_page_url)">Previous</a></li>
+					<li class="page-item disabled"><a href="#" class="page-link">Page {{posts.current_page}} of {{posts.last_page}}</a></li>
+					<li class="page-item" :class="{disabled: !posts.next_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts(posts.next_page_url)">Next</a></li>
+					<div id="pagination" class="ml-3" :class="{loader: loader}"></div>
+				</ul>
 			</div>
 		</div>
 
@@ -152,10 +161,10 @@
 			<div class="modal-dialog modal-dialog-centered modal-lg">
 				<div class="modal-content">
 					<div class="row">
-						<div class="col-md-8">
+						<div class="col-sm-8">
 							<img id="postphoto" v-model="postData.postphoto">
 						</div>
-						<div class="col-md-4">
+						<div class="col-sm-4">
 							<div class="modal-header">
 								<h5 class="modal-title">Create a new post</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -219,10 +228,10 @@
 			<div class="modal-dialog modal-dialog-centered modal-lg">
 				<div class="modal-content">
 					<div class="row">
-						<div class="col-md-8">
+						<div class="col-sm-8">
 							<img alt="Card image cap" :src="`http://pickture.me/images/uploads/postphoto/${modalInfo.postphoto}`" class="rounded-left">
 						</div>
-						<div class="col-md-4 pr-4">
+						<div class="col-sm-4 pr-4">
 							<template v-if="!edit">
 								<div class="modal-header">
 									 <h5 class="modal-title">{{modalInfo.title}}</h5>
@@ -235,61 +244,63 @@
 									<p>{{modalInfo.description}}</p>
 								</div>
 								<template v-if="!deleteP">
-									<div class="row mb-2" v-if="user != null">
-										<div class="col-md-6 pr-1">
+									<div class="row mb-2 container ml-0" v-if="user != null">
+										<div class="col-6 pl-0">
 											<button class="btn btn-danger text-white btn-block" @click.prevent="postSocial('like')" :class="{'btn-dark': like}">{{likeMessage}}</button>
 										</div>
-										<div class="col-md-6 pl-1">
+										<div class="col-6 pr-0">
 											<button class="btn btn-primary text-white btn-block"@click.prevent="postSocial('favourite')" :class="{'btn-dark': favourite}">{{favouriteMessage}}</button>
 										</div>
 									</div>
 								</template>
 							</template>
 							<template v-if="user != null && user.id == id">
-								<button class="btn btn-success text-white btn-block my-2" @click="edit = !edit" v-if="!deleteP">Edit</button>
-								<button class="btn btn-dark texxt-white btn-block" @click="deleteP = !deleteP" v-if="!edit">Delete</button>
-								<br>
-								<form v-if="edit">
-									<h5 class="modal-title mb-2">Edit post details</h5>
-									<div class="form-group" :class="{'has-error': hasErrors.title}">
-										<input type="text" class="form-control" v-model="modalInfo.title">
-										<span class="float-right mb-1">{{modalInfo.title.length}}/50</span>
-										<span v-if="hasErrors.title" class="help-block">
-		                                    <strong>{{errorMessage.title}}</strong>
-		                                </span>
-									</div>
-									<div class="form-group" :class="{'has-error': hasErrors.description}">
-										<textarea class="form-control" rows="4" v-model="modalInfo.description"></textarea>
-										<span class="float-right mb-1">{{modalInfo.description.length}}/200</span>
-										<span v-if="hasErrors.description" class="help-block">
-		                                    <strong>{{errorMessage.description}}</strong>
-		                                </span>
-									</div>
-									<div class="input-group mb-4" :class="{'has-error': hasErrors.category}">
-										<div class="input-group-prepend">
-											<label class="input-group-text" for="inputGroupSelect">Select a category</label>
+								<div class="container ml-0">
+									<button class="btn btn-success text-white btn-block my-2" @click="edit = !edit" v-if="!deleteP">Edit</button>
+									<button class="btn btn-dark texxt-white btn-block" @click="deleteP = !deleteP" v-if="!edit">Delete</button>
+									<br>
+									<form v-if="edit">
+										<h5 class="modal-title mb-2">Edit post details</h5>
+										<div class="form-group" :class="{'has-error': hasErrors.title}">
+											<input type="text" class="form-control" v-model="modalInfo.title">
+											<span class="float-right mb-1">{{modalInfo.title.length}}/50</span>
+											<span v-if="hasErrors.title" class="help-block">
+			                                    <strong>{{errorMessage.title}}</strong>
+			                                </span>
 										</div>
-										<select class="custom-select" id="inputGroupSelect" v-model="modalInfo.category" >
-											<option v-for="category in categories">{{category.category}}</option>
-										</select>
-										<span v-if="hasErrors.category" class="help-block">
-		                                    <strong>{{errorMessage.category}}</strong>
-		                                </span>
-									</div>
-									<div class="modal-footer">
-										<div id="updatePost" class="mr-3" :class="{loader: loader}" v-if="text"></div>
-										<button class="btn btn-success" @click.prevent="postAction(modalInfo.id, 'update')">Save changes</button>
-									</div>
-								</form>
-								<form v-if="deleteP">
-									<div class="text-center">
-										<h5 class="mb-3">Are you sure you want to delete this post?</h5>
+										<div class="form-group" :class="{'has-error': hasErrors.description}">
+											<textarea class="form-control" rows="4" v-model="modalInfo.description"></textarea>
+											<span class="float-right mb-1">{{modalInfo.description.length}}/200</span>
+											<span v-if="hasErrors.description" class="help-block">
+			                                    <strong>{{errorMessage.description}}</strong>
+			                                </span>
+										</div>
+										<div class="input-group mb-4" :class="{'has-error': hasErrors.category}">
+											<div class="input-group-prepend">
+												<label class="input-group-text" for="inputGroupSelect">Select a category</label>
+											</div>
+											<select class="custom-select" id="inputGroupSelect" v-model="modalInfo.category" >
+												<option v-for="category in categories">{{category.category}}</option>
+											</select>
+											<span v-if="hasErrors.category" class="help-block">
+			                                    <strong>{{errorMessage.category}}</strong>
+			                                </span>
+										</div>
 										<div class="modal-footer">
-											<div id="deletePost" class="mr-3" :class="{loader: loader}" v-if="text"></div>
-											<button class="btn btn-dark" @click.prevent="postAction(modalInfo.id, 'delete')">Yes, delete</button>
+											<div id="updatePost" class="mr-3" :class="{loader: loader}" v-if="text"></div>
+											<button class="btn btn-success" @click.prevent="postAction(modalInfo.id, 'update')">Save changes</button>
 										</div>
-									</div>
-								</form>
+									</form>
+									<form v-if="deleteP">
+										<div class="text-center">
+											<h5 class="mb-3">Are you sure you want to delete this post?</h5>
+											<div class="modal-footer">
+												<div id="deletePost" class="mr-3" :class="{loader: loader}" v-if="text"></div>
+												<button class="btn btn-dark" @click.prevent="postAction(modalInfo.id, 'delete')">Yes, delete</button>
+											</div>
+										</div>
+									</form>
+								</div>
 							</template>
 						</div>
 					</div>
@@ -683,5 +694,34 @@
 		transform: translate(-50%, -50%);
 		-ms-transform: translate(-50%, -50%);
 		text-align: center;
+	}
+
+	@media only screen and (max-width: 600px) {
+		.profilepic {
+			width: 26vw !important;
+		}
+
+		.card-post {
+			height: 45vh !important;
+
+			img {
+				height: 45vh !important;
+			}
+		}
+
+		#photoModal, #postModal {
+			width: 100vw !important;
+			margin: auto;
+
+			.modal-lg, .modal-dialog {
+				max-width: none !important;
+			}
+
+			img {
+				width: 100% !important;
+				max-height: 80vh;
+				object-fit: contain;
+			}
+		}
 	}
 </style>

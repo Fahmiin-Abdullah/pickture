@@ -1,7 +1,7 @@
 <template>
 	<div class="row">
 		<!--Categories section-->
-		<div class="col-md-3">
+		<div class="col-sm-3">
 			<h5 class="text-center mb-3">Pick one to begin</h5>
 			<div class="list-group mb-5">
 				<template v-for="category in categories">
@@ -11,68 +11,77 @@
 		</div>
 
 		<!--Gallery section-->
-		<div class="col md-9">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3">
-						<h2>Total posts ({{posts.total}})</h2>
-					</div>
-					<div class="col-md-9">
-						<ul class="pagination">
-							<li class="page-item" :class="{disabled: !posts.prev_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts('pagination', posts.prev_page_url)">Previous</a></li>
-							<li class="page-item disabled"><a href="#" class="page-link">Page {{posts.current_page}} of {{posts.last_page}}</a></li>
-							<li class="page-item" :class="{disabled: !posts.next_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts('pagination', posts.next_page_url)">Next</a></li>
-							<div id="pagination" class="ml-3" :class="{loader: loader}"></div>
-						</ul>
+		<div class="col sm-9">
+			<div class="row">
+				<div class="col-sm-3">
+					<h2>Total posts ({{posts.total}})</h2>
+				</div>
+				<div class="col-sm-9 d-none d-sm-block">
+					<ul class="pagination">
+						<li class="page-item" :class="{disabled: !posts.prev_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts('pagination', posts.prev_page_url)">Previous</a></li>
+						<li class="page-item disabled"><a href="#" class="page-link">Page {{posts.current_page}} of {{posts.last_page}}</a></li>
+						<li class="page-item" :class="{disabled: !posts.next_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts('pagination', posts.next_page_url)">Next</a></li>
+						<div id="pagination" class="ml-3" :class="{loader: loader}"></div>
+					</ul>
+				</div>
+			</div>
+			<hr class="my-2">
+			<div class="row">
+				<div class="col-sm-4 mb-4" v-for="post in posts.data">
+					<div class="card">
+						<a href="#postModal" data-toggle="modal" @click="modalOpen(post.id)">
+							<img class="card-img-top" :src="`http://pickture.me/images/uploads/postphoto/${post.postphoto}`">
+							<div class="text">
+								<h1><strong><i class="fas fa-heart pr-3"></i>{{post.likes_count}}</strong></h1>
+								<h1><strong><i class="fas fa-star pr-3"></i>{{post.favourites_count}}</strong></h1>
+							</div>
+						</a>
 					</div>
 				</div>
-				<hr class="my-2">
-				<div class="row">
-					<div class="col-md-4 mb-4" v-for="post in posts.data">
-						<div class="card">
-							<a href="#postModal" data-toggle="modal" @click="modalOpen(post.id)">
-								<img class="card-img-top" :src="`http://pickture.me/images/uploads/postphoto/${post.postphoto}`">
-								<div class="text">
-									<h1><strong><i class="fas fa-heart pr-3"></i>{{post.likes_count}}</strong></h1>
-									<h1><strong><i class="fas fa-star pr-3"></i>{{post.favourites_count}}</strong></h1>
+
+				<div class="col-sm-9 d-block d-sm-none">
+					<ul class="pagination justify-content-center">
+						<li class="page-item" :class="{disabled: !posts.prev_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts('pagination', posts.prev_page_url)">Previous</a></li>
+						<li class="page-item disabled"><a href="#" class="page-link">Page {{posts.current_page}} of {{posts.last_page}}</a></li>
+						<li class="page-item" :class="{disabled: !posts.next_page_url}"><a class="page-link bg-dark text-white" href="#" @click="fetchPosts('pagination', posts.next_page_url)">Next</a></li>
+						<div id="pagination" class="ml-3" :class="{loader: loader}"></div>
+					</ul>
+				</div>
+
+
+
+
+				<!--Post modal section-->
+				<div class="modal fade" id="postModal" tabindex="-1">
+					<div class="modal-dialog modal-dialog-centered modal-lg">
+						<div class="modal-content">
+							<div class="row">
+								<div class="col-md-8">
+									<img alt="Card image cap" :src="`http://pickture.me/images/uploads/postphoto/${modalInfo.postphoto}`" class="rounded-left">
 								</div>
-							</a>
-						</div>
-					</div>
-
-
-
-
-					<!--Post modal section-->
-					<div class="modal fade" id="postModal" tabindex="-1">
-						<div class="modal-dialog modal-dialog-centered modal-lg">
-							<div class="modal-content">
-								<div class="row">
-									<div class="col-md-8">
-										<img alt="Card image cap" :src="`http://pickture.me/images/uploads/postphoto/${modalInfo.postphoto}`" class="rounded-left">
+								<div class="col-md-4 pr-4">
+									<div class="modal-header">
+										 <h5 class="modal-title">{{modalInfo.title}}</h5>
+										<button type="button" class="close" data-dismiss="modal">
+											<span>&times;</span>
+										</button>
 									</div>
-									<div class="col-md-4 pr-4">
-										<div class="modal-header">
-											 <h5 class="modal-title">{{modalInfo.title}}</h5>
-											<button type="button" class="close" data-dismiss="modal">
-												<span>&times;</span>
-											</button>
+									<div class="modal-body">
+										<h6><strong>Description</strong></h6>
+										<p>{{modalInfo.description}}</p>
+										<br>
+										<h6><strong>Captured by:</strong></h6>
+										<p><em>{{userInfo.name}}</em></p>
+									</div>
+									<div class="row mb-2 container ml-0" v-if="user != null">
+										<div class="col-6 pl-0">
+											<button class="btn btn-danger text-white btn-block" @click.prevent="postSocial('like')" :class="{'btn-dark': like}">{{likeMessage}}</button>
 										</div>
-										<div class="modal-body">
-											<h6><strong>Description</strong></h6>
-											<p>{{modalInfo.description}}</p>
-											<br>
-											<h6><strong>Captured by:</strong></h6>
-											<p><em>{{userInfo.name}}</em></p>
+										<div class="col-6 pr-0">
+											<button class="btn btn-primary text-white btn-block"@click.prevent="postSocial('favourite')" :class="{'btn-dark': favourite}">{{favouriteMessage}}</button>
 										</div>
-										<div class="row mb-2" v-if="user != null">
-											<div class="col-md-6 pr-1">
-												<button class="btn btn-danger text-white btn-block" @click.prevent="postSocial('like')" :class="{'btn-dark': like}">{{likeMessage}}</button>
-											</div>
-											<div class="col-md-6 pl-1">
-												<button class="btn btn-primary text-white btn-block"@click.prevent="postSocial('favourite')" :class="{'btn-dark': favourite}">{{favouriteMessage}}</button>
-											</div>
-										</div>
+									</div>
+									<div class="container ml-0">
 										<button class="btn btn-dark text-white btn-block mb-2" @click="connect(userInfo.id)" v-if="user == null || user.id != userInfo.id">Connect</button>
 									</div>
 								</div>
@@ -268,5 +277,30 @@
 	@keyframes spin {
 		0% { transform: rotate(0deg); }
 		100% { transform: rotate(360deg); }
+	}
+
+	@media only screen and (max-width: 600px) {
+		.card {
+			height: 45vh !important;
+
+			img {
+				height: 45vh !important;
+			}
+		}
+
+		#postModal {
+			width: 100vw !important;
+			margin: auto;
+
+			.modal-lg, .modal-dialog {
+				max-width: none !important;
+			}
+
+			img {
+				width: 100% !important;
+				max-height: 80vh;
+				object-fit: contain;
+			}
+		}
 	}
 </style>

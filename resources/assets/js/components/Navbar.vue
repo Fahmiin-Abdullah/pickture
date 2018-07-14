@@ -36,15 +36,16 @@
 					</li>
 					<template v-if="user && validUser">
 						<li class="nav-item px-3">
-							<router-link :to="`/profile/${user.id}`" class="nav-link text-white" href="#"><i class="fas fa-user"></i><p class="white-text float-right pl-3 mb-0">Welcome, {{user.name}}</p></router-link>
+							<router-link :to="`/profile/${user.id}`" class="nav-link text-white d-none d-sm-block" href="#"><i class="fas fa-user"></i><p class="white-text float-right pl-3 mb-0">Welcome, {{user.name}}</p></router-link>
+							<router-link :to="`/profile/${user.id}`" class="nav-link text-white d-block d-sm-none" href="#"><i class="fas fa-user"></i><span class="white-text pl-3 mb-0">Welcome, {{user.name}}</span></router-link>
 						</li>
 					</template>
 				</ul>
 				
 				<!--Search bar-->
-				<form class="form-inline my-2 my-lg-0" :class="{hidden: validDiscovery}">
-					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="searchTerm">
-					<button class="btn btn-outline-success my-2 my-sm-0" @click.prevent="search()">Search</button>
+				<form class="form-inline my-2" :class="{hidden: validDiscovery}">
+					<input class="form-control mx-2 searchBar" type="search" placeholder="Search" aria-label="Search" v-model="searchTerm">
+					<button class="btn btn-outline-success my-2" @click.prevent="search()">Search</button>
 				</form>
 			</div>
 		</div>
@@ -95,6 +96,12 @@
 		    top:0;
 		    left:100%;
 		    margin-top:-6px;
+		}
+	}
+
+	@media only screen and (max-width: 600px) {
+		.searchBar {
+			width: 75%;
 		}
 	}
 </style>

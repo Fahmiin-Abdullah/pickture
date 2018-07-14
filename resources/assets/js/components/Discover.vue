@@ -2,14 +2,14 @@
 	<div class="mb-3">
 		<!--Intro row-->
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-sm-6 mb-3 mb-sm-0">
 				<h3>{{introMessage}}</h3>
 			</div>
-			<div class="col-md-6">
-				<form class="form-inline my-2 my-lg-0 float-right">
-					<div class="mr-3" :class="{discover_loader: loader}"></div>
-					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="searchTerm">
-					<button class="btn btn-outline-success my-2 my-sm-0" @click.prevent="getPosts(searchTerm)">Search</button>
+			<div class="col-sm-6">
+				<form class="form-inline">
+					<input class="form-control mr-2 searchBar" type="search" placeholder="Search" aria-label="Search" v-model="searchTerm">
+					<button class="btn btn-outline-success" @click.prevent="getPosts(searchTerm)">Search</button>
+					<div class="ml-3" :class="{discover_loader: loader}"></div>
 				</form>
 			</div>
 		</div>
@@ -53,15 +53,17 @@
 									<h6><strong>Captured by:</strong></h6>
 									<p><em>{{userInfo.name}}</em></p>
 								</div>
-								<div class="row mb-2" v-if="user != null">
-									<div class="col-md-6 pr-1">
+								<div class="row mb-2 container ml-0" v-if="user != null">
+									<div class="col-6 pl-0">
 										<button class="btn btn-danger text-white btn-block" @click.prevent="postSocial('like')" :class="{'btn-dark': like}">{{likeMessage}}</button>
 									</div>
-									<div class="col-md-6 pl-1">
+									<div class="col-6 pr-0">
 										<button class="btn btn-primary text-white btn-block"@click.prevent="postSocial('favourite')" :class="{'btn-dark': favourite}">{{favouriteMessage}}</button>
 									</div>
 								</div>
-								<button class="btn btn-dark text-white btn-block mb-2" @click="connect(userInfo.id)" v-if="user == null || user.id != userInfo.id">Connect</button>
+								<div class="container ml-0">
+									<button class="btn btn-dark text-white btn-block mb-2" @click="connect(userInfo.id)" v-if="user == null || user.id != userInfo.id">Connect</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -199,7 +201,11 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+	.searchBar {
+		width: 33vw !important;
+	}
+
 	.card-discover {
 		background-color: #fff;
 		height: 33vh !important;
@@ -270,5 +276,34 @@
 	@keyframes spin {
 		0% { transform: rotate(0deg); }
 		100% { transform: rotate(360deg); }
+	}
+
+	@media only screen and (max-width: 600px) {
+		.searchBar {
+			width: 60vw !important;
+		}
+
+		.card-discover {
+			height: 45vh !important;
+
+			img {
+				height: 45vh !important;
+			}
+		}
+
+		.discoverModal {
+			width: 100vw !important;
+			margin: auto;
+
+			.modal-lg, .modal-dialog {
+				max-width: none !important;
+			}
+
+			img {
+				width: 100% !important;
+				max-height: 80vh;
+				object-fit: contain;
+			}
+		}
 	}
 </style>

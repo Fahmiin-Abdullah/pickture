@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<!--Signup section-->
-			<div class="col-md-5">
+			<div class="col-sm-5 mb-3">
 				<div class="card">
 					<div class="card-body pb-5">
 						<h5 class="card-title text-center mb-3">Don't have an account yet? Sign up now!</h5>
@@ -39,8 +39,8 @@
 			</div>
 
 			<!--Login section-->
-			<div class="col-md-7">
-				<div class="card mb-4">
+			<div class="col-sm-7">
+				<div class="card mb-3">
 					<div class="card-body pb-5">
 						<h5 class="card-title text-center mb-3">Already have an account? Just login!</h5>
 						<form>

@@ -50349,7 +50349,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "/*Main styles*/\n.container90 {\n  width: 90%;\n  margin: auto;\n}\n.br-10 {\n  border-radius: 10px;\n}\n.hidden {\n  display: none;\n}\n.carousel-item img {\n  height: 500px;\n}\n", ""]);
+exports.push([module.i, "/*Main styles*/\n.container90 {\n  width: 90%;\n  margin: auto;\n}\n.br-10 {\n  border-radius: 10px;\n}\n.hidden {\n  display: none;\n}\n.carousel-item img {\n  height: 500px;\n}\n@media only screen and (max-width: 600px) {\n.carousel-item img {\n    height: 50vh !important;\n}\n}\n", ""]);
 
 // exports
 
@@ -50457,7 +50457,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-md-8" }, [
+    _c("div", { staticClass: "col-md-8 mb-3" }, [
       _c(
         "div",
         {
@@ -50550,7 +50550,7 @@ var render = function() {
       _c("div", { staticClass: "row mt-4" }, [
         _c(
           "div",
-          { staticClass: "col-md-6" },
+          { staticClass: "col-6" },
           [
             _c(
               "router-link",
@@ -50569,7 +50569,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "col-md-6" },
+          { staticClass: "col-6" },
           [
             _c(
               "router-link",
@@ -50825,7 +50825,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "col-sm-6 mb-3" }, [
         _c("div", { staticClass: "card br-10" }, [
           _c("div", { staticClass: "card-body" }, [
             _c("h4", { staticClass: "text-success text-center" }, [
@@ -50885,7 +50885,7 @@ var staticRenderFns = [
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "col-sm-6" }, [
         _c("div", { staticClass: "card br-10" }, [
           _c("div", { staticClass: "card-body" }, [
             _c("h4", { staticClass: "text-danger text-center" }, [
@@ -50956,19 +50956,19 @@ if (false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(59)
+  __webpack_require__(87)
 }
 var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(61)
 /* template */
-var __vue_template__ = __webpack_require__(62)
+var __vue_template__ = __webpack_require__(89)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-3ad881e0"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -51001,51 +51001,15 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(60);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("a7a1b328", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3ad881e0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Discover.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3ad881e0\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Discover.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.card-discover {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-discover img {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-discover:hover img {\n  opacity: 0.5;\n}\n.card-discover:hover .text {\n  opacity: 1;\n}\n.text {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n.discoverModal {\n  width: 80vw !important;\n  margin: auto;\n}\n.discoverModal .modal-lg, .discoverModal .modal-dialog {\n    max-width: none !important;\n}\n.discoverModal img {\n    width: 53vw;\n    max-height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.discover_loader {\n  border: 3px solid #f9f9f9;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin 2s linear infinite;\n          animation: spin 2s linear infinite;\n}\n@-webkit-keyframes spin {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 59 */,
+/* 60 */,
 /* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -51248,282 +51212,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 62 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mb-3" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("h3", [_vm._v(_vm._s(_vm.introMessage))])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("form", { staticClass: "form-inline my-2 my-lg-0 float-right" }, [
-          _c("div", {
-            staticClass: "mr-3",
-            class: { discover_loader: _vm.loader }
-          }),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.searchTerm,
-                expression: "searchTerm"
-              }
-            ],
-            staticClass: "form-control mr-sm-2",
-            attrs: {
-              type: "search",
-              placeholder: "Search",
-              "aria-label": "Search"
-            },
-            domProps: { value: _vm.searchTerm },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.searchTerm = $event.target.value
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-outline-success my-2 my-sm-0",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.getPosts(_vm.searchTerm)
-                }
-              }
-            },
-            [_vm._v("Search")]
-          )
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("hr"),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row" },
-      [
-        _vm._l(_vm.posts[0], function(post) {
-          return _c("div", { staticClass: "col-md-4 mb-4 discover" }, [
-            _c("div", { staticClass: "card-discover" }, [
-              _c(
-                "a",
-                {
-                  attrs: { href: "#postModal", "data-toggle": "modal" },
-                  on: {
-                    click: function($event) {
-                      _vm.modalOpen(post.id)
-                    }
-                  }
-                },
-                [
-                  _c("img", {
-                    staticClass: "card-img-top",
-                    attrs: {
-                      src:
-                        "http://pickture.me/images/uploads/postphoto/" +
-                        post.postphoto
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "text" }, [
-                    _c("h1", [
-                      _c("strong", [
-                        _c("i", { staticClass: "fas fa-heart pr-3" }),
-                        _vm._v(_vm._s(post.likes_count))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("h1", [
-                      _c("strong", [
-                        _c("i", { staticClass: "fas fa-star pr-3" }),
-                        _vm._v(_vm._s(post.favourites_count))
-                      ])
-                    ])
-                  ])
-                ]
-              )
-            ])
-          ])
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "modal fade discoverModal",
-            attrs: { id: "postModal", tabindex: "-1" }
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "modal-dialog modal-dialog-centered modal-lg" },
-              [
-                _c("div", { staticClass: "modal-content" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-8" }, [
-                      _c("img", {
-                        staticClass: "rounded-left",
-                        attrs: {
-                          alt: "Card image cap",
-                          src:
-                            "http://pickture.me/images/uploads/postphoto/" +
-                            _vm.modalInfo.postphoto
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4 pr-4" }, [
-                      _c("div", { staticClass: "modal-header" }, [
-                        _c("h5", { staticClass: "modal-title" }, [
-                          _vm._v(_vm._s(_vm.modalInfo.title))
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(0)
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "modal-body" }, [
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c("p", [_vm._v(_vm._s(_vm.modalInfo.description))]),
-                        _vm._v(" "),
-                        _c("br"),
-                        _vm._v(" "),
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _c("p", [_c("em", [_vm._v(_vm._s(_vm.userInfo.name))])])
-                      ]),
-                      _vm._v(" "),
-                      _vm.user != null
-                        ? _c("div", { staticClass: "row mb-2" }, [
-                            _c("div", { staticClass: "col-md-6 pr-1" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-danger text-white btn-block",
-                                  class: { "btn-dark": _vm.like },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      _vm.postSocial("like")
-                                    }
-                                  }
-                                },
-                                [_vm._v(_vm._s(_vm.likeMessage))]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-6 pl-1" }, [
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-primary text-white btn-block",
-                                  class: { "btn-dark": _vm.favourite },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      _vm.postSocial("favourite")
-                                    }
-                                  }
-                                },
-                                [_vm._v(_vm._s(_vm.favouriteMessage))]
-                              )
-                            ])
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.user == null || _vm.user.id != _vm.userInfo.id
-                        ? _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-dark text-white btn-block mb-2",
-                              on: {
-                                click: function($event) {
-                                  _vm.connect(_vm.userInfo.id)
-                                }
-                              }
-                            },
-                            [_vm._v("Connect")]
-                          )
-                        : _vm._e()
-                    ])
-                  ])
-                ])
-              ]
-            )
-          ]
-        )
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-block btn-success text-white",
-        on: {
-          click: function($event) {
-            _vm.getPosts(_vm.next_page_url)
-          }
-        }
-      },
-      [_vm._v(_vm._s(_vm.message))]
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: { type: "button", "data-dismiss": "modal" }
-      },
-      [_c("span", [_vm._v("×")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h6", [_c("strong", [_vm._v("Description")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h6", [_c("strong", [_vm._v("Captured by:")])])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3ad881e0", module.exports)
-  }
-}
-
-/***/ }),
+/* 62 */,
 /* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -51609,7 +51298,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.list-group-item[data-v-4bfcfa5a]:hover {\n  background-color: #28a745;\n  color: #fff;\n}\n.card[data-v-4bfcfa5a] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card img[data-v-4bfcfa5a] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card:hover img[data-v-4bfcfa5a] {\n  opacity: 0.5;\n}\n.card:hover .text[data-v-4bfcfa5a] {\n  opacity: 1;\n}\n.text[data-v-4bfcfa5a] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n#postModal[data-v-4bfcfa5a] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-4bfcfa5a], #postModal .modal-dialog[data-v-4bfcfa5a] {\n    max-width: none !important;\n}\n#postModal img[data-v-4bfcfa5a] {\n    width: 54vw;\n    max-height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.loader[data-v-4bfcfa5a] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-4bfcfa5a 2s linear infinite;\n          animation: spin-data-v-4bfcfa5a 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-4bfcfa5a {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-4bfcfa5a {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n", ""]);
+exports.push([module.i, "\n.list-group-item[data-v-4bfcfa5a]:hover {\n  background-color: #28a745;\n  color: #fff;\n}\n.card[data-v-4bfcfa5a] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card img[data-v-4bfcfa5a] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card:hover img[data-v-4bfcfa5a] {\n  opacity: 0.5;\n}\n.card:hover .text[data-v-4bfcfa5a] {\n  opacity: 1;\n}\n.text[data-v-4bfcfa5a] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n#postModal[data-v-4bfcfa5a] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-4bfcfa5a], #postModal .modal-dialog[data-v-4bfcfa5a] {\n    max-width: none !important;\n}\n#postModal img[data-v-4bfcfa5a] {\n    width: 54vw;\n    max-height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.loader[data-v-4bfcfa5a] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-4bfcfa5a 2s linear infinite;\n          animation: spin-data-v-4bfcfa5a 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-4bfcfa5a {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-4bfcfa5a {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@media only screen and (max-width: 600px) {\n.card[data-v-4bfcfa5a] {\n    height: 45vh !important;\n}\n.card img[data-v-4bfcfa5a] {\n      height: 45vh !important;\n}\n#postModal[data-v-4bfcfa5a] {\n    width: 100vw !important;\n    margin: auto;\n}\n#postModal .modal-lg[data-v-4bfcfa5a], #postModal .modal-dialog[data-v-4bfcfa5a] {\n      max-width: none !important;\n}\n#postModal img[data-v-4bfcfa5a] {\n      width: 100% !important;\n      max-height: 80vh;\n      -o-object-fit: contain;\n         object-fit: contain;\n}\n}\n", ""]);
 
 // exports
 
@@ -51620,6 +51309,15 @@ exports.push([module.i, "\n.list-group-item[data-v-4bfcfa5a]:hover {\n  backgrou
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -51825,7 +51523,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-md-3" }, [
+    _c("div", { staticClass: "col-sm-3" }, [
       _c("h5", { staticClass: "text-center mb-3" }, [
         _vm._v("Pick one to begin")
       ]),
@@ -51856,15 +51554,132 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col md-9" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3" }, [
-            _c("h2", [_vm._v("Total posts (" + _vm._s(_vm.posts.total) + ")")])
-          ]),
+    _c("div", { staticClass: "col sm-9" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-3" }, [
+          _c("h2", [_vm._v("Total posts (" + _vm._s(_vm.posts.total) + ")")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-9 d-none d-sm-block" }, [
+          _c("ul", { staticClass: "pagination" }, [
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: { disabled: !_vm.posts.prev_page_url }
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link bg-dark text-white",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.fetchPosts("pagination", _vm.posts.prev_page_url)
+                      }
+                    }
+                  },
+                  [_vm._v("Previous")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("li", { staticClass: "page-item disabled" }, [
+              _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                _vm._v(
+                  "Page " +
+                    _vm._s(_vm.posts.current_page) +
+                    " of " +
+                    _vm._s(_vm.posts.last_page)
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: { disabled: !_vm.posts.next_page_url }
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link bg-dark text-white",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.fetchPosts("pagination", _vm.posts.next_page_url)
+                      }
+                    }
+                  },
+                  [_vm._v("Next")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "ml-3",
+              class: { loader: _vm.loader },
+              attrs: { id: "pagination" }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("hr", { staticClass: "my-2" }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row" },
+        [
+          _vm._l(_vm.posts.data, function(post) {
+            return _c("div", { staticClass: "col-sm-4 mb-4" }, [
+              _c("div", { staticClass: "card" }, [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "#postModal", "data-toggle": "modal" },
+                    on: {
+                      click: function($event) {
+                        _vm.modalOpen(post.id)
+                      }
+                    }
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "card-img-top",
+                      attrs: {
+                        src:
+                          "http://pickture.me/images/uploads/postphoto/" +
+                          post.postphoto
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "text" }, [
+                      _c("h1", [
+                        _c("strong", [
+                          _c("i", { staticClass: "fas fa-heart pr-3" }),
+                          _vm._v(_vm._s(post.likes_count))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("h1", [
+                        _c("strong", [
+                          _c("i", { staticClass: "fas fa-star pr-3" }),
+                          _vm._v(_vm._s(post.favourites_count))
+                        ])
+                      ])
+                    ])
+                  ]
+                )
+              ])
+            ])
+          }),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-9" }, [
-            _c("ul", { staticClass: "pagination" }, [
+          _c("div", { staticClass: "col-sm-9 d-block d-sm-none" }, [
+            _c("ul", { staticClass: "pagination justify-content-center" }, [
               _c(
                 "li",
                 {
@@ -51928,114 +51743,62 @@ var render = function() {
                 attrs: { id: "pagination" }
               })
             ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("hr", { staticClass: "my-2" }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "row" },
-          [
-            _vm._l(_vm.posts.data, function(post) {
-              return _c("div", { staticClass: "col-md-4 mb-4" }, [
-                _c("div", { staticClass: "card" }, [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "#postModal", "data-toggle": "modal" },
-                      on: {
-                        click: function($event) {
-                          _vm.modalOpen(post.id)
-                        }
-                      }
-                    },
-                    [
-                      _c("img", {
-                        staticClass: "card-img-top",
-                        attrs: {
-                          src:
-                            "http://pickture.me/images/uploads/postphoto/" +
-                            post.postphoto
-                        }
-                      }),
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "modal fade",
+              attrs: { id: "postModal", tabindex: "-1" }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "modal-dialog modal-dialog-centered modal-lg" },
+                [
+                  _c("div", { staticClass: "modal-content" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-8" }, [
+                        _c("img", {
+                          staticClass: "rounded-left",
+                          attrs: {
+                            alt: "Card image cap",
+                            src:
+                              "http://pickture.me/images/uploads/postphoto/" +
+                              _vm.modalInfo.postphoto
+                          }
+                        })
+                      ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "text" }, [
-                        _c("h1", [
-                          _c("strong", [
-                            _c("i", { staticClass: "fas fa-heart pr-3" }),
-                            _vm._v(_vm._s(post.likes_count))
+                      _c("div", { staticClass: "col-md-4 pr-4" }, [
+                        _c("div", { staticClass: "modal-header" }, [
+                          _c("h5", { staticClass: "modal-title" }, [
+                            _vm._v(_vm._s(_vm.modalInfo.title))
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(0)
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-body" }, [
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _c("p", [_vm._v(_vm._s(_vm.modalInfo.description))]),
+                          _vm._v(" "),
+                          _c("br"),
+                          _vm._v(" "),
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _c("p", [
+                            _c("em", [_vm._v(_vm._s(_vm.userInfo.name))])
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("h1", [
-                          _c("strong", [
-                            _c("i", { staticClass: "fas fa-star pr-3" }),
-                            _vm._v(_vm._s(post.favourites_count))
-                          ])
-                        ])
-                      ])
-                    ]
-                  )
-                ])
-              ])
-            }),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "modal fade",
-                attrs: { id: "postModal", tabindex: "-1" }
-              },
-              [
-                _c(
-                  "div",
-                  {
-                    staticClass: "modal-dialog modal-dialog-centered modal-lg"
-                  },
-                  [
-                    _c("div", { staticClass: "modal-content" }, [
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col-md-8" }, [
-                          _c("img", {
-                            staticClass: "rounded-left",
-                            attrs: {
-                              alt: "Card image cap",
-                              src:
-                                "http://pickture.me/images/uploads/postphoto/" +
-                                _vm.modalInfo.postphoto
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-4 pr-4" }, [
-                          _c("div", { staticClass: "modal-header" }, [
-                            _c("h5", { staticClass: "modal-title" }, [
-                              _vm._v(_vm._s(_vm.modalInfo.title))
-                            ]),
-                            _vm._v(" "),
-                            _vm._m(0)
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "modal-body" }, [
-                            _vm._m(1),
-                            _vm._v(" "),
-                            _c("p", [
-                              _vm._v(_vm._s(_vm.modalInfo.description))
-                            ]),
-                            _vm._v(" "),
-                            _c("br"),
-                            _vm._v(" "),
-                            _vm._m(2),
-                            _vm._v(" "),
-                            _c("p", [
-                              _c("em", [_vm._v(_vm._s(_vm.userInfo.name))])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _vm.user != null
-                            ? _c("div", { staticClass: "row mb-2" }, [
-                                _c("div", { staticClass: "col-md-6 pr-1" }, [
+                        _vm.user != null
+                          ? _c(
+                              "div",
+                              { staticClass: "row mb-2 container ml-0" },
+                              [
+                                _c("div", { staticClass: "col-6 pl-0" }, [
                                   _c(
                                     "button",
                                     {
@@ -52053,7 +51816,7 @@ var render = function() {
                                   )
                                 ]),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "col-md-6 pl-1" }, [
+                                _c("div", { staticClass: "col-6 pr-0" }, [
                                   _c(
                                     "button",
                                     {
@@ -52070,9 +51833,11 @@ var render = function() {
                                     [_vm._v(_vm._s(_vm.favouriteMessage))]
                                   )
                                 ])
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "container ml-0" }, [
                           _vm.user == null || _vm.user.id != _vm.userInfo.id
                             ? _c(
                                 "button",
@@ -52091,14 +51856,14 @@ var render = function() {
                         ])
                       ])
                     ])
-                  ]
-                )
-              ]
-            )
-          ],
-          2
-        )
-      ])
+                  ])
+                ]
+              )
+            ]
+          )
+        ],
+        2
+      )
     ])
   ])
 }
@@ -52559,7 +52324,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-5" }, [
+      _c("div", { staticClass: "col-sm-5 mb-3" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-body pb-5" }, [
             _c("h5", { staticClass: "card-title text-center mb-3" }, [
@@ -52719,8 +52484,8 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-7" }, [
-        _c("div", { staticClass: "card mb-4" }, [
+      _c("div", { staticClass: "col-sm-7" }, [
+        _c("div", { staticClass: "card mb-3" }, [
           _c("div", { staticClass: "card-body pb-5" }, [
             _c("h5", { staticClass: "card-title text-center mb-3" }, [
               _vm._v("Already have an account? Just login!")
@@ -53098,7 +52863,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  height: 20vh;\n  border-radius: 50%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.pointer[data-v-22ef5402] {\n  cursor: pointer;\n}\n.has-error input[data-v-22ef5402], .has-error textarea[data-v-22ef5402], .has-error select[data-v-22ef5402] {\n  border: 1px solid red;\n}\n.help-block[data-v-22ef5402] {\n  color: red;\n}\n.loader[data-v-22ef5402] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-22ef5402 2s linear infinite;\n          animation: spin-data-v-22ef5402 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#postModal[data-v-22ef5402], #photoModal[data-v-22ef5402] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-22ef5402], #postModal .modal-dialog[data-v-22ef5402], #photoModal .modal-lg[data-v-22ef5402], #photoModal .modal-dialog[data-v-22ef5402] {\n    max-width: none !important;\n}\n#postModal img[data-v-22ef5402], #photoModal img[data-v-22ef5402] {\n    width: 54vw;\n    max-height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.card-post[data-v-22ef5402] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-post img[data-v-22ef5402] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-post:hover img[data-v-22ef5402] {\n  opacity: 0.5;\n}\n.card-post:hover .text[data-v-22ef5402] {\n  opacity: 1;\n}\n.text[data-v-22ef5402] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  height: 20vh;\n  border-radius: 50%;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.pointer[data-v-22ef5402] {\n  cursor: pointer;\n}\n.has-error input[data-v-22ef5402], .has-error textarea[data-v-22ef5402], .has-error select[data-v-22ef5402] {\n  border: 1px solid red;\n}\n.help-block[data-v-22ef5402] {\n  color: red;\n}\n.loader[data-v-22ef5402] {\n  border: 3px solid #fff;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-22ef5402 2s linear infinite;\n          animation: spin-data-v-22ef5402 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-22ef5402 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#postModal[data-v-22ef5402], #photoModal[data-v-22ef5402] {\n  width: 80vw !important;\n  margin: auto;\n}\n#postModal .modal-lg[data-v-22ef5402], #postModal .modal-dialog[data-v-22ef5402], #photoModal .modal-lg[data-v-22ef5402], #photoModal .modal-dialog[data-v-22ef5402] {\n    max-width: none !important;\n}\n#postModal img[data-v-22ef5402], #photoModal img[data-v-22ef5402] {\n    width: 54vw;\n    max-height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.card-post[data-v-22ef5402] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-post img[data-v-22ef5402] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-post:hover img[data-v-22ef5402] {\n  opacity: 0.5;\n}\n.card-post:hover .text[data-v-22ef5402] {\n  opacity: 1;\n}\n.text[data-v-22ef5402] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n@media only screen and (max-width: 600px) {\n.profilepic[data-v-22ef5402] {\n    width: 26vw !important;\n}\n.card-post[data-v-22ef5402] {\n    height: 45vh !important;\n}\n.card-post img[data-v-22ef5402] {\n      height: 45vh !important;\n}\n#photoModal[data-v-22ef5402], #postModal[data-v-22ef5402] {\n    width: 100vw !important;\n    margin: auto;\n}\n#photoModal .modal-lg[data-v-22ef5402], #photoModal .modal-dialog[data-v-22ef5402], #postModal .modal-lg[data-v-22ef5402], #postModal .modal-dialog[data-v-22ef5402] {\n      max-width: none !important;\n}\n#photoModal img[data-v-22ef5402], #postModal img[data-v-22ef5402] {\n      width: 100% !important;\n      max-height: 80vh;\n      -o-object-fit: contain;\n         object-fit: contain;\n}\n}\n", ""]);
 
 // exports
 
@@ -53109,6 +52874,17 @@ exports.push([module.i, "\n.profilepic[data-v-22ef5402] {\n  width: 10vw;\n  hei
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -53812,7 +53588,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-md-3" }, [
+    _c("div", { staticClass: "col-sm-3 mb-3" }, [
       _c("div", { staticClass: "card mb-3" }, [
         _c("div", { staticClass: "card-body" }, [
           _c("h4", { staticClass: "text-center mb-3" }, [
@@ -53886,11 +53662,11 @@ var render = function() {
         _vm._l(_vm.update.socials, function(social) {
           return _c("li", { staticClass: "list-group-item" }, [
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-2" }, [
+              _c("div", { staticClass: "col-2 text-center" }, [
                 _c("i", { class: social.social })
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-10 text-truncate" }, [
+              _c("div", { staticClass: "col-10 text-truncate" }, [
                 _c(
                   "a",
                   {
@@ -53912,9 +53688,9 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-md-9" }, [
+    _c("div", { staticClass: "col-sm-9" }, [
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-4" }, [
+        _c("div", { staticClass: "col-6 col-sm-4" }, [
           _c("h2", [
             _vm._v(
               _vm._s(_vm.headerMessage) + " (" + _vm._s(_vm.posts.total) + ")"
@@ -53922,7 +53698,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-4" }, [
+        _c("div", { staticClass: "col-sm-4 d-none d-sm-block" }, [
           _c("ul", { staticClass: "pagination" }, [
             _c(
               "li",
@@ -53989,7 +53765,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-md-4 text-lg-right" }, [
+        _c("div", { staticClass: "col-6 col-sm-4 text-lg-right" }, [
           _vm.user != null &&
           _vm.user.id == _vm.id &&
           _vm.favouriteList == false
@@ -54013,7 +53789,7 @@ var render = function() {
         [
           _vm._l(_vm.posts.data, function(post) {
             return !_vm.favouriteList
-              ? _c("div", { staticClass: "col-md-4" }, [
+              ? _c("div", { staticClass: "col-sm-4" }, [
                   _c("div", { staticClass: "card card-post mb-3" }, [
                     _c(
                       "a",
@@ -54059,7 +53835,7 @@ var render = function() {
           _vm._v(" "),
           _vm._l(_vm.posts.data, function(post) {
             return _vm.favouriteList
-              ? _c("div", { staticClass: "col-md-4" }, [
+              ? _c("div", { staticClass: "col-sm-4" }, [
                   _c("div", { staticClass: "card card-post mb-3" }, [
                     _c(
                       "a",
@@ -54104,7 +53880,74 @@ var render = function() {
           })
         ],
         2
-      )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-4 d-block d-sm-none" }, [
+        _c("ul", { staticClass: "pagination justify-content-center" }, [
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: { disabled: !_vm.posts.prev_page_url }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "page-link bg-dark text-white",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      _vm.fetchPosts(_vm.posts.prev_page_url)
+                    }
+                  }
+                },
+                [_vm._v("Previous")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("li", { staticClass: "page-item disabled" }, [
+            _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+              _vm._v(
+                "Page " +
+                  _vm._s(_vm.posts.current_page) +
+                  " of " +
+                  _vm._s(_vm.posts.last_page)
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: { disabled: !_vm.posts.next_page_url }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "page-link bg-dark text-white",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      _vm.fetchPosts(_vm.posts.next_page_url)
+                    }
+                  }
+                },
+                [_vm._v("Next")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "ml-3",
+            class: { loader: _vm.loader },
+            attrs: { id: "pagination" }
+          })
+        ])
+      ])
     ]),
     _vm._v(" "),
     _c(
@@ -54436,7 +54279,7 @@ var render = function() {
           [
             _c("div", { staticClass: "modal-content" }, [
               _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-8" }, [
+                _c("div", { staticClass: "col-sm-8" }, [
                   _c("img", {
                     attrs: { id: "postphoto" },
                     model: {
@@ -54449,7 +54292,7 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" }, [
+                _c("div", { staticClass: "col-sm-4" }, [
                   _vm._m(6),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
@@ -54709,7 +54552,7 @@ var render = function() {
           [
             _c("div", { staticClass: "modal-content" }, [
               _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-8" }, [
+                _c("div", { staticClass: "col-sm-8" }, [
                   _c("img", {
                     staticClass: "rounded-left",
                     attrs: {
@@ -54723,7 +54566,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  { staticClass: "col-md-4 pr-4" },
+                  { staticClass: "col-sm-4 pr-4" },
                   [
                     !_vm.edit
                       ? [
@@ -54744,57 +54587,63 @@ var render = function() {
                           !_vm.deleteP
                             ? [
                                 _vm.user != null
-                                  ? _c("div", { staticClass: "row mb-2" }, [
-                                      _c(
-                                        "div",
-                                        { staticClass: "col-md-6 pr-1" },
-                                        [
-                                          _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "btn btn-danger text-white btn-block",
-                                              class: { "btn-dark": _vm.like },
-                                              on: {
-                                                click: function($event) {
-                                                  $event.preventDefault()
-                                                  _vm.postSocial("like")
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass: "row mb-2 container ml-0"
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "col-6 pl-0" },
+                                          [
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass:
+                                                  "btn btn-danger text-white btn-block",
+                                                class: { "btn-dark": _vm.like },
+                                                on: {
+                                                  click: function($event) {
+                                                    $event.preventDefault()
+                                                    _vm.postSocial("like")
+                                                  }
                                                 }
-                                              }
-                                            },
-                                            [_vm._v(_vm._s(_vm.likeMessage))]
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        { staticClass: "col-md-6 pl-1" },
-                                        [
-                                          _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "btn btn-primary text-white btn-block",
-                                              class: {
-                                                "btn-dark": _vm.favourite
                                               },
-                                              on: {
-                                                click: function($event) {
-                                                  $event.preventDefault()
-                                                  _vm.postSocial("favourite")
+                                              [_vm._v(_vm._s(_vm.likeMessage))]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "col-6 pr-0" },
+                                          [
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass:
+                                                  "btn btn-primary text-white btn-block",
+                                                class: {
+                                                  "btn-dark": _vm.favourite
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    $event.preventDefault()
+                                                    _vm.postSocial("favourite")
+                                                  }
                                                 }
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                _vm._s(_vm.favouriteMessage)
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    ])
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(_vm.favouriteMessage)
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
                                   : _vm._e()
                               ]
                             : _vm._e()
@@ -54803,317 +54652,325 @@ var render = function() {
                     _vm._v(" "),
                     _vm.user != null && _vm.user.id == _vm.id
                       ? [
-                          !_vm.deleteP
-                            ? _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-success text-white btn-block my-2",
-                                  on: {
-                                    click: function($event) {
-                                      _vm.edit = !_vm.edit
-                                    }
-                                  }
-                                },
-                                [_vm._v("Edit")]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          !_vm.edit
-                            ? _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn btn-dark texxt-white btn-block",
-                                  on: {
-                                    click: function($event) {
-                                      _vm.deleteP = !_vm.deleteP
-                                    }
-                                  }
-                                },
-                                [_vm._v("Delete")]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c("br"),
-                          _vm._v(" "),
-                          _vm.edit
-                            ? _c("form", [
-                                _c("h5", { staticClass: "modal-title mb-2" }, [
-                                  _vm._v("Edit post details")
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
+                          _c("div", { staticClass: "container ml-0" }, [
+                            !_vm.deleteP
+                              ? _c(
+                                  "button",
                                   {
-                                    staticClass: "form-group",
-                                    class: { "has-error": _vm.hasErrors.title }
-                                  },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.modalInfo.title,
-                                          expression: "modalInfo.title"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: { type: "text" },
-                                      domProps: { value: _vm.modalInfo.title },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.modalInfo,
-                                            "title",
-                                            $event.target.value
-                                          )
-                                        }
+                                    staticClass:
+                                      "btn btn-success text-white btn-block my-2",
+                                    on: {
+                                      click: function($event) {
+                                        _vm.edit = !_vm.edit
                                       }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "span",
-                                      { staticClass: "float-right mb-1" },
-                                      [
-                                        _vm._v(
-                                          _vm._s(_vm.modalInfo.title.length) +
-                                            "/50"
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _vm.hasErrors.title
-                                      ? _c(
-                                          "span",
-                                          { staticClass: "help-block" },
-                                          [
-                                            _c("strong", [
-                                              _vm._v(
-                                                _vm._s(_vm.errorMessage.title)
-                                              )
-                                            ])
-                                          ]
-                                        )
-                                      : _vm._e()
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "form-group",
-                                    class: {
-                                      "has-error": _vm.hasErrors.description
                                     }
                                   },
-                                  [
-                                    _c("textarea", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.modalInfo.description,
-                                          expression: "modalInfo.description"
-                                        }
-                                      ],
-                                      staticClass: "form-control",
-                                      attrs: { rows: "4" },
-                                      domProps: {
-                                        value: _vm.modalInfo.description
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.modalInfo,
-                                            "description",
-                                            $event.target.value
-                                          )
-                                        }
+                                  [_vm._v("Edit")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            !_vm.edit
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-dark texxt-white btn-block",
+                                    on: {
+                                      click: function($event) {
+                                        _vm.deleteP = !_vm.deleteP
                                       }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "span",
-                                      { staticClass: "float-right mb-1" },
-                                      [
-                                        _vm._v(
-                                          _vm._s(
-                                            _vm.modalInfo.description.length
-                                          ) + "/200"
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _vm.hasErrors.description
-                                      ? _c(
-                                          "span",
-                                          { staticClass: "help-block" },
-                                          [
-                                            _c("strong", [
-                                              _vm._v(
-                                                _vm._s(
-                                                  _vm.errorMessage.description
-                                                )
-                                              )
-                                            ])
-                                          ]
-                                        )
-                                      : _vm._e()
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "input-group mb-4",
-                                    class: {
-                                      "has-error": _vm.hasErrors.category
                                     }
                                   },
-                                  [
-                                    _vm._m(11),
-                                    _vm._v(" "),
-                                    _c(
-                                      "select",
-                                      {
+                                  [_vm._v("Delete")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c("br"),
+                            _vm._v(" "),
+                            _vm.edit
+                              ? _c("form", [
+                                  _c(
+                                    "h5",
+                                    { staticClass: "modal-title mb-2" },
+                                    [_vm._v("Edit post details")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "form-group",
+                                      class: {
+                                        "has-error": _vm.hasErrors.title
+                                      }
+                                    },
+                                    [
+                                      _c("input", {
                                         directives: [
                                           {
                                             name: "model",
                                             rawName: "v-model",
-                                            value: _vm.modalInfo.category,
-                                            expression: "modalInfo.category"
+                                            value: _vm.modalInfo.title,
+                                            expression: "modalInfo.title"
                                           }
                                         ],
-                                        staticClass: "custom-select",
-                                        attrs: { id: "inputGroupSelect" },
+                                        staticClass: "form-control",
+                                        attrs: { type: "text" },
+                                        domProps: {
+                                          value: _vm.modalInfo.title
+                                        },
                                         on: {
-                                          change: function($event) {
-                                            var $$selectedVal = Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function(o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function(o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
                                             _vm.$set(
                                               _vm.modalInfo,
-                                              "category",
-                                              $event.target.multiple
-                                                ? $$selectedVal
-                                                : $$selectedVal[0]
+                                              "title",
+                                              $event.target.value
                                             )
                                           }
                                         }
-                                      },
-                                      _vm._l(_vm.categories, function(
-                                        category
-                                      ) {
-                                        return _c("option", [
-                                          _vm._v(_vm._s(category.category))
-                                        ])
-                                      })
-                                    ),
-                                    _vm._v(" "),
-                                    _vm.hasErrors.category
-                                      ? _c(
-                                          "span",
-                                          { staticClass: "help-block" },
-                                          [
-                                            _c("strong", [
-                                              _vm._v(
-                                                _vm._s(
-                                                  _vm.errorMessage.category
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        { staticClass: "float-right mb-1" },
+                                        [
+                                          _vm._v(
+                                            _vm._s(_vm.modalInfo.title.length) +
+                                              "/50"
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm.hasErrors.title
+                                        ? _c(
+                                            "span",
+                                            { staticClass: "help-block" },
+                                            [
+                                              _c("strong", [
+                                                _vm._v(
+                                                  _vm._s(_vm.errorMessage.title)
                                                 )
-                                              )
-                                            ])
-                                          ]
-                                        )
-                                      : _vm._e()
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "modal-footer" }, [
-                                  _vm.text
-                                    ? _c("div", {
-                                        staticClass: "mr-3",
-                                        class: { loader: _vm.loader },
-                                        attrs: { id: "updatePost" }
-                                      })
-                                    : _vm._e(),
+                                              ])
+                                            ]
+                                          )
+                                        : _vm._e()
+                                    ]
+                                  ),
                                   _vm._v(" "),
                                   _c(
-                                    "button",
+                                    "div",
                                     {
-                                      staticClass: "btn btn-success",
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          _vm.postAction(
-                                            _vm.modalInfo.id,
-                                            "update"
-                                          )
-                                        }
+                                      staticClass: "form-group",
+                                      class: {
+                                        "has-error": _vm.hasErrors.description
                                       }
                                     },
-                                    [_vm._v("Save changes")]
-                                  )
-                                ])
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.deleteP
-                            ? _c("form", [
-                                _c("div", { staticClass: "text-center" }, [
-                                  _c("h5", { staticClass: "mb-3" }, [
-                                    _vm._v(
-                                      "Are you sure you want to delete this post?"
-                                    )
-                                  ]),
+                                    [
+                                      _c("textarea", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.modalInfo.description,
+                                            expression: "modalInfo.description"
+                                          }
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: { rows: "4" },
+                                        domProps: {
+                                          value: _vm.modalInfo.description
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.modalInfo,
+                                              "description",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        { staticClass: "float-right mb-1" },
+                                        [
+                                          _vm._v(
+                                            _vm._s(
+                                              _vm.modalInfo.description.length
+                                            ) + "/200"
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm.hasErrors.description
+                                        ? _c(
+                                            "span",
+                                            { staticClass: "help-block" },
+                                            [
+                                              _c("strong", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.errorMessage.description
+                                                  )
+                                                )
+                                              ])
+                                            ]
+                                          )
+                                        : _vm._e()
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "input-group mb-4",
+                                      class: {
+                                        "has-error": _vm.hasErrors.category
+                                      }
+                                    },
+                                    [
+                                      _vm._m(11),
+                                      _vm._v(" "),
+                                      _c(
+                                        "select",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: _vm.modalInfo.category,
+                                              expression: "modalInfo.category"
+                                            }
+                                          ],
+                                          staticClass: "custom-select",
+                                          attrs: { id: "inputGroupSelect" },
+                                          on: {
+                                            change: function($event) {
+                                              var $$selectedVal = Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function(o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function(o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                              _vm.$set(
+                                                _vm.modalInfo,
+                                                "category",
+                                                $event.target.multiple
+                                                  ? $$selectedVal
+                                                  : $$selectedVal[0]
+                                              )
+                                            }
+                                          }
+                                        },
+                                        _vm._l(_vm.categories, function(
+                                          category
+                                        ) {
+                                          return _c("option", [
+                                            _vm._v(_vm._s(category.category))
+                                          ])
+                                        })
+                                      ),
+                                      _vm._v(" "),
+                                      _vm.hasErrors.category
+                                        ? _c(
+                                            "span",
+                                            { staticClass: "help-block" },
+                                            [
+                                              _c("strong", [
+                                                _vm._v(
+                                                  _vm._s(
+                                                    _vm.errorMessage.category
+                                                  )
+                                                )
+                                              ])
+                                            ]
+                                          )
+                                        : _vm._e()
+                                    ]
+                                  ),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "modal-footer" }, [
                                     _vm.text
                                       ? _c("div", {
                                           staticClass: "mr-3",
                                           class: { loader: _vm.loader },
-                                          attrs: { id: "deletePost" }
+                                          attrs: { id: "updatePost" }
                                         })
                                       : _vm._e(),
                                     _vm._v(" "),
                                     _c(
                                       "button",
                                       {
-                                        staticClass: "btn btn-dark",
+                                        staticClass: "btn btn-success",
                                         on: {
                                           click: function($event) {
                                             $event.preventDefault()
                                             _vm.postAction(
                                               _vm.modalInfo.id,
-                                              "delete"
+                                              "update"
                                             )
                                           }
                                         }
                                       },
-                                      [_vm._v("Yes, delete")]
+                                      [_vm._v("Save changes")]
                                     )
                                   ])
                                 ])
-                              ])
-                            : _vm._e()
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.deleteP
+                              ? _c("form", [
+                                  _c("div", { staticClass: "text-center" }, [
+                                    _c("h5", { staticClass: "mb-3" }, [
+                                      _vm._v(
+                                        "Are you sure you want to delete this post?"
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "modal-footer" }, [
+                                      _vm.text
+                                        ? _c("div", {
+                                            staticClass: "mr-3",
+                                            class: { loader: _vm.loader },
+                                            attrs: { id: "deletePost" }
+                                          })
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "btn btn-dark",
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              _vm.postAction(
+                                                _vm.modalInfo.id,
+                                                "delete"
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Yes, delete")]
+                                      )
+                                    ])
+                                  ])
+                                ])
+                              : _vm._e()
+                          ])
                         ]
                       : _vm._e()
                   ],
@@ -55369,7 +55226,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.navbar-nav li:hover ul.dropdown-menu[data-v-cd7fb372] {\n  display: block;\n}\n.dropdown-submenu[data-v-cd7fb372] {\n  position: relative;\n}\n.dropdown-submenu .dropdown-menu[data-v-cd7fb372] {\n  top: 0;\n  left: 100%;\n  margin-top: -6px;\n}\n", ""]);
+exports.push([module.i, "\n.navbar-nav li:hover ul.dropdown-menu[data-v-cd7fb372] {\n  display: block;\n}\n.dropdown-submenu[data-v-cd7fb372] {\n  position: relative;\n}\n.dropdown-submenu .dropdown-menu[data-v-cd7fb372] {\n  top: 0;\n  left: 100%;\n  margin-top: -6px;\n}\n@media only screen and (max-width: 600px) {\n.searchBar[data-v-cd7fb372] {\n    width: 75%;\n}\n}\n", ""]);
 
 // exports
 
@@ -55380,6 +55237,7 @@ exports.push([module.i, "\n.navbar-nav li:hover ul.dropdown-menu[data-v-cd7fb372
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -55692,7 +55550,8 @@ var render = function() {
                           _c(
                             "router-link",
                             {
-                              staticClass: "nav-link text-white",
+                              staticClass:
+                                "nav-link text-white d-none d-sm-block",
                               attrs: {
                                 to: "/profile/" + _vm.user.id,
                                 href: "#"
@@ -55709,6 +55568,26 @@ var render = function() {
                                 [_vm._v("Welcome, " + _vm._s(_vm.user.name))]
                               )
                             ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass:
+                                "nav-link text-white d-block d-sm-none",
+                              attrs: {
+                                to: "/profile/" + _vm.user.id,
+                                href: "#"
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "fas fa-user" }),
+                              _c(
+                                "span",
+                                { staticClass: "white-text pl-3 mb-0" },
+                                [_vm._v("Welcome, " + _vm._s(_vm.user.name))]
+                              )
+                            ]
                           )
                         ],
                         1
@@ -55722,7 +55601,7 @@ var render = function() {
             _c(
               "form",
               {
-                staticClass: "form-inline my-2 my-lg-0",
+                staticClass: "form-inline my-2",
                 class: { hidden: _vm.validDiscovery }
               },
               [
@@ -55735,7 +55614,7 @@ var render = function() {
                       expression: "searchTerm"
                     }
                   ],
-                  staticClass: "form-control mr-sm-2",
+                  staticClass: "form-control mx-2 searchBar",
                   attrs: {
                     type: "search",
                     placeholder: "Search",
@@ -55755,7 +55634,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-outline-success my-2 my-sm-0",
+                    staticClass: "btn btn-outline-success my-2",
                     on: {
                       click: function($event) {
                         $event.preventDefault()
@@ -55809,6 +55688,331 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(88);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("cf08aece", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3ad881e0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Discover.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3ad881e0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Discover.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.searchBar[data-v-3ad881e0] {\n  width: 33vw !important;\n}\n.card-discover[data-v-3ad881e0] {\n  background-color: #fff;\n  height: 33vh !important;\n  border-radius: 5px;\n}\n.card-discover img[data-v-3ad881e0] {\n    background-color: #fff;\n    height: 33vh !important;\n    border-radius: 5px;\n    -webkit-transition: 0.5s;\n    transition: 0.5s;\n    -o-object-fit: cover;\n       object-fit: cover;\n}\n.card-discover:hover img[data-v-3ad881e0] {\n  opacity: 0.5;\n}\n.card-discover:hover .text[data-v-3ad881e0] {\n  opacity: 1;\n}\n.text[data-v-3ad881e0] {\n  -webkit-transition: 0.5s;\n  transition: 0.5s;\n  color: #000;\n  opacity: 0;\n  font-size: 20px;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -ms-transform: translate(-50%, -50%);\n  text-align: center;\n}\n.discoverModal[data-v-3ad881e0] {\n  width: 80vw !important;\n  margin: auto;\n}\n.discoverModal .modal-lg[data-v-3ad881e0], .discoverModal .modal-dialog[data-v-3ad881e0] {\n    max-width: none !important;\n}\n.discoverModal img[data-v-3ad881e0] {\n    width: 53vw;\n    max-height: 80vh;\n    -o-object-fit: contain;\n       object-fit: contain;\n}\n.discover_loader[data-v-3ad881e0] {\n  border: 3px solid #f9f9f9;\n  border-top: 3px solid #28a745;\n  border-bottom: 3px solid #28a745;\n  border-radius: 50%;\n  width: 30px;\n  height: 30px;\n  -webkit-animation: spin-data-v-3ad881e0 2s linear infinite;\n          animation: spin-data-v-3ad881e0 2s linear infinite;\n}\n@-webkit-keyframes spin-data-v-3ad881e0 {\n0% {\n    -webkit-transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n}\n}\n@keyframes spin-data-v-3ad881e0 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@media only screen and (max-width: 600px) {\n.searchBar[data-v-3ad881e0] {\n    width: 60vw !important;\n}\n.card-discover[data-v-3ad881e0] {\n    height: 45vh !important;\n}\n.card-discover img[data-v-3ad881e0] {\n      height: 45vh !important;\n}\n.discoverModal[data-v-3ad881e0] {\n    width: 100vw !important;\n    margin: auto;\n}\n.discoverModal .modal-lg[data-v-3ad881e0], .discoverModal .modal-dialog[data-v-3ad881e0] {\n      max-width: none !important;\n}\n.discoverModal img[data-v-3ad881e0] {\n      width: 100% !important;\n      max-height: 80vh;\n      -o-object-fit: contain;\n         object-fit: contain;\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "mb-3" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-6 mb-3 mb-sm-0" }, [
+        _c("h3", [_vm._v(_vm._s(_vm.introMessage))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6" }, [
+        _c("form", { staticClass: "form-inline" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.searchTerm,
+                expression: "searchTerm"
+              }
+            ],
+            staticClass: "form-control mr-2 searchBar",
+            attrs: {
+              type: "search",
+              placeholder: "Search",
+              "aria-label": "Search"
+            },
+            domProps: { value: _vm.searchTerm },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.searchTerm = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-success",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.getPosts(_vm.searchTerm)
+                }
+              }
+            },
+            [_vm._v("Search")]
+          ),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "ml-3",
+            class: { discover_loader: _vm.loader }
+          })
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row" },
+      [
+        _vm._l(_vm.posts[0], function(post) {
+          return _c("div", { staticClass: "col-md-4 mb-4 discover" }, [
+            _c("div", { staticClass: "card-discover" }, [
+              _c(
+                "a",
+                {
+                  attrs: { href: "#postModal", "data-toggle": "modal" },
+                  on: {
+                    click: function($event) {
+                      _vm.modalOpen(post.id)
+                    }
+                  }
+                },
+                [
+                  _c("img", {
+                    staticClass: "card-img-top",
+                    attrs: {
+                      src:
+                        "http://pickture.me/images/uploads/postphoto/" +
+                        post.postphoto
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "text" }, [
+                    _c("h1", [
+                      _c("strong", [
+                        _c("i", { staticClass: "fas fa-heart pr-3" }),
+                        _vm._v(_vm._s(post.likes_count))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("h1", [
+                      _c("strong", [
+                        _c("i", { staticClass: "fas fa-star pr-3" }),
+                        _vm._v(_vm._s(post.favourites_count))
+                      ])
+                    ])
+                  ])
+                ]
+              )
+            ])
+          ])
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "modal fade discoverModal",
+            attrs: { id: "postModal", tabindex: "-1" }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "modal-dialog modal-dialog-centered modal-lg" },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-8" }, [
+                      _c("img", {
+                        staticClass: "rounded-left",
+                        attrs: {
+                          alt: "Card image cap",
+                          src:
+                            "http://pickture.me/images/uploads/postphoto/" +
+                            _vm.modalInfo.postphoto
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-4 pr-4" }, [
+                      _c("div", { staticClass: "modal-header" }, [
+                        _c("h5", { staticClass: "modal-title" }, [
+                          _vm._v(_vm._s(_vm.modalInfo.title))
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(0)
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "modal-body" }, [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(_vm.modalInfo.description))]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c("p", [_c("em", [_vm._v(_vm._s(_vm.userInfo.name))])])
+                      ]),
+                      _vm._v(" "),
+                      _vm.user != null
+                        ? _c(
+                            "div",
+                            { staticClass: "row mb-2 container ml-0" },
+                            [
+                              _c("div", { staticClass: "col-6 pl-0" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-danger text-white btn-block",
+                                    class: { "btn-dark": _vm.like },
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        _vm.postSocial("like")
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(_vm.likeMessage))]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-6 pr-0" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "btn btn-primary text-white btn-block",
+                                    class: { "btn-dark": _vm.favourite },
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        _vm.postSocial("favourite")
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(_vm.favouriteMessage))]
+                                )
+                              ])
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "container ml-0" }, [
+                        _vm.user == null || _vm.user.id != _vm.userInfo.id
+                          ? _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "btn btn-dark text-white btn-block mb-2",
+                                on: {
+                                  click: function($event) {
+                                    _vm.connect(_vm.userInfo.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Connect")]
+                            )
+                          : _vm._e()
+                      ])
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ]
+        )
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-block btn-success text-white",
+        on: {
+          click: function($event) {
+            _vm.getPosts(_vm.next_page_url)
+          }
+        }
+      },
+      [_vm._v(_vm._s(_vm.message))]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: { type: "button", "data-dismiss": "modal" }
+      },
+      [_c("span", [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_c("strong", [_vm._v("Description")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_c("strong", [_vm._v("Captured by:")])])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3ad881e0", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

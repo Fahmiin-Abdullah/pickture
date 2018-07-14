@@ -1,6 +1,6 @@
 <template>
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-sm-6 mb-3">
 			<div class="card br-10">
 				<div class="card-body">
 					<h4 class="text-success text-center">What is allowed?</h4>
@@ -16,7 +16,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-sm-6">
 			<div class="card br-10">
 				<div class="card-body">
 					<h4 class="text-danger text-center">What is not allowed?</h4>
