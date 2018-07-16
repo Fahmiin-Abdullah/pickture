@@ -63,6 +63,9 @@
 								</div>
 								<div class="container ml-0">
 									<button class="btn btn-dark text-white btn-block mb-2" @click="connect(userInfo.id)" v-if="user == null || user.id != userInfo.id">Connect</button>
+									<template v-if="modalInfo.status == 'downloadable'">
+										<button class="btn btn-info text-white btn-block mb-2" @click="download(modalInfo.postphoto)" v-if="user == null || user.id != userInfo.id">Download</button>
+									</template>
 								</div>
 							</div>
 						</div>
@@ -196,6 +199,20 @@
 					}
 				})
 				.catch(err => console.log(err));
+			},
+			download(params) {
+				axios({
+					url: `http://pickture.me/images/uploads/postphoto/${params}`,
+					method: 'GET',
+					responseType: 'blob'
+				}).then(res => {
+					const url = window.URL.createObjectURL(new Blob([res.data]));
+					const link = document.createElement('a');
+					link.href = url;
+					link.setAttribute('download', params);
+					document.body.appendChild(link);
+					link.click();
+				});
 			}
 		}
 	}

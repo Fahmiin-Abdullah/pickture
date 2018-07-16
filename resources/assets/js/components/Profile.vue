@@ -28,7 +28,7 @@
 		</div>
 		<div class="col-sm-9">
 			<div class="row">
-				<div class="col-6 col-sm-4">
+				<div class="col-7 col-sm-4">
 					<h2>{{headerMessage}} ({{posts.total}})</h2>
 				</div>
 				<div class="col-sm-4 d-none d-sm-block">
@@ -39,7 +39,7 @@
 						<div id="pagination" class="ml-3" :class="{loader: loader}"></div>
 					</ul>
 				</div>
-				<div class="col-6 col-sm-4 text-lg-right">
+				<div class="col-5 col-sm-4 text-lg-right">
 					<a class="btn btn-success text-white" data-toggle="modal" data-target="#postModal" v-if="user != null && user.id == id && favouriteList == false">Add new photo</a>
 				</div>
 			</div>
@@ -193,7 +193,7 @@
 		                                    <strong>{{errorMessage.description}}</strong>
 		                                </span>
 									</div>
-									<div class="input-group mb-4" :class="{'has-error': hasErrors.category}">
+									<div class="input-group mb-2" :class="{'has-error': hasErrors.category}">
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="inputGroupSelect">Select a category</label>
 										</div>
@@ -204,17 +204,30 @@
 		                                    <strong>{{errorMessage.category}}</strong>
 		                                </span>
 									</div>
+									<div :class="{'has-error': hasErrors.status}">
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="downloadable" v-model="postData.status">
+											<label class="form-check-label" for="inlineRadio1">Downloadable</label>
+										</div>
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="purchasable" v-model="postData.status">
+											<label class="form-check-label" for="inlineRadio2">Purchasable</label>
+										</div>
+									</div>
+									<span v-if="hasErrors.status" class="help-block">
+	                                    <strong>{{errorMessage.status}}</strong>
+	                                </span>
 								</form>
-								<p><em>Please ensure that your photo is in accordance to our <a href="#" @click="goToLicence()">terms of licences</a> before uploading.</em></p>
-								<div class="modal-footer">
-									<div id="post" class="mr-3" :class="{loader: postLoader}" v-if="text"></div>
-									<button class="btn btn-success white-text text-right" @click.prevent="profileAction('#post')">Create</button>
-								</div>
-								<span v-if="hasErrors.postphoto" class="help-block mt-3">
-                                    <strong>{{errorMessage.postphoto}}</strong>
-                                </span>
+								<p class="mb-0"><em>Please ensure that your photo is in accordance to our <a href="#" @click="goToLicence()">terms of licences</a> before uploading.</em></p>
 							</div>
 						</div>
+					</div>
+					<div class="modal-footer">
+						<span v-if="hasErrors.postphoto" class="help-block float-left mr-4">
+	                        <strong>{{errorMessage.postphoto}}</strong>
+	                    </span>
+						<div id="post" class="mr-3" :class="{loader: postLoader}" v-if="text"></div>
+						<button class="btn btn-success white-text text-right" @click.prevent="profileAction('#post')">Create</button>
 					</div>
 				</div>
 			</div>
@@ -223,7 +236,7 @@
 
 
 
-		<!--Edit and vie post section-->
+		<!--Edit and view post section-->
 		<div class="modal fade" id="photoModal" tabindex="-1">
 			<div class="modal-dialog modal-dialog-centered modal-lg">
 				<div class="modal-content">
@@ -252,6 +265,9 @@
 											<button class="btn btn-primary text-white btn-block"@click.prevent="postSocial('favourite')" :class="{'btn-dark': favourite}">{{favouriteMessage}}</button>
 										</div>
 									</div>
+									<div class="modal-footer" v-if="modalInfo.status == 'downloadable'">
+										<button class="btn btn-info text-white btn-block mb-2" @click="download(modalInfo.postphoto)" v-if="user == null || user.id != id">Download</button>
+									</div>
 								</template>
 							</template>
 							<template v-if="user != null && user.id == id">
@@ -263,14 +279,14 @@
 										<h5 class="modal-title mb-2">Edit post details</h5>
 										<div class="form-group" :class="{'has-error': hasErrors.title}">
 											<input type="text" class="form-control" v-model="modalInfo.title">
-											<span class="float-right mb-1">{{modalInfo.title.length}}/50</span>
+											<span class="float-right mb-1" v-if="modalInfo.title.length != null">{{modalInfo.title.length}}/50</span>
 											<span v-if="hasErrors.title" class="help-block">
 			                                    <strong>{{errorMessage.title}}</strong>
 			                                </span>
 										</div>
 										<div class="form-group" :class="{'has-error': hasErrors.description}">
 											<textarea class="form-control" rows="4" v-model="modalInfo.description"></textarea>
-											<span class="float-right mb-1">{{modalInfo.description.length}}/200</span>
+											<span class="float-right mb-1" v-if="modalInfo.description.length != null">{{modalInfo.description.length}}/200</span>
 											<span v-if="hasErrors.description" class="help-block">
 			                                    <strong>{{errorMessage.description}}</strong>
 			                                </span>
@@ -286,6 +302,19 @@
 			                                    <strong>{{errorMessage.category}}</strong>
 			                                </span>
 										</div>
+										<div :class="{'has-error': hasErrors.status}">
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="downloadable" v-model="modalInfo.status">
+												<label class="form-check-label" for="inlineRadio1">Downloadable</label>
+											</div>
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="purchasable" v-model="modalInfo.status">
+												<label class="form-check-label" for="inlineRadio2">Purchasable</label>
+											</div>
+										</div>
+										<span v-if="hasErrors.status" class="help-block">
+		                                    <strong>{{errorMessage.status}}</strong>
+		                                </span>
 										<div class="modal-footer">
 											<div id="updatePost" class="mr-3" :class="{loader: loader}" v-if="text"></div>
 											<button class="btn btn-success" @click.prevent="postAction(modalInfo.id, 'update')">Save changes</button>
@@ -338,6 +367,7 @@
 					title: null,
 					description: null,
 					category: null,
+					status: null,
 					postphoto: null,
 					postphotoURL: null
 				},
@@ -345,12 +375,14 @@
 					title: false,
 					description: false,
 					category: false,
+					status: false,
 					postphoto: false
 				},
 				errorMessage: {
 					title: null,
 					description: null,
 					category: null,
+					status: null,
 					postphoto: null
 				},
 				loader: false,
@@ -407,7 +439,6 @@
 				page = page || `/posts/${this.id}`;
 				axios.get(page)
 				.then(res => {
-					console.log(res);
 					_this.posts = res.data;
 					_this.loader = false;
 				})
@@ -496,6 +527,10 @@
 								_this.text = false;
 								_hasErrors.category = true;
 		                        _errMessage.category = _.isArray(errors.category) ? errors.category[0] : errors.category; 
+							} else if (errors.status) {
+								_this.text = false;
+								_hasErrors.status = true;
+								_errMessage.status = _.isArray(errors.status) ? errors.status[0] : errors.status;
 							}
 						}
 					}
@@ -551,7 +586,8 @@
 					}
 					setTimeout(() => {
 						_this.text = false;
-						_this.edit = _this.deletePost = false;
+						_this.edit = false;
+						_this.deletePost = false;
 						$('#photoModal').modal('hide');
 						_this.fetchPosts();
 					}, 2000);
@@ -597,6 +633,20 @@
 			goToLicence() {
 				$('#postModal').modal('hide');
 				this.$router.push('/licence');
+			},
+			download(params) {
+				axios({
+					url: `http://pickture.me/images/uploads/postphoto/${params}`,
+					method: 'GET',
+					responseType: 'blob'
+				}).then(res => {
+					const url = window.URL.createObjectURL(new Blob([res.data]));
+					const link = document.createElement('a');
+					link.href = url;
+					link.setAttribute('download', params);
+					document.body.appendChild(link);
+					link.click();
+				});
 			}
 		}
 	}

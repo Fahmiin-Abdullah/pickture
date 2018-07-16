@@ -45,7 +45,8 @@ class PostController extends Controller
     	$request->validate([
     		'title' => 'required|max:50',
     		'description' => 'required|max:200',
-    		'category' => 'required'
+    		'category' => 'required',
+            'status' => 'required'
     	]);
 
         $user = Auth::user();
@@ -53,6 +54,7 @@ class PostController extends Controller
     	$post->title = $request->get('title');
     	$post->description = $request->get('description');
         $post->category = $request->get('category');
+        $post->status = $request->get('status');
 
         $exploded = explode(',', $request->get('postphotoURL'));
         $decoded = base64_decode($exploded[1]);
@@ -72,7 +74,8 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:50',
             'description' => 'required|max:200',
-            'category' => 'required'
+            'category' => 'required',
+            'status' => 'required'
         ]);
 
         $user = Auth::user();
@@ -80,17 +83,18 @@ class PostController extends Controller
         $post->title = $request->get('title');
         $post->description = $request->get('description');
         $post->category = $request->get('category');
+        $post->status = $request->get('status');
 
         $user->posts()->save($post);
 
         return response(json_encode($post));
     }
 
-    public function delete($id)
+    public function delete(Request $request, $id)
     {
         $post = Post::find($id);
-        $likes = Like::find('post_id', $id)->get();
-        $favourites = Favourite::find('post_id', $id)->get();
+        $likes = Like::where('post_id', $id)->get();
+        $favourites = Favourite::where('post_id', $id)->get();
 
         foreach ($likes as $like) {
             $like->delete();
